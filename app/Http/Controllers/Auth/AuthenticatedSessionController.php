@@ -26,6 +26,13 @@ class AuthenticatedSessionController extends Controller
     public function store(LoginRequest $request): RedirectResponse
     {
 
+        // Esegui il logout del tipo di utente corrente (se presente)
+    if (auth()->guard('dipendenti')->check()) {
+        auth()->guard('dipendenti')->logout();
+    } else {
+        auth()->logout();
+    }
+
  
         if (Auth::guard('dipendenti')->attempt($request->only('email', 'password'))) {
         // Se l'utente è un dipendente, reindirizza a una home page specifica per i dipendenti
