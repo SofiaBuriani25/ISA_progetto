@@ -37,12 +37,13 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth:dipendenti'])->group(function () {
     // Rotte protette per i dipendenti
     Route::get('/dipendente_home', [DipendenteHomeController::class, 'index'])->name('dipendente_home');
-    Route::get('/daOrdinare', [DaOrdinareController::class, 'mostraDaOrdinare'])->name('daOrdinare');
+    Route::get('/daOrdinare', [ProdottoController::class, 'mostraDaOrdinare'])->name('daOrdinare');
     // ...
 });
 
 Route::get('/dashboard', [ProdottoController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 Route::post('/aggiungi_al_carrello', [ProdottoController::class, 'aggiungiAlCarrello'])->name('aggiungi_al_carrello');
+
 
 require __DIR__.'/auth.php';
 
