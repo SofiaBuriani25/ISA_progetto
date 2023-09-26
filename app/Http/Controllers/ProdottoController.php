@@ -17,8 +17,22 @@ class ProdottoController extends Controller
     public function aggiungiAlCarrello(Request $request)
 {
 
+    $prodotti = Prodotto::where('scadenza', '<', Carbon::today())
+    ->orWhere('disponibilita', '<=', 5)
+    ->get();
+    return view('daOrdinare', ['prodotti' => $prodotti]);
+}
+
+
+
+
+
+public function daOrdinare(Request $request)
+{
+
     $prodotto_id = $request->input('prodotto_id');
     $quantita = $request->input('quantita');
+    $scadenza = $request->input('scadenza');
 
 
     // Debug dei valori delle variabili
@@ -48,4 +62,8 @@ class ProdottoController extends Controller
     // Successo, reindirizza con un messaggio di successo
     return redirect()->back()->with('success', 'Prodotto aggiunto al carrello con successo.');
 }
+
+
+
+
 }
