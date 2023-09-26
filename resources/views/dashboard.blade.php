@@ -12,6 +12,7 @@
                     
                 
                     <h3 class="text-2xl mt-4">Elenco dei prodotti disponibili</h3>
+                    <h3 class="text-2xl mt-4">Max <strong><span class="bigger-number">3</span></strong> quantità selezionabili per ogni prodotto </h3>
                     <br>
                     <table class="min-w-full divide-y divide-gray-200">
                         <thead class="bg-gray-50 dark:bg-gray-900">
