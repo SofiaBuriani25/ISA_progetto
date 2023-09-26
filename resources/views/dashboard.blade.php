@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Dashboard') }}
+            {{ __('Dashboard Cliente') }}
         </h2>
     </x-slot>
 
@@ -46,7 +46,7 @@
                                     <form method="POST" action="{{ route('aggiungi_al_carrello') }}">
                                         @csrf
                                         <select class="form-select" name="quantita">
-                                            @for ($i = 0; $i <= $prodotto->disponibilita; $i++)
+                                            @for ($i = 0;$i <= min($prodotto->disponibilita, 3); $i++)
                                                 <option value="{{ $i }}">{{ $i }}</option>
                                             @endfor
                                         </select>
@@ -58,7 +58,10 @@
                                     </form>
 
                                     </td>
-@if (session('success'))
+
+                                </tr>
+                            @endforeach
+                            @if (session('success'))
     <div class="alert alert-success">
         {{ session('success') }}
     </div>
@@ -69,8 +72,6 @@
         {{ session('error') }}
     </div>
 @endif
-                                </tr>
-                            @endforeach
                         </tbody>
                     </table>
 
