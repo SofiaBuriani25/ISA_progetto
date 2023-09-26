@@ -3,7 +3,11 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DipendenteHomeController;
+
+use App\Http\Controllers\DaOrdinareController;
+
 use App\Http\Controllers\ProdottoController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +37,7 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth:dipendenti'])->group(function () {
     // Rotte protette per i dipendenti
     Route::get('/dipendente_home', [DipendenteHomeController::class, 'index'])->name('dipendente_home');
+    Route::get('/daOrdinare', [DaOrdinareController::class, 'mostraDaOrdinare'])->name('daOrdinare');
     // ...
 });
 
@@ -40,3 +45,6 @@ Route::get('/dashboard', [ProdottoController::class, 'index'])->middleware(['aut
 Route::post('/aggiungi_al_carrello', [ProdottoController::class, 'aggiungiAlCarrello'])->name('aggiungi_al_carrello');
 
 require __DIR__.'/auth.php';
+
+
+
