@@ -16,13 +16,14 @@ class ProdottoController extends Controller
 
     public function aggiungiAlCarrello(Request $request)
 {
+
     $prodotto_id = $request->input('prodotto_id');
     $quantita = $request->input('quantita');
 
 
     // Debug dei valori delle variabili
     //dd($_POST);
-    dd($quantita);
+    
 
     // Verifica se il prodotto esiste e se la quantità è valida
     $prodotto = Prodotto::find($prodotto_id);

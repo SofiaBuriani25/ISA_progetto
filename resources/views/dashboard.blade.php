@@ -40,22 +40,23 @@
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         {{ $prodotto->prezzo }}
                                     </td>
+
                                     <td class="px-6 py-4 whitespace-nowrap">
+                                        
+                                    <form method="POST" action="{{ route('aggiungi_al_carrello') }}">
+                                        @csrf
                                         <select class="form-select" name="quantita">
                                             @for ($i = 0; $i <= $prodotto->disponibilita; $i++)
                                                 <option value="{{ $i }}">{{ $i }}</option>
                                             @endfor
                                         </select>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <form method="POST" action="{{ route('aggiungi_al_carrello') }}">
-                                            @csrf
-                                            <input type="hidden" name="prodotto_id" value="{{ $prodotto->id }}">
-                                            <input type="hidden" name="azione" value="aggiungi">
-                                                <x-primary-button class="ml-3" type="submit">
-                                                    Aggiungi al carrello
-                                                </x-primary-button>
-                                        </form>
+                                        <input type="hidden" name="prodotto_id" value="{{ $prodotto->id }}">
+                                        <input type="hidden" name="azione" value="aggiungi">
+                                        <x-primary-button class="ml-3" type="submit">
+                                            Aggiungi al carrello
+                                        </x-primary-button>
+                                    </form>
+
                                     </td>
 @if (session('success'))
     <div class="alert alert-success">
