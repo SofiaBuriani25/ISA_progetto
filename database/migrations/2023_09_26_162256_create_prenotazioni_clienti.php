@@ -11,18 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('visite', function (Blueprint $table) {
+        Schema::create('prenotazioniClienti', function (Blueprint $table) {
             $table->id();
-            $table->string('tipologia');
-            $table->dateTime('dataVisita');
-            $table->string('medico');
-            $table->decimal('prezzo', 8, 2);
             $table->unsignedBigInteger('user_id'); 
+            $table->unsignedBigInteger('prodotto_id'); 
             $table->timestamps();
 
-
-            // Definizione della chiave esterna
             $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('prodotto_id')->references('id')->on('prodotti');
         });
     }
 
@@ -31,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('visita');
+        Schema::dropIfExists('prenotazioniClienti');
     }
 };
