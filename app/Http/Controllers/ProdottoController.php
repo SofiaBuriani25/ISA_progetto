@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Prodotto;
+use Illuminate\Support\Carbon;
+
 
 class ProdottoController extends Controller
 {
@@ -15,19 +17,6 @@ class ProdottoController extends Controller
     }
 
     public function aggiungiAlCarrello(Request $request)
-{
-
-    $prodotti = Prodotto::where('scadenza', '<', Carbon::today())
-    ->orWhere('disponibilita', '<=', 5)
-    ->get();
-    return view('daOrdinare', ['prodotti' => $prodotti]);
-}
-
-
-
-
-
-public function daOrdinare(Request $request)
 {
 
     $prodotto_id = $request->input('prodotto_id');
@@ -61,6 +50,19 @@ public function daOrdinare(Request $request)
 
     // Successo, reindirizza con un messaggio di successo
     return redirect()->back()->with('success', 'Prodotto aggiunto al carrello con successo.');
+}
+
+
+
+
+
+public function mostraDaOrdinare()
+{
+
+    $prodotti = Prodotto::where('scadenza', '<', Carbon::today())
+    ->orWhere('disponibilita', '<=', 5)
+    ->get();
+    return view('dashboard', ['prodotti' => $prodotti]);
 }
 
 
