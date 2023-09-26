@@ -62,7 +62,7 @@ public function mostraDaOrdinare()
     $prodotti = Prodotto::where('scadenza', '<', Carbon::today())
     ->orWhere('disponibilita', '<=', 5)
     ->get();
-    return view('dashboard', ['prodotti' => $prodotti]);
+    return view('daOrdinare', ['prodotti' => $prodotti]);
 }
 
 
