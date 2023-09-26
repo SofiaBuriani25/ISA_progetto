@@ -3,7 +3,11 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DipendenteHomeController;
+<<<<<<< HEAD
 use App\Http\Controllers\DaOrdinareController;
+=======
+use App\Http\Controllers\ProdottoController;
+>>>>>>> 050497e8e8bdd84ff2b9f02031ab84115bc40add
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +40,9 @@ Route::middleware(['auth:dipendenti'])->group(function () {
     Route::get('/daOrdinare', [DaOrdinareController::class, 'mostraDaOrdinare'])->name('daOrdinare');
     // ...
 });
+
+Route::get('/dashboard', [ProdottoController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::post('/aggiungi_al_carrello', [ProdottoController::class, 'aggiungiAlCarrello'])->name('aggiungi_al_carrello');
 
 require __DIR__.'/auth.php';
 
