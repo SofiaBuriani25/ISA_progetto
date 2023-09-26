@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DipendenteHomeController;
+use App\Http\Controllers\ProdottoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,5 +35,8 @@ Route::middleware(['auth:dipendenti'])->group(function () {
     Route::get('/dipendente_home', [DipendenteHomeController::class, 'index'])->name('dipendente_home');
     // ...
 });
+
+Route::get('/dashboard', [ProdottoController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::post('/aggiungi_al_carrello', [ProdottoController::class, 'aggiungiAlCarrello'])->name('aggiungi_al_carrello');
 
 require __DIR__.'/auth.php';
