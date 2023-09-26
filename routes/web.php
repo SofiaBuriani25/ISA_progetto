@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DipendenteHomeController;
+use App\Http\Controllers\DaOrdinareController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,7 +33,11 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth:dipendenti'])->group(function () {
     // Rotte protette per i dipendenti
     Route::get('/dipendente_home', [DipendenteHomeController::class, 'index'])->name('dipendente_home');
+    Route::get('/daOrdinare', [DaOrdinareController::class, 'mostraDaOrdinare'])->name('daOrdinare');
     // ...
 });
 
 require __DIR__.'/auth.php';
+
+
+
