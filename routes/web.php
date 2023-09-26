@@ -3,11 +3,11 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DipendenteHomeController;
-<<<<<<< HEAD
+
 use App\Http\Controllers\DaOrdinareController;
-=======
+
 use App\Http\Controllers\ProdottoController;
->>>>>>> 050497e8e8bdd84ff2b9f02031ab84115bc40add
+
 
 /*
 |--------------------------------------------------------------------------
