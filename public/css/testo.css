@@ -1,0 +1,26 @@
+.bigger-number {
+    font-size: 1.2em;
+}
+
+@keyframes blur-fade {
+    0% { filter: blur(10px); opacity: 0; }
+    100% { filter: blur(0); opacity: 1; }
+}
+
+/* Applica l'animazione all'avviso */
+.alert {
+    animation: blur-fade 0.5s ease-in-out;
+}
+
+
+/* Stile per l'avviso di successo (verde) */
+.alert-success {
+    background-color: #4CAF50; /* Colore di sfondo verde */
+    color: white; /* Testo bianco */
+}
+
+/* Stile per l'avviso di errore (rosso) */
+.alert-danger {
+    background-color: #f44336; /* Colore di sfondo rosso */
+    color: white; /* Testo bianco */
+}
