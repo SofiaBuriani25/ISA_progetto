@@ -9,7 +9,6 @@
                     
                 
                     <h1 class="text-2xl mt-4">Elenco dei prodotti disponibili</h1>
-                    <h3 class="text-2xl mt-4">Max <strong><span class="bigger-number">3</span></strong> quantità selezionabili per ogni prodotto </h3>
                     <br>
                     <div class="mt-4 mb-4">
                     <input type="text" id="search" class="form-input rounded-md shadow-sm" placeholder="Cerca prodotto...">
@@ -19,51 +18,51 @@
                         <thead class="bg-gray-50 dark:bg-gray-900">
                             <tr>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
-                                    Nome
+                                    Tipologia
                                 </th>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
-                                    Tipo
+                                    Data/ora
                                 </th>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
-                                    Prezzo (€)
+                                    Medico
+                                </th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                                    Prezzo
                                 </th>
                                 
                             </tr>
                         </thead>
                         <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200">
-                            @foreach ($prodotti as $prodotto)
-                                @if ($prodotto->disponibilita > 0)
+                            @foreach ($visite as $visita)
                                 <tr>
                                     <td class="px-6 py-4 whitespace-nowrap">
-                                        {{ $prodotto->name }}
+                                        {{ $visita->tipologia }}
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
-                                        {{ $prodotto->tipo }}
+                                        {{ $visita->dataVisita }}
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
-                                        {{ $prodotto->prezzo }}
+                                        {{ $visita->medico }}
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        {{ $visita->prezzo }} €
                                     </td>
 
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         
-                                    <form method="POST" action="{{ route('aggiungi_al_carrello') }}">
+                                    <form method="POST" action="{{ route('prenota_visita') }}">
                                         @csrf
-                                        <select class="form-select" name="quantita">
-                                            @for ($i = 0;$i <= min($prodotto->disponibilita, 3); $i++)
-                                                <option value="{{ $i }}">{{ $i }}</option>
-                                            @endfor
-                                        </select>
-                                        <input type="hidden" name="prodotto_id" value="{{ $prodotto->id }}">
+                                        <input type="hidden" name="user_id" value="{{ $visita->id }}">
                                         <input type="hidden" name="azione" value="aggiungi">
                                         <x-primary-button class="ml-3" type="submit">
-                                            Aggiungi al carrello
+                                            Prenota
                                         </x-primary-button>
                                     </form>
 
                                     </td>
 
                                 </tr>
-                                @endif
+                                
                             @endforeach
                             @if (session('success'))
                                 <div class="alert alert-success">

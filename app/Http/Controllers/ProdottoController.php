@@ -37,9 +37,9 @@ class ProdottoController extends Controller
     }
 
 
+    // Verifica se l'utente è autenticato come cliente o dipendente
+    if (auth()->user()) {
 
-// Verifica se l'utente è autenticato come cliente 
-if (auth()->user()) {
     // Utente cliente
     $prenotazione = new Prenotazione();
     $prenotazione->user_id = auth()->user()->id;
@@ -47,8 +47,6 @@ if (auth()->user()) {
     $prenotazione->quantita = $quantita;
     $prenotazione->save();
 } 
-
-
 
     $disponibilitaAttuale = $prodotto->disponibilita;
 
@@ -94,7 +92,7 @@ public function mostraPrenotazioni()
 
 
 
-     public function aggiungiProdotto(Request $request)
+    public function aggiungiProdotto(Request $request)
 {
 
     $name = $request->input('name');
