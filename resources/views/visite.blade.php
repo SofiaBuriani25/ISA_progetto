@@ -52,7 +52,7 @@
                                         
                                     <form method="POST" action="{{ route('prenota_visita') }}">
                                         @csrf
-                                        <input type="hidden" name="user_id" value="{{ $visita->id }}">
+                                        <input type="hidden" name="visita_id" value="{{ $visita->id}}">
                                         <input type="hidden" name="azione" value="aggiungi">
                                         <x-primary-button class="ml-3" type="submit">
                                             Prenota

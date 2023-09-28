@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Visita;
+use Illuminate\Support\Facades\Auth;
 
 class VisiteController extends Controller
 {
     public function index()
     {
-        $visite = Visita::all(); 
+        $visite = Visita::whereNull('user_id')->get();
 
         return view('visite', ['visite' => $visite]);
     }
@@ -17,14 +18,12 @@ class VisiteController extends Controller
     public function aggiungiPrenotazione(Request $request)
 {
 
-    $user_id = $request->input('user_id');
+    
+    $user = Auth::user();
+    $user_id = $user->id;   
     $visita_id = $request->input('visita_id');
 
-    dd($user_id);
 
-    // Debug dei valori delle variabili
-    //dd($_POST);
-    
 
     // Verifica se il prodotto esiste e se la quantità è valida
     $visita = Visita::find($visita_id);
