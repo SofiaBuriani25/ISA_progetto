@@ -18,7 +18,7 @@ return new class extends Migration
             $table->integer('disponibilita')->default(0); 
             $table->date('scadenza')->default('2023-12-31');
             $table->decimal('prezzo', 8, 2)->default(0.00);
-            $table->string('descrizione');
+            $table->string('descrizione')->nullable();
             $table->timestamps();
         });
 

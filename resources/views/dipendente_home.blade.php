@@ -89,7 +89,7 @@
         </div>
     </div>
 
-                    
+                  
     <div class="py-6 mt-[-40px]">
         <div class="max-w-7xl mx-auto sm:px-4 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
@@ -103,7 +103,7 @@
                 <td class="px-2 py-2 whitespace-nowrap "><label for="name">Nome:</label></td>
                 <td class="px-2 py-2 whitespace-nowrap "><label for="tipo">Tipo:</label></td>
                 <td class="px-2 py-2 whitespace-nowrap "><label for="scadenza" >Scadenza:</label></td>
-                <td class="px-2 py-2 whitespace-nowrap "><label for="disponibilita">Disponibilità:</label></td>
+                <td class="px-2 py-2 whitespace-nowrap "><label for="disponibilita">Quantità:</label></td>
                 <td class="px-2 py-2 whitespace-nowrap "><label for="prezzo">Prezzo:</label></td>
                 <td class="px-2 py-2 whitespace-nowrap "><label for="descrizione">Descrizione:</label></td>
 

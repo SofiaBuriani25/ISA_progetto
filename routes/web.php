@@ -39,6 +39,7 @@ Route::middleware(['auth:dipendenti'])->group(function () {
     Route::get('/dipendente_home', [DipendenteHomeController::class, 'index'])->name('dipendente_home');
     Route::get('/daOrdinare', [ProdottoController::class, 'mostraDaOrdinare'])->name('daOrdinare');
     Route::get('/dipendente_home', [ProdottoController::class, 'listaProdotti'])->name('dipendente_home');
+    Route::post('/aggiungiProdotto', [ProdottoController::class, 'aggiungiProdotto'])->name('aggiungiProdotto');
     // ...
 });
 
