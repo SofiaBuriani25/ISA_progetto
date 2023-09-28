@@ -43,6 +43,8 @@ Route::middleware(['auth:dipendenti'])->group(function () {
 
 Route::get('/dashboard', [ProdottoController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 Route::post('/aggiungi_al_carrello', [ProdottoController::class, 'aggiungiAlCarrello'])->name('aggiungi_al_carrello');
+Route::get('/mostra-prenotazioni', [ProdottoController::class, 'mostraPrenotazioni'])->name('mostra-prenotazioni');
+
 
 
 require __DIR__.'/auth.php';

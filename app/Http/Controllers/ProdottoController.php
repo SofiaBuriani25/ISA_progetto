@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Prodotto;
+use App\Models\Prenotazione;
 use Illuminate\Support\Carbon;
 
 
@@ -35,6 +36,13 @@ class ProdottoController extends Controller
         return redirect()->back()->with('error', 'Errore nella selezione del prodotto o della quantità.');
     }
 
+    // Crea una nuova prenotazione nella tabella prenotazioniClienti
+    $prenotazione = new Prenotazione();
+    $prenotazione->user_id = auth()->user()->id; // ID dell'utente autenticato
+    $prenotazione->prodotto_id = $prodotto_id;
+    $prenotazione->quantita = $quantita;
+    $prenotazione->save();
+
     $disponibilitaAttuale = $prodotto->disponibilita;
 
     
@@ -52,10 +60,6 @@ class ProdottoController extends Controller
     return redirect()->back()->with('success', 'Prodotto aggiunto al carrello con successo.');
 }
 
-
-
-
-
 public function mostraDaOrdinare()
 {
 
@@ -65,7 +69,13 @@ public function mostraDaOrdinare()
     return view('daOrdinare', ['prodotti' => $prodotti]);
 }
 
+public function mostraPrenotazioni()
+{
+    $prenotazioni = Prenotazione::where('user_id', auth()->user()->id)->get();
 
-
+    return view('mostra-prenotazioni', ['prenotazioni' => $prenotazioni]);
+}
 
 }
+
+

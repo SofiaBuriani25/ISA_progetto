@@ -15,6 +15,7 @@ class Prenotazione extends Model
         'id',
         'user_id',
         'prodotto_id',
+        'quantita',
     ];
 
     public function cliente()

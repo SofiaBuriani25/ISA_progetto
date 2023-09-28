@@ -24,3 +24,13 @@
     background-color: #f44336; /* Colore di sfondo rosso */
     color: white; /* Testo bianco */
 }
+
+
+.highlight-link {
+    font-weight: bold;
+    /* Altri stili per l'evidenziazione */
+}
+
+.text_navbar{
+    font-weight: 100;
+}
