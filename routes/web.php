@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DipendenteHomeController;
 
 use App\Http\Controllers\DaOrdinareController;
-
+use App\Http\Controllers\VisiteController;
 use App\Http\Controllers\ProdottoController;
 
 
@@ -39,6 +39,7 @@ Route::middleware(['auth:dipendenti'])->group(function () {
     Route::get('/dipendente_home', [DipendenteHomeController::class, 'index'])->name('dipendente_home');
     Route::get('/daOrdinare', [ProdottoController::class, 'mostraDaOrdinare'])->name('daOrdinare');
     Route::get('/dipendente_home', [ProdottoController::class, 'listaProdotti'])->name('dipendente_home');
+    Route::post('/dipendente_home', [ProdottoController::class, 'aggiungiProdotto'])->name('dipendente_home');
     // ...
 });
 
@@ -46,7 +47,8 @@ Route::get('/dashboard', [ProdottoController::class, 'index'])->middleware(['aut
 Route::post('/aggiungi_al_carrello', [ProdottoController::class, 'aggiungiAlCarrello'])->name('aggiungi_al_carrello');
 Route::get('/mostra-prenotazioni', [ProdottoController::class, 'mostraPrenotazioni'])->name('mostra-prenotazioni');
 
-
+Route::get('/visite', [VisiteController::class, 'index'])->middleware(['auth', 'verified'])->name('visite');
+Route::post('/prenota_visita', [VisiteController::class, 'aggiungiPrenotazione'])->name('prenota_visita');
 
 require __DIR__.'/auth.php';
 

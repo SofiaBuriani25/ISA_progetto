@@ -17,7 +17,7 @@ return new class extends Migration
             $table->dateTime('dataVisita');
             $table->string('medico');
             $table->decimal('prezzo', 8, 2);
-            $table->unsignedBigInteger('user_id'); 
+            $table->unsignedBigInteger('user_id')->nullable(); 
             $table->timestamps();
 
 

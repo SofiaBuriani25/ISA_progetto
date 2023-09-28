@@ -36,13 +36,15 @@ class ProdottoController extends Controller
         return redirect()->back()->with('error', 'Errore nella selezione del prodotto o della quantità.');
     }
 
-    // Crea una nuova prenotazione nella tabella prenotazioniClienti
+    // Verifica se l'utente è autenticato come cliente o dipendente
+    if (auth()->user()) {
+    // Utente cliente
     $prenotazione = new Prenotazione();
-    $prenotazione->user_id = auth()->user()->id; // ID dell'utente autenticato
+    $prenotazione->user_id = auth()->user()->id;
     $prenotazione->prodotto_id = $prodotto_id;
     $prenotazione->quantita = $quantita;
     $prenotazione->save();
-
+}
     $disponibilitaAttuale = $prodotto->disponibilita;
 
     
@@ -87,7 +89,7 @@ public function mostraPrenotazioni()
 
 
 
-     public function aggiungiProdotto(Request $request)
+    public function aggiungiProdotto(Request $request)
 {
 
     $prodotto_id = $request->input('prodotto_id');
