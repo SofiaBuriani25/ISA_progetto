@@ -12,4 +12,12 @@ class DipendenteHomeController extends Controller
         $user = Auth::guard('dipendenti')->user();
         return view('dipendente_home', ['user' => $user]); // Assicurati di avere una vista chiamata 'dipendente_home'
     }
+
+
+
+
+    
+
 }
+
+
