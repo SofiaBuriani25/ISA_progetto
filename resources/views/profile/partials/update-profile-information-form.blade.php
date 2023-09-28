@@ -1,11 +1,11 @@
 <section>
     <header>
         <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
-            {{ __('Profile Information') }}
+            {{ __('Informazioni del Profilo') }}
         </h2>
 
         <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-            {{ __("Update your account's profile information and email address.") }}
+            {{ __("Aggiorna le informazioni del tuo profilo") }}
         </p>
     </header>
 
@@ -18,9 +18,21 @@
         @method('patch')
 
         <div>
-            <x-input-label for="name" :value="__('Name')" />
+            <x-input-label for="name" :value="__('Nome')" />
             <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)" required autofocus autocomplete="name" />
             <x-input-error class="mt-2" :messages="$errors->get('name')" />
+        </div>
+
+        <div>
+            <x-input-label for="name" :value="__('Cognome')" />
+            <x-text-input id="cognome" name="cognome" type="text" class="mt-1 block w-full" :value="old('cognome', $user->cognome)" required autofocus autocomplete="cognome" />
+            <x-input-error class="mt-2" :messages="$errors->get('cognome')" />
+        </div>
+
+        <div>
+            <x-input-label for="name" :value="__('Numero di telefono')" />
+            <x-text-input id="telefono" name="telefono" type="text" class="mt-1 block w-full" :value="old('telefono', $user->telefono)" required autofocus autocomplete="telefono" />
+            <x-input-error class="mt-2" :messages="$errors->get('telefono')" />
         </div>
 
         <div>
@@ -48,7 +60,7 @@
         </div>
 
         <div class="flex items-center gap-4">
-            <x-primary-button>{{ __('Save') }}</x-primary-button>
+            <x-primary-button>{{ __('Salva') }}</x-primary-button>
 
             @if (session('status') === 'profile-updated')
                 <p
