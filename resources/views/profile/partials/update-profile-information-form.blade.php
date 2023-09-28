@@ -24,13 +24,13 @@
         </div>
 
         <div>
-            <x-input-label for="name" :value="__('Cognome')" />
+            <x-input-label for="cognome" :value="__('Cognome')" />
             <x-text-input id="cognome" name="cognome" type="text" class="mt-1 block w-full" :value="old('cognome', $user->cognome)" required autofocus autocomplete="cognome" />
             <x-input-error class="mt-2" :messages="$errors->get('cognome')" />
         </div>
 
         <div>
-            <x-input-label for="name" :value="__('Numero di telefono')" />
+            <x-input-label for="telefono" :value="__('Numero di telefono')" />
             <x-text-input id="telefono" name="telefono" type="text" class="mt-1 block w-full" :value="old('telefono', $user->telefono)" required autofocus autocomplete="telefono" />
             <x-input-error class="mt-2" :messages="$errors->get('telefono')" />
         </div>
@@ -69,7 +69,7 @@
                     x-transition
                     x-init="setTimeout(() => show = false, 2000)"
                     class="text-sm text-gray-600 dark:text-gray-400"
-                >{{ __('Saved.') }}</p>
+                >{{ __('Salvato.') }}</p>
             @endif
         </div>
     </form>
