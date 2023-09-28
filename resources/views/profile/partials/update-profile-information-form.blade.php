@@ -36,6 +36,24 @@
         </div>
 
         <div>
+            <x-input-label for="indirizzo" :value="__('Indirizzo')" />
+            <x-text-input id="indirizzo" name="indirizzo" type="text" class="mt-1 block w-full" :value="old('indirizzo', $user->indirizzo)" required autofocus autocomplete="indirizzo" />
+            <x-input-error class="mt-2" :messages="$errors->get('indirizzo')" />
+        </div>
+
+        <div>
+            <x-input-label for="citta" :value="__('Citta')" />
+            <x-text-input id="citta" name="citta" type="text" class="mt-1 block w-full" :value="old('citta', $user->citta)" required autofocus autocomplete="citta" />
+            <x-input-error class="mt-2" :messages="$errors->get('citta')" />
+        </div>
+
+        <div>
+            <x-input-label for="cap" :value="__('CAP')" />
+            <x-text-input id="cap" name="cap" type="text" class="mt-1 block w-full" :value="old('cap', $user->cap)" required autofocus autocomplete="cap" />
+            <x-input-error class="mt-2" :messages="$errors->get('cap')" />
+        </div>
+
+        <div>
             <x-input-label for="email" :value="__('Email')" />
             <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" :value="old('email', $user->email)" required autocomplete="username" />
             <x-input-error class="mt-2" :messages="$errors->get('email')" />
