@@ -87,7 +87,7 @@ public function mostraPrenotazioni()
 
 
 
-     public function aggiungiAlProdo(Request $request)
+     public function aggiungiProdotto(Request $request)
 {
 
     $prodotto_id = $request->input('prodotto_id');

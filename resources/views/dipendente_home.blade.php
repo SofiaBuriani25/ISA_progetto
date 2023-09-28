@@ -96,7 +96,7 @@
                 <div class="p-2 text-gray-900 dark:text-gray-100">
 
     <h1 class="text-2xl mt-2">Aggiungi un nuovo prodotto</h1>
-    <form action="{{ route('aggiungi_al_carrello') }}" method="POST">
+    <form action="{{ route('aggiungiProdotto') }}" method="POST">
         @csrf
         <table class="my-1">
             <tr>
