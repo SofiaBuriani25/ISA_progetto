@@ -14,6 +14,10 @@
                 
                     <h1 class="text-2xl mt-4">Elenco dei prodotti disponibili</h1>
                     <br>
+                    <div class="mt-4 mb-4">
+                    <input type="text" id="search" class="form-input rounded-md shadow-sm" placeholder="Cerca prodotto...">
+                    </div>
+                    <br>
                     <table class="min-w-full divide-y divide-gray-200">
                         <thead class="bg-gray-50 dark:bg-gray-900">
                             <tr>
@@ -132,5 +136,6 @@
         </div>
     </div>
 
+    <script src="{{ asset('js/ricerca.js') }}"></script>
 </x-app-layout>
 
