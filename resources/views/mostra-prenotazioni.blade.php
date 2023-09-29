@@ -1,5 +1,5 @@
 <x-app-layout>
-@include('intestazione_cliente')
+        @include('intestazione_cliente')
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">

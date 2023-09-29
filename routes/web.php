@@ -50,6 +50,9 @@ Route::get('/mostra-prenotazioni', [ProdottoController::class, 'mostraPrenotazio
 
 Route::get('/visite', [VisiteController::class, 'index'])->middleware(['auth', 'verified'])->name('visite');
 Route::post('/prenota_visita', [VisiteController::class, 'aggiungiPrenotazione'])->name('prenota_visita');
+Route::delete('/visite/cancel/{id}', [VisiteController::class, 'cancellaPrenotazione'])->name('visite.cancel');
+
+
 
 require __DIR__.'/auth.php';
 

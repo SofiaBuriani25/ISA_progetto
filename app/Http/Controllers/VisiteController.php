@@ -10,9 +10,29 @@ class VisiteController extends Controller
 {
     public function index()
     {
-        $visite = Visita::whereNull('user_id')->get();
+         // Recupera l'utente attualmente autenticato
+    $user = Auth::user();
 
-        return view('visite', ['visite' => $visite]);
+    // Recupera le visite prenotate dal cliente corrente
+    $prenotazioni = Visita::where('user_id', $user->id)->get();
+
+    // Conta il numero di visite prenotate dal cliente
+    $numeroPrenotazioni = $prenotazioni->count();
+
+    // Verifica se il cliente può prenotare ulteriori visite (massimo 2)
+    $limitePrenotazioni = 2;
+    $puoPrenotare = $numeroPrenotazioni < $limitePrenotazioni;
+
+    // Recupera le visite disponibili per prenotazione (senza utente)
+    $visite = Visita::whereNull('user_id')->get();
+
+    return view('visite', [
+        'puoPrenotare' => $puoPrenotare,
+        'visite' => $visite,
+        'prenotazioni' => $prenotazioni,
+    ]);
+
+        
     }
 
     public function aggiungiPrenotazione(Request $request)
@@ -43,5 +63,24 @@ class VisiteController extends Controller
     // Successo, reindirizza con un messaggio di successo
     return redirect()->back()->with('success', 'Prodotto aggiunto al carrello con successo.');
 }
+
+
+
+public function cancellaPrenotazione($id)
+{
+    // Trova la visita da cancellare
+    $visita = Visita::findOrFail($id);
+
+    // Verifica se l'utente autenticato è il proprietario della prenotazione
+    if (Auth::user()->id == $visita->user_id) {
+        // Rimuovi l'associazione dell'utente dalla visita (imposta user_id a NULL)
+        $visita->update(['user_id' => null]);
+
+        return redirect()->route('visite')->with('success', 'Prenotazione cancellata con successo.');
+    } else {
+        return redirect()->route('visite')->with('error', 'Non sei autorizzato a cancellare questa prenotazione.');
+    }
+}
+
 
 }
