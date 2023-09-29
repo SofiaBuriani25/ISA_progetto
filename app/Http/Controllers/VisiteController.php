@@ -72,14 +72,12 @@ public function cancellaPrenotazione($id)
     $visita = Visita::findOrFail($id);
 
     // Verifica se l'utente autenticato è il proprietario della prenotazione
-    if (Auth::user()->id == $visita->user_id) {
+    Auth::user()->id == $visita->user_id;
         // Rimuovi l'associazione dell'utente dalla visita (imposta user_id a NULL)
-        $visita->update(['user_id' => null]);
+    $visita->update(['user_id' => null]);
 
-        return redirect()->route('visite')->with('success', 'Prenotazione cancellata con successo.');
-    } else {
-        return redirect()->route('visite')->with('error', 'Non sei autorizzato a cancellare questa prenotazione.');
-    }
+    return redirect()->route('visite');
+    
 }
 
 

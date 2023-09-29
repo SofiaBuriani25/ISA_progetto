@@ -9,6 +9,7 @@
                     
                 
                     <h1 class="text-2xl mt-4">Elenco delle visite disponibili</h1>
+                    <h2 class="text-2xl mt-4">Puoi prenotare al massimo 2 visite</h1>
                     <br>
                     <div class="mt-4 mb-4">
                     <input type="text" id="search" class="form-input rounded-md shadow-sm" placeholder="Cerca visita...">
@@ -128,9 +129,7 @@
                             @csrf
                             @method('DELETE')
                             
-                            <x-primary-button class="ml-3" type="submit">
-                                            Cancella
-                                        </x-primary-button>
+                            <button class="delete-button">X</button>
                         </form>
                     </td>
 
