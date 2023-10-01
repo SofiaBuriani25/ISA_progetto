@@ -18,17 +18,13 @@ class ProdottoController extends Controller
     }
 
     public function aggiungiAlCarrello(Request $request)
-{
+    {
 
     $prodotto_id = $request->input('prodotto_id');
     $quantita = $request->input('quantita');
     $scadenza = $request->input('scadenza');
 
-
-    // Debug dei valori delle variabili
-    //dd($_POST);
     
-
     // Verifica se il prodotto esiste e se la quantità è valida
     $prodotto = Prodotto::find($prodotto_id);
     if (!$prodotto || $quantita < 0) {
@@ -36,9 +32,9 @@ class ProdottoController extends Controller
         return redirect()->back()->with('error', 'Errore nella selezione del prodotto o della quantità.');
     }
 
+    
 
-    // Verifica se l'utente è autenticato come cliente o dipendente
-    if (auth()->user()) {
+  
 
     // Utente cliente
     $prenotazione = new Prenotazione();
@@ -46,7 +42,7 @@ class ProdottoController extends Controller
     $prenotazione->prodotto_id = $prodotto_id;
     $prenotazione->quantita = $quantita;
     $prenotazione->save();
-} 
+
 
     $disponibilitaAttuale = $prodotto->disponibilita;
 
@@ -85,7 +81,9 @@ public function listaProdotti()
 
 public function mostraPrenotazioni()
 {
-    $prenotazioni = Prenotazione::where('user_id', auth()->user()->id)->get();
+    $prenotazioni = Prenotazione::where('user_id', auth()->user()->id)
+    ->orderBy('created_at', 'desc') // Ordine decrescente per vedere prima le ultime prenotazioni
+    ->get();
     return view('mostra-prenotazioni', ['prenotazioni' => $prenotazioni]);
 }
 

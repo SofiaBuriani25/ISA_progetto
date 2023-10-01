@@ -5,13 +5,14 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
+                    <a href="{{ route('home') }}">
                     <img src="{{ asset('logo.png') }}" alt="Logo" class="block h-9 w-auto">
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                
+                <div class="titolo">
                         {{ __('Farmacia Lodi') }}
                 </div>
             </div>
@@ -33,7 +34,7 @@
 
                     <x-slot name="content">
                         <x-dropdown-link :href="route('profile.edit')">
-                            {{ __('Profile') }}
+                            {{ __('Profilo') }}
                         </x-dropdown-link>
 
                         <!-- Authentication -->

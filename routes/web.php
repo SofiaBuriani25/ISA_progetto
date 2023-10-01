@@ -22,7 +22,8 @@ use App\Http\Controllers\ProdottoController;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -32,6 +33,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::post('/aggiungi_al_carrello', [ProdottoController::class, 'aggiungiAlCarrello'])->name('aggiungi_al_carrello');
 });
 
 Route::middleware(['auth:dipendenti'])->group(function () {
@@ -45,7 +47,7 @@ Route::middleware(['auth:dipendenti'])->group(function () {
 });
 
 Route::get('/dashboard', [ProdottoController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
-Route::post('/aggiungi_al_carrello', [ProdottoController::class, 'aggiungiAlCarrello'])->name('aggiungi_al_carrello');
+// Route::post('/aggiungi_al_carrello' .... è stato aggiunto a sezione utenti bisogna verificare che funzioni anche su dipendenti
 Route::get('/mostra-prenotazioni', [ProdottoController::class, 'mostraPrenotazioni'])->name('mostra-prenotazioni');
 
 Route::get('/visite', [VisiteController::class, 'index'])->middleware(['auth', 'verified'])->name('visite');

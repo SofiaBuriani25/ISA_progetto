@@ -7,7 +7,7 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     
                 
-                    <h2 class="text-2xl mt-4">Storico prodotti prenotati</h2>
+                    <h2 class="titoli_pagine">Storico prodotti prenotati</h2>
                     <br>
                     <table class="min-w-full divide-y divide-gray-200">
                         <thead class="bg-gray-50 dark:bg-gray-900">

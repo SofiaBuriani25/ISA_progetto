@@ -8,8 +8,8 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     
                 
-                    <h1 class="text-2xl mt-4">Elenco delle visite disponibili</h1>
-                    <h2 class="text-2xl mt-4">Puoi prenotare al massimo 2 visite</h1>
+                    <h1 class="titoli_pagine">Elenco delle visite disponibili</h1>
+                    <h3 class="sottotitoli_pagine">Puoi prenotare al massimo <span style="font-size: larger; color: black;"><b> {{ $limitePrenotazioni - $numeroPrenotazioni }}</b></span> visite</h3>
                     <br>
                     <div class="mt-4 mb-4">
                     <input type="text" id="search" class="form-input rounded-md shadow-sm" placeholder="Cerca visita...">

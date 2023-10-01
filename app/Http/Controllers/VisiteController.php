@@ -30,6 +30,8 @@ class VisiteController extends Controller
         'puoPrenotare' => $puoPrenotare,
         'visite' => $visite,
         'prenotazioni' => $prenotazioni,
+        'numeroPrenotazioni' => $numeroPrenotazioni,
+        'limitePrenotazioni' => $limitePrenotazioni,
     ]);
 
         
