@@ -4,17 +4,19 @@
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
-                <div class="shrink-0 flex items-center">
-                    <a href="{{ route('home') }}">
+                <div class="flex items-center">
+                    <a href="{{ route('home') }} " class="flex items-center">
                     <img src="{{ asset('logo.png') }}" alt="Logo" class="block h-9 w-auto">
+                    <div class="titolo">
+                        {{ __('Farmacia Lodi') }}
+                    </div>
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
                 
-                <div class="titolo">
-                        {{ __('Farmacia Lodi') }}
-                </div>
+                
+                
             </div>
 
             <!-- Settings Dropdown -->

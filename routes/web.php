@@ -41,6 +41,9 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware(['auth:dipendenti'])->group(function () {
     // Rotte protette per i dipendenti
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/dipendente_home', [DipendenteHomeController::class, 'index'])->name('dipendente_home');
     Route::get('/daOrdinare', [ProdottoController::class, 'mostraDaOrdinare'])->name('daOrdinare');
     Route::get('/dipendente_home', [ProdottoController::class, 'listaProdotti'])->name('dipendente_home');

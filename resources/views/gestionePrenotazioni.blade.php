@@ -10,6 +10,10 @@
                <h1 class="titoli_pagine">Lista delle prenotazioni dei clienti</h1>
                <h3 class="sottotitoli_pagine"> Per ogni prodotto seleziona se il cliente a pagato oppure no.</h3>
                <br>
+               <div class="mt-4 mb-4">
+                    <input type="text" id="search" class="form-input rounded-md shadow-sm" placeholder="Cerca cliente o prodotto...">
+                    </div>
+                <br>
                    
                <table class="min-w-full divide-y divide-gray-200">
                         <thead class="bg-gray-50 dark:bg-gray-900">
@@ -84,4 +88,5 @@
             </div>
         </div>
     </div>
+    <script src="{{ asset('js/ricerca.js') }}"></script>
 </x-app-layout>
