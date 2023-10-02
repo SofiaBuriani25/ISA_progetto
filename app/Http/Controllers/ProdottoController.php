@@ -54,13 +54,16 @@ class ProdottoController extends Controller
         ->with('numeroRimenenti', $numeroRimenenti);
         }
 
-
+    // Verifica se l'utente è autenticato come cliente
+    if (auth()->user()) {
     // Utente cliente
     $prenotazione = new Prenotazione();
     $prenotazione->user_id = auth()->user()->id;
     $prenotazione->prodotto_id = $prodotto_id;
     $prenotazione->quantita = $quantita;
     $prenotazione->save();
+    }
+
 
 
     $disponibilitaAttuale = $prodotto->disponibilita;
