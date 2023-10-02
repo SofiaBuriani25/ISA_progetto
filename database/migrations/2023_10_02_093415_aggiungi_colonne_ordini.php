@@ -11,10 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('ordiniDipendenti', function (Blueprint $table) {
+
+        Schema::create('ordiniDipendenti', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('dipendenti_id'); 
+            $table->unsignedBigInteger('prodotto_id'); 
             $table->integer('quantita'); 
-            
+
+            $table->foreign('dipendenti_id')->references('id')->on('dipendenti');
+            $table->foreign('prodotto_id')->references('id')->on('prodotti');
         });
+       
     }
 
     /**
