@@ -83,6 +83,7 @@ class ProdottoController extends Controller
     return redirect()->back()
     ->with('success', 'Prodotto aggiunto al carrello con successo.');
 }
+}
 
 
 
