@@ -50,7 +50,7 @@
 
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         
-                                    <form method="POST" action="{{ route('aggiungi_al_carrello') }}">
+                                    <form method="POST" action="{{ route('aggiungi_al_carrello_dip') }}">
                                         @csrf
                                         <select class="form-select" name="quantita">
                                             @for ($i = 1;$i <= min($prodotto->disponibilita, 5); $i++)

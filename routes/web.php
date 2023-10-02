@@ -48,14 +48,16 @@ Route::middleware(['auth:dipendenti'])->group(function () {
     Route::post('/dipendente_home', [ProdottoController::class, 'aggiungiProdotto'])->name('dipendente_home');
     Route::post('/ordina_prodotto', [ProdottoController::class, 'ordinaProdotto'])->name('ordina_prodotto');
     Route::post('/gestionePrenotazioni', [ProdottoController::class, 'aggiungiProdotto'])->name('gestionePrenotazioni');
-
-    Route::post('/aggiungi_al_carrello', [ProdottoController::class, 'aggiungiAlCarrello'])->name('aggiungi_al_carrello');
+    Route::get('/storico_dipendenti', [OrdiniDipController::class, 'mostraTabella'])->name('storico_dipendenti');
+    Route::post('/aggiungi_al_carrello_dip', [ProdottoController::class, 'aggiungiAlCarrello'])->name('aggiungi_al_carrello_dip');
     Route::get('/gestionePrenotazioni',  [PrenotazioneController::class, 'index'])->name('gestionePrenotazioni');
     // Rotta per confermare il pagamento
     Route::post('/conferma-pagamento/{id}', [PrenotazioneController::class, 'confermaPagamento'])->name('conferma_pagamento');
 
     // Rotta per eliminare la prenotazione
     Route::post('/elimina-prenotazione/{id}', [PrenotazioneController::class, 'eliminaPrenotazione'])->name('elimina_prenotazione');
+
+    
 
 
     
@@ -70,7 +72,7 @@ Route::get('/mostra-prenotazioni', [ProdottoController::class, 'mostraPrenotazio
 Route::get('/visite', [VisiteController::class, 'index'])->middleware(['auth', 'verified'])->name('visite');
 Route::post('/prenota_visita', [VisiteController::class, 'aggiungiPrenotazione'])->name('prenota_visita');
 Route::delete('/visite/cancel/{id}', [VisiteController::class, 'cancellaPrenotazione'])->name('visite.cancel');
-Route::get('/storico_dipendenti', [OrdiniDipController::class, 'mostraTabella'])->name('storico_dipendenti');;
+
 
 
 
