@@ -10,16 +10,11 @@
                     <h2 class="titoli_pagine">Storico prodotti ordinati</h2>
                     <br>
 
-
-                    <h1>Tabella Ordini Dipendenti</h1>
-
-
-
                     <table class="min-w-full divide-y divide-gray-200">
                         <thead class="bg-gray-50 dark:bg-gray-900">
                             <tr>
                             <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
-                                Dipendente ID
+                                ID Dipendente
                             </th>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                                     Nome Dipendente

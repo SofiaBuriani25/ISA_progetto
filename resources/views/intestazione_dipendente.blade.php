@@ -2,8 +2,7 @@
 @php
     $isDaOrdinare = request()->routeIs('daOrdinare');
     $isDipendenteHome = request()->routeIs('dipendente_home');
-    $isGestionePrenotazioni = request()->routeIs('gestionePrenotazioni');
-    $isStoricoDipendente = request()->routeIs('storico_dipendenti');
+   
 @endphp
 
     
