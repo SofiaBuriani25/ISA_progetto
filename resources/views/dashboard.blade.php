@@ -9,7 +9,7 @@
                     
                 
                     <h1 class="titoli_pagine">Elenco dei prodotti disponibili</h1>
-                    <h3 class="sottotitoli_pagine">Max <b><span style="font-size: larger; color: black;">3</span></b> quantità selezionabili per ogni prodotto </h3>
+                    <h3 class="sottotitoli_pagine">Max <b><span style="font-size: larger; color: black;">{{ $numeroRimenenti }}</span></b> quantità prenotabile </h3>
                     <br>
                     <div class="mt-4 mb-4">
                     <input type="text" id="search" class="form-input rounded-md shadow-sm" placeholder="Cerca prodotto...">
@@ -45,11 +45,12 @@
                                     </td>
 
                                     <td class="px-6 py-4 whitespace-nowrap">
-                                        
+
+                                        @if ($numeroRimenenti > 0)
                                     <form method="POST" action="{{ route('aggiungi_al_carrello') }}">
                                         @csrf
                                         <select class="form-select" name="quantita">
-                                            @for ($i = 0;$i <= min($prodotto->disponibilita, 3); $i++)
+                                            @for ($i = 1;$i <= min($prodotto->disponibilita, $numeroRimenenti); $i++)
                                                 <option value="{{ $i }}">{{ $i }}</option>
                                             @endfor
                                         </select>
@@ -59,6 +60,7 @@
                                             Prenota
                                         </x-primary-button>
                                     </form>
+                                    @endif
 
                                     </td>
 

@@ -15,7 +15,14 @@ class ProdottoController extends Controller
     {
         $prodotti = Prodotto::all(); // Recupera tutti i prodotti dal database
 
-        return view('dashboard', ['prodotti' => $prodotti]);
+        $prenotazioniNonPagate = Prenotazione::where('user_id', auth()->user()->id)
+        ->where('pagato', false)
+        ->sum('quantita');
+
+        $limite = 5;
+        $numeroRimenenti = $limite - $prenotazioniNonPagate;
+
+        return view('dashboard', ['prodotti' => $prodotti, 'numeroRimenenti'=> $numeroRimenenti]);
     }
 
     public function aggiungiAlCarrello(Request $request)
@@ -33,9 +40,20 @@ class ProdottoController extends Controller
         return redirect()->back()->with('error', 'Errore nella selezione del prodotto o della quantità.');
     }
 
-    
+     // Verifica se l'utente ha raggiunto il limite di 5 prenotazioni non pagate
+    $limitePrenotazioni = 5;
+    $prenotazioniNonPagate = Prenotazione::where('user_id', auth()->user()->id)
+        ->where('pagato', false)
+        ->count();
 
-  
+    $numeroRimenenti = $limitePrenotazioni - $prenotazioniNonPagate;
+
+    if ($numeroRimenenti < 0) {
+        return redirect()->back()
+        ->with('error', 'Hai raggiunto il limite massimo di prenotazioni non pagate.')
+        ->with('numeroRimenenti', $numeroRimenenti);
+        }
+
 
     // Utente cliente
     $prenotazione = new Prenotazione();
@@ -59,8 +77,13 @@ class ProdottoController extends Controller
     // Ad esempio, puoi salvare l'ID del prodotto e la quantità in una sessione o in un database dedicato al carrello
 
     // Successo, reindirizza con un messaggio di successo
-    return redirect()->back()->with('success', 'Prodotto aggiunto al carrello con successo.');
+    return redirect()->back()
+    ->with('success', 'Prodotto aggiunto al carrello con successo.')
+    ->with('prenotazioniNonPagate', $prenotazioniNonPagate);
 }
+
+
+
 
 public function mostraDaOrdinare()
 {

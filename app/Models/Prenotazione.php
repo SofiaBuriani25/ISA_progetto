@@ -18,6 +18,7 @@ class Prenotazione extends Model
         'user_id',
         'prodotto_id',
         'quantita',
+        'pagato',
     ];
 
     
