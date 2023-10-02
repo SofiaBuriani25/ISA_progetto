@@ -13,13 +13,13 @@ class Ordine extends Model
 
     protected $fillable = [
         'id',
-        'dipendente_id',
+        'dipendenti_id',
         'prodotto_id',
     ];
 
     public function dipendenti()
     {
-        return $this->belongsTo(Dipendente::class, 'dipendente_id');
+        return $this->belongsTo(Dipendente::class, 'dipendenti_id');
     }
 
     public function prodotto()

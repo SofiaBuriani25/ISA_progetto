@@ -10,8 +10,8 @@ class OrdiniDipController extends Controller
 {
     public function mostraTabella()
     {
-        $ordiniDipendenti = Ordine::all();
+        $ordini = Ordine::with('dipendenti','prodotto')->get();
 
-        return view('storico_dipendenti', ['ordiniDipendenti' => $ordiniDipendenti]);
+        return view('storico_dipendenti', ['ordini' => $ordini]);
     }
 }
