@@ -22,7 +22,10 @@
                                     Quantità
                                 </th>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
-                                    Tot 
+                                    Tot
+                                </th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                                    Pagato
                                 </th>
                                 
                             </tr>
@@ -41,7 +44,13 @@
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         {{ $prenotazione->quantita * $prenotazione->prodotto->prezzo }} € {{-- Moltiplica quantità per prezzo --}}
-
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                    @if ($prenotazione->pagato == 0)
+                                        <span class="text-red-500">✘</span>
+                                    @else
+                                        <span class="text-green-500">✔</span>
+                                    @endif
                                     </td>
 
                                 
