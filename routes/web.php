@@ -10,6 +10,7 @@ use App\Http\Controllers\ProdottoController;
 use App\Http\Controllers\OrdiniDipController;
 
 
+use App\Http\Controllers\PrenotazioneController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,7 +48,18 @@ Route::middleware(['auth:dipendenti'])->group(function () {
     Route::post('/dipendente_home', [ProdottoController::class, 'aggiungiProdotto'])->name('dipendente_home');
     Route::post('/ordina_prodotto', [ProdottoController::class, 'ordinaProdotto'])->name('ordina_prodotto');
     Route::post('/gestionePrenotazioni', [ProdottoController::class, 'aggiungiProdotto'])->name('gestionePrenotazioni');
+
+    Route::post('/aggiungi_al_carrello', [ProdottoController::class, 'aggiungiAlCarrello'])->name('aggiungi_al_carrello');
+    Route::get('/gestionePrenotazioni',  [PrenotazioneController::class, 'index'])->name('gestionePrenotazioni');
+    // Rotta per confermare il pagamento
+    Route::post('/conferma-pagamento/{id}', [PrenotazioneController::class, 'confermaPagamento'])->name('conferma_pagamento');
+
+    // Rotta per eliminare la prenotazione
+    Route::post('/elimina-prenotazione/{id}', [PrenotazioneController::class, 'eliminaPrenotazione'])->name('elimina_prenotazione');
+
+
     
+   
     // ...
 });
 
