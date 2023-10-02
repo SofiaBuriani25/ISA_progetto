@@ -40,29 +40,13 @@ class ProdottoController extends Controller
         return redirect()->back()->with('error', 'Errore nella selezione del prodotto o della quantità.');
     }
 
-     // Verifica se l'utente ha raggiunto il limite di 5 prenotazioni non pagate
-    $limitePrenotazioni = 5;
-    $prenotazioniNonPagate = Prenotazione::where('user_id', auth()->user()->id)
-        ->where('pagato', false)
-        ->count();
 
-    $numeroRimenenti = $limitePrenotazioni - $prenotazioniNonPagate;
-
-    if ($numeroRimenenti < 0) {
-        return redirect()->back()
-        ->with('error', 'Hai raggiunto il limite massimo di prenotazioni non pagate.')
-        ->with('numeroRimenenti', $numeroRimenenti);
-        }
-
-    // Verifica se l'utente è autenticato come cliente
-    if (auth()->user()) {
     // Utente cliente
     $prenotazione = new Prenotazione();
     $prenotazione->user_id = auth()->user()->id;
     $prenotazione->prodotto_id = $prodotto_id;
     $prenotazione->quantita = $quantita;
     $prenotazione->save();
-    }
 
 
 
@@ -117,7 +101,7 @@ public function mostraPrenotazioni()
 
 
 
-    public function aggiungiProdotto(Request $request)
+    public function aggiungiProdotto(Request $request) //Il dipendente che può aggiungere un nuovo prodotto
 {
 
     $name = $request->input('name');
