@@ -7,7 +7,7 @@ use App\Http\Controllers\DipendenteHomeController;
 use App\Http\Controllers\DaOrdinareController;
 use App\Http\Controllers\VisiteController;
 use App\Http\Controllers\ProdottoController;
-
+use App\Http\Controllers\PrenotazioneController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,7 +44,15 @@ Route::middleware(['auth:dipendenti'])->group(function () {
     Route::post('/aggiungiProdotto', [ProdottoController::class, 'aggiungiProdotto'])->name('aggiungiProdotto');
     Route::post('/dipendente_home', [ProdottoController::class, 'aggiungiProdotto'])->name('dipendente_home');
     Route::post('/aggiungi_al_carrello', [ProdottoController::class, 'aggiungiAlCarrello'])->name('aggiungi_al_carrello');
-    Route::post('/gestionePrenotazioni', [ProdottoController::class, 'aggiungiProdotto'])->name('gestionePrenotazioni');
+    Route::get('/gestionePrenotazioni',  [PrenotazioneController::class, 'index'])->name('gestionePrenotazioni');
+    // Rotta per confermare il pagamento
+    Route::post('/conferma-pagamento/{id}', [PrenotazioneController::class, 'confermaPagamento'])->name('conferma_pagamento');
+
+    // Rotta per eliminare la prenotazione
+    Route::post('/elimina-prenotazione/{id}', [PrenotazioneController::class, 'eliminaPrenotazione'])->name('elimina_prenotazione');
+
+
+    
    
     // ...
 });

@@ -33,6 +33,7 @@
                         </thead>
                         <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200">
                             @foreach ($prodotti as $prodotto)
+                            @if ($prodotto->disponibilita > 0)
                                 <tr>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         {{ $prodotto->name }}
@@ -52,7 +53,7 @@
                                     <form method="POST" action="{{ route('aggiungi_al_carrello') }}">
                                         @csrf
                                         <select class="form-select" name="quantita">
-                                            @for ($i = 0;$i <= min($prodotto->disponibilita, 3); $i++)
+                                            @for ($i = 1;$i <= min($prodotto->disponibilita, 5); $i++)
                                                 <option value="{{ $i }}">{{ $i }}</option>
                                             @endfor
                                         </select>
@@ -64,6 +65,7 @@
                                     </form>
 
                                     </td>
+                                    @endif
 
                                 </tr>
                             @endforeach
