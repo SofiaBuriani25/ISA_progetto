@@ -61,9 +61,6 @@ Route::middleware(['auth:dipendenti'])->group(function () {
     Route::post('/elimina-prenotazione/{id}', [PrenotazioneController::class, 'eliminaPrenotazione'])->name('elimina_prenotazione');
 
     
-
-
-    
    
     // ...
 });
