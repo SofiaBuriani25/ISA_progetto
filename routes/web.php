@@ -7,6 +7,8 @@ use App\Http\Controllers\DipendenteHomeController;
 use App\Http\Controllers\DaOrdinareController;
 use App\Http\Controllers\VisiteController;
 use App\Http\Controllers\ProdottoController;
+use App\Http\Controllers\OrdiniDipController;
+
 
 
 /*
@@ -43,9 +45,9 @@ Route::middleware(['auth:dipendenti'])->group(function () {
     Route::get('/dipendente_home', [ProdottoController::class, 'listaProdotti'])->name('dipendente_home');
     Route::post('/aggiungiProdotto', [ProdottoController::class, 'aggiungiProdotto'])->name('aggiungiProdotto');
     Route::post('/dipendente_home', [ProdottoController::class, 'aggiungiProdotto'])->name('dipendente_home');
-    Route::post('/aggiungi_al_carrello', [ProdottoController::class, 'aggiungiAlCarrello'])->name('aggiungi_al_carrello');
+    Route::post('/ordina_prodotto', [ProdottoController::class, 'ordinaProdotto'])->name('ordina_prodotto');
     Route::post('/gestionePrenotazioni', [ProdottoController::class, 'aggiungiProdotto'])->name('gestionePrenotazioni');
-   
+    
     // ...
 });
 
@@ -56,7 +58,7 @@ Route::get('/mostra-prenotazioni', [ProdottoController::class, 'mostraPrenotazio
 Route::get('/visite', [VisiteController::class, 'index'])->middleware(['auth', 'verified'])->name('visite');
 Route::post('/prenota_visita', [VisiteController::class, 'aggiungiPrenotazione'])->name('prenota_visita');
 Route::delete('/visite/cancel/{id}', [VisiteController::class, 'cancellaPrenotazione'])->name('visite.cancel');
-Route::get('/storico_dipendenti', [ProdottoController::class, 'mostraOrdiniDipendenti'])->name('storico_dipendenti');
+Route::get('/storico_dipendenti', [OrdiniDipController::class, 'mostraTabella'])->name('storico_dipendenti');;
 
 
 

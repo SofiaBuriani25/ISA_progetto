@@ -34,6 +34,10 @@
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                                     Quantità disponibile
                                 </th>
+                                <th class="px-1 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                                    Quantità da ordinare
+                                </th>
+                              
                                 
                             </tr>
                         </thead>
@@ -56,17 +60,14 @@
 
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         
-                                    <form method="POST" action="{{ route('aggiungi_al_carrello') }}">
+                                    <form method="POST" action="{{ route('ordina_prodotto') }}">
                                         @csrf
-                                        <select class="form-select" name="quantita">
-                                            @for ($i = 0;$i <= min($prodotto->disponibilita, 3); $i++)
-                                                <option value="{{ $i }}">{{ $i }}</option>
-                                            @endfor
-                                        </select>
+                                        <input type="number" class="form-control" name="quantita" min="1"  style="width:100px">
+
                                         <input type="hidden" name="prodotto_id" value="{{ $prodotto->id }}">
                                         <input type="hidden" name="azione" value="aggiungi">
                                         <x-primary-button class="ml-3" type="submit">
-                                            Aggiungi al carrello
+                                            Aggiungi disponibilità
                                         </x-primary-button>
                                     </form>
 
