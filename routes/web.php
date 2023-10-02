@@ -43,16 +43,19 @@ Route::middleware(['auth:dipendenti'])->group(function () {
     Route::get('/dipendente_home', [ProdottoController::class, 'listaProdotti'])->name('dipendente_home');
     Route::post('/aggiungiProdotto', [ProdottoController::class, 'aggiungiProdotto'])->name('aggiungiProdotto');
     Route::post('/dipendente_home', [ProdottoController::class, 'aggiungiProdotto'])->name('dipendente_home');
+    Route::post('/aggiungi_al_carrello', [ProdottoController::class, 'aggiungiAlCarrello'])->name('aggiungi_al_carrello');
+    Route::post('/gestionePrenotazioni', [ProdottoController::class, 'aggiungiProdotto'])->name('gestionePrenotazioni');
+   
     // ...
 });
 
 Route::get('/dashboard', [ProdottoController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
-// Route::post('/aggiungi_al_carrello' .... è stato aggiunto a sezione utenti bisogna verificare che funzioni anche su dipendenti
 Route::get('/mostra-prenotazioni', [ProdottoController::class, 'mostraPrenotazioni'])->name('mostra-prenotazioni');
 
 Route::get('/visite', [VisiteController::class, 'index'])->middleware(['auth', 'verified'])->name('visite');
 Route::post('/prenota_visita', [VisiteController::class, 'aggiungiPrenotazione'])->name('prenota_visita');
 Route::delete('/visite/cancel/{id}', [VisiteController::class, 'cancellaPrenotazione'])->name('visite.cancel');
+Route::get('/storico_dipendenti', [ProdottoController::class, 'mostraOrdiniDipendenti'])->name('storico_dipendenti');
 
 
 

@@ -1,10 +1,14 @@
 <x-app-layout>
+    <!--
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
         <a href="{{ route('dipendente_home') }}" class="text-gray-800 dark:text-gray-200">{{ __('Dashboard') }} Ciao</a>
             | Prodotti da ordinare
         </h2>
     </x-slot>
+-->
+
+    @include('intestazione_dipendente')
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -12,7 +16,7 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     
                 
-                    <h1 class="text-2xl mt-4">Elenco dei prodotti da ordinare</h1>
+                    <h1 class="titoli_pagine">Elenco dei prodotti da ordinare</h1>
                    
                     <br>
                     <table class="min-w-full divide-y divide-gray-200">

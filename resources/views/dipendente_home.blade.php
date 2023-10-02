@@ -1,18 +1,13 @@
  <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Dashboard Dipendente') }} 
-            <a href="{{ route('daOrdinare') }}" class="text-gray-800 dark:text-gray-200">| Prodotti da ordinare</a>
-        </h2>
-    </x-slot>
-
+    
+ @include('intestazione_dipendente')
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     
                 
-                    <h1 class="text-2xl mt-4">Elenco dei prodotti disponibili</h1>
+                    <h1 class="titoli_pagine">Elenco dei prodotti disponibili</h1>
                     <br>
                     <div class="mt-4 mb-4">
                     <input type="text" id="search" class="form-input rounded-md shadow-sm" placeholder="Cerca prodotto...">
@@ -99,10 +94,10 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-2 text-gray-900 dark:text-gray-100">
 
-    <h1 class="text-2xl mt-2">Aggiungi un nuovo prodotto</h1>
+    <h1 class="titoli_pagine">Aggiungi un nuovo prodotto</h1>
     <form action="{{ route('aggiungiProdotto') }}" method="POST">
         @csrf
-        <table class="my-1">
+        <table class="my-2">
             <tr>
                 <td class="px-2 py-2 whitespace-nowrap "><label for="name">Nome:</label></td>
                 <td class="px-2 py-2 whitespace-nowrap "><label for="tipo">Tipo:</label></td>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Prodotto;
 use App\Models\Prenotazione;
+use App\Models\Ordine;
 use Illuminate\Support\Carbon;
 
 
@@ -115,6 +116,73 @@ public function mostraPrenotazioni()
     // Successo, reindirizza con un messaggio di successo
     return redirect()->back()->with('success', 'Prodotto aggiunto alla lista con successo.');
 }
+
+
+
+public function mostraOrdiniDipendenti(Request $request)
+{
+
+
+
+
+
+    /*
+    $dipendente_id =$request->input('dipendente_id');
+    $prodotto_id = $request->input('prodotto_id');
+    $quantita = $request->input('quantita');
+   
+
+    
+    // Verifica se il prodotto esiste e se la quantità è valida
+    $prodotto = Prodotto::find($prodotto_id);
+    if (!$prodotto || $quantita < 0) {
+        // Gestisci il caso in cui il prodotto non esiste o la quantità non è valida
+        return redirect()->back()->with('error', 'Errore nella selezione del prodotto o della quantità.');
+    }
+
+    
+  
+
+    // Utente dipendente
+    $ordine = new Ordine();
+    $ordine->user_id = auth()->user()->id;
+    $ordine->prodotto_id = $prodotto_id;
+    $ordine->quantita = $quantita;
+    $ordine->save();
+
+
+    $disponibilitaAttuale = $prodotto->disponibilita;
+
+
+    // Calcola la nuova quantità disponibile dopo l'aggiunta al carrello
+    $nuova_quantita_disponibile = $disponibilitaAttuale - $quantita;
+
+    // Aggiorna la quantità disponibile nel database
+    $prodotto->update([
+        'disponibilita' => $nuova_quantita_disponibile,
+    ]);
+    // Qui puoi implementare la logica per aggiungere il prodotto al carrello
+    // Ad esempio, puoi salvare l'ID del prodotto e la quantità in una sessione o in un database dedicato al carrello
+
+    // Successo, reindirizza con un messaggio di successo
+    return redirect()->back()->with('success', 'Prodotto aggiunto al carrello con successo.');
+*/
+$ordini = Prenotazione::where('user_id', auth()->user()->id)
+    ->orderBy('created_at', 'desc') // Ordine decrescente per vedere prima le ultime prenotazioni
+    ->get();
+    return view('mostra-prenotazioni', ['prenotazioni' => $prenotazioni]);
+
+}
+
+
+
+
+
+
+
+
+
+
 }
 
 

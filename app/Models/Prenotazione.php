@@ -9,6 +9,8 @@ class Prenotazione extends Model
 {
     use HasFactory;
 
+    
+
     protected $table = 'prenotazioniClienti';
 
     protected $fillable = [
@@ -17,6 +19,8 @@ class Prenotazione extends Model
         'prodotto_id',
         'quantita',
     ];
+
+    
 
     public function cliente()
     {
