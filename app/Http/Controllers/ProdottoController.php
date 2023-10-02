@@ -63,7 +63,6 @@ class ProdottoController extends Controller
     $prenotazione->prodotto_id = $prodotto_id;
     $prenotazione->quantita = $quantita;
     $prenotazione->save();
-    }
 
 
 
@@ -117,7 +116,7 @@ public function mostraPrenotazioni()
 
 
 
-    public function aggiungiProdotto(Request $request)
+    public function aggiungiProdotto(Request $request) //Il dipendente che può aggiungere un nuovo prodotto
 {
 
     $name = $request->input('name');
