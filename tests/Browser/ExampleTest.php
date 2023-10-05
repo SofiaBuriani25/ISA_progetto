@@ -51,15 +51,15 @@ class ExampleTest extends DuskTestCase
                 ->pause(1000);
                 //->screenshot('debug1');
 
-                $browser->within('table.min-w-full tbody tr:not([style*="display: none"])', function ($browser) {
-                    $browser->select('quantita', 2)
-                            ->click('button', ['text' => 'Prenota']);  // Fai clic sul pulsante "Prenota"
-                });
+            $browser->within('table.min-w-full tbody tr:not([style*="display: none"])', function ($browser) {
+                $browser->select('quantita', 2)
+                        ->click('button', ['text' => 'Prenota']);  // Fai clic sul pulsante "Prenota"
+            });
     
-                $browser->assertSee('Prodotto aggiunto al carrello con successo.'); 
+            $browser->assertSee('Prodotto aggiunto al carrello con successo.'); 
 
-                //$browser->screenshot('debug2');
-                //$browser->dump();
+            //$browser->screenshot('debug2');
+            //$browser->dump();
 
     });
 
@@ -74,16 +74,17 @@ class ExampleTest extends DuskTestCase
                 ->pause(1000)
                 ->screenshot('debug1');
 
-               
-
-                //$browser->screenshot('debug2');
+                $browser->within('table.min-w-full tbody tr:first-child', function ($browser) {
+                    $browser->assertSee('Paracetamolo')
+                            ->assertSee('Analgesico')
+                            ->assertSee('2');
+                
+                $browser->screenshot('debug2');
                 //$browser->dump();
-
-    });
-
-    }
-
+            });
+        
+        });
 
 
-
+}
 }
