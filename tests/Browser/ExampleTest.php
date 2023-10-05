@@ -71,16 +71,14 @@ class ExampleTest extends DuskTestCase
             $browser->visit('/')
                 ->clickLink('Dashboard')
                 ->clickLink('Storico ordini') 
-                ->pause(1000)
-                ->screenshot('debug1');
+                ->pause(1000);
+               
 
                 $browser->within('table.min-w-full tbody tr:first-child', function ($browser) {
                     $browser->assertSee('Paracetamolo')
                             ->assertSee('Analgesico')
                             ->assertSee('2');
                 
-                $browser->screenshot('debug2');
-                //$browser->dump();
             });
         
         });
