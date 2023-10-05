@@ -50,4 +50,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function isUser()
+    {
+        // Verifica se l'utente è un utente normale
+        return $this->ruolo === 'user'; // Sostituisci 'ruolo' con il nome del campo corretto
+    }
 }
