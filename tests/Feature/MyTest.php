@@ -25,18 +25,6 @@ class MyTest extends TestCase
         $response->assertStatus(200);
     }
 
-    /*public function testExample()
-{
-    // Crea un record di esempio nel database utilizzando una factory
-    $example = Prodotto::factory()->create([
-        'name' => 'Test Record',
-    ]);
-
-    // Effettua una richiesta GET o POST o esegui qualsiasi altra azione che coinvolge il database
-
-    // Esegui le asserzioni per verificare che il record sia stato scritto nel database
-    $this->assertDatabaseHas('prodotti', ['name' => 'Test Record']);
-}*/
 
     public function testAggiungiProdottoAlCarrello()
     {
@@ -77,6 +65,8 @@ class MyTest extends TestCase
         $this->assertTrue(session()->has('success'));
         $this->assertEquals('Prodotto aggiunto al carrello con successo.', session('success'));
     }
+
+    
 
 }
 

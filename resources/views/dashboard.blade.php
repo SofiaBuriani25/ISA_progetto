@@ -56,9 +56,9 @@
                                         </select>
                                         <input type="hidden" name="prodotto_id" value="{{ $prodotto->id }}">
                                         <input type="hidden" name="azione" value="aggiungi">
-                                        <x-primary-button class="ml-3" type="submit">
+                                        <button class="ml-3" type="submit">
                                             Prenota
-                                        </x-primary-button>
+                                        </button>
                                     </form>
                                     @endif
 

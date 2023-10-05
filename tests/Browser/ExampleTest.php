@@ -11,7 +11,7 @@ class ExampleTest extends DuskTestCase
     /**
      * A basic browser test example.
      */
-    public function testBasicExample(): void
+    public function testDashboardCliente(): void
     {
         $this->browse(function (Browser $browser) {
             $browser->visit('/login')
@@ -22,23 +22,68 @@ class ExampleTest extends DuskTestCase
                     ->assertSee('Elenco dei prodotti disponibili'); // Verifica che la dashboard contenga un messaggio di benvenuto
 
         });
-
         
     }
 
-    public function testSearchAspirina(): void
-{
+
+    public function testSearchParacetamolo(): void
+    {
     $this->browse(function (Browser $browser) {
         $browser->visit('/')
             ->clickLink('Dashboard')
             ->type('#search', 'paracetamolo') 
             ->pause(1000);
            
-            $browser->within('table.min-w-full tbody tr:not([style*="display: none"]', function ($browser) {
-                $browser->assertSee('Paracetamolo');
-            });
+        $browser->within('table.min-w-full tbody tr:not([style*="display: none"]', function ($browser) {
+            $browser->assertSee('Paracetamolo');
+        });
 
-});
+    });
 
-}
+    }
+
+    public function testAggiungiParacetamolo2unita(): void
+    {
+        $this->browse(function (Browser $browser) {
+            $browser->visit('/')
+                ->clickLink('Dashboard')
+                ->type('#search', 'paracetamolo') 
+                ->pause(1000);
+                //->screenshot('debug1');
+
+                $browser->within('table.min-w-full tbody tr:not([style*="display: none"])', function ($browser) {
+                    $browser->select('quantita', 2)
+                            ->click('button', ['text' => 'Prenota']);  // Fai clic sul pulsante "Prenota"
+                });
+    
+                $browser->assertSee('Prodotto aggiunto al carrello con successo.'); 
+
+                //$browser->screenshot('debug2');
+                //$browser->dump();
+
+    });
+
+    }
+
+    public function testAggiuntoParacetamoloInStorico(): void
+    {
+        $this->browse(function (Browser $browser) {
+            $browser->visit('/')
+                ->clickLink('Dashboard')
+                ->clickLink('Storico ordini') 
+                ->pause(1000)
+                ->screenshot('debug1');
+
+               
+
+                //$browser->screenshot('debug2');
+                //$browser->dump();
+
+    });
+
+    }
+
+
+
+
 }
