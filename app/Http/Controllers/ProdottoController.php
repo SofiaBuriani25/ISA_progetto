@@ -25,6 +25,9 @@ class ProdottoController extends Controller
         return view('dashboard', ['prodotti' => $prodotti, 'numeroRimenenti'=> $numeroRimenenti]);
     }
 
+
+
+    
     public function aggiungiAlCarrello(Request $request)
     {
 
@@ -41,7 +44,7 @@ class ProdottoController extends Controller
     }
 
     if (auth()->user()) {
-        
+
      // Verifica se l'utente ha raggiunto il limite di 5 prenotazioni non pagate
     $limitePrenotazioni = 5;
     $prenotazioniNonPagate = Prenotazione::where('user_id', auth()->user()->id)
