@@ -47,23 +47,21 @@ class VisiteController extends Controller
 
 
 
-    // Verifica se il prodotto esiste e se la quantità è valida
+    // Verifica se la visita esiste
     $visita = Visita::find($visita_id);
     if (!$visita) {
-        // Gestisci il caso in cui il prodotto non esiste o la quantità non è valida
-        return redirect()->back()->with('error', 'Errore nella selezione del prodotto o della quantità.');
+        // Gestisci il caso in cui la visita non esiste 
+        return redirect()->back()->with('error', 'Errore nella selezione ');
     }
 
 
-    // Aggiorna la quantità disponibile nel database
+    // Aggiorna  nel database
     $visita->update([
         'user_id' => $user_id,
     ]);
-    // Qui puoi implementare la logica per aggiungere il prodotto al carrello
-    // Ad esempio, puoi salvare l'ID del prodotto e la quantità in una sessione o in un database dedicato al carrello
-
+   
     // Successo, reindirizza con un messaggio di successo
-    return redirect()->back()->with('success', 'Prodotto aggiunto al carrello con successo.');
+    return redirect()->back()->with('success', 'Visita prenotata');
 }
 
 
