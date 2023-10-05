@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Prodotto;
 use App\Models\Prenotazione;
 use App\Models\Ordine;
-use Illuminate\Support\Carbon;
+//use Illuminate\Support\Carbon;
+use Carbon\Carbon;
 
 
 class ProdottoController extends Controller
@@ -92,10 +93,11 @@ class ProdottoController extends Controller
 
 public function mostraDaOrdinare()
 {
-
-    $prodotti = Prodotto::where('scadenza', '<', Carbon::today())
-    ->orWhere('disponibilita', '<=', 5)
-    ->get();
+    $dataOdierna = Carbon::today()->format('Y-m-d'); // Formato 'Y-m-d'
+    $prodotti = Prodotto::where(function ($query) use ($dataOdierna) {
+        $query->where('scadenza', '<', $dataOdierna)
+            ->orWhere('disponibilita', '<=', 5);
+    })->get();
     return view('daOrdinare', ['prodotti' => $prodotti]);
 }
 
