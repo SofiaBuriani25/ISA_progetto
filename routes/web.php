@@ -24,7 +24,6 @@ use App\Http\Controllers\PrenotazioneController;
 */
 
 
-Route::get('/', function () {return view('welcome');})->name('home');
 
 
 
@@ -34,7 +33,7 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth:web'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -64,9 +63,12 @@ Route::middleware(['auth:dipendenti'])->group(function () {
     // Rotta per eliminare la prenotazione
     Route::post('/elimina-prenotazione/{id}', [PrenotazioneController::class, 'eliminaPrenotazione'])->name('elimina_prenotazione');
 
-    
+
+
     // ...
 });
+
+Route::get('/', function () {return view('welcome');})->name('home');
 
 Route::post('/aggiungi_al_carrello', [ProdottoController::class, 'aggiungiAlCarrello'])->name('aggiungi_al_carrello');
 Route::get('/mostra-prenotazioni', [ProdottoController::class, 'mostraPrenotazioni'])->name('mostra-prenotazioni');

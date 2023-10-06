@@ -5,18 +5,27 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="flex items-center">
-                    <a href="{{ route('home') }} " class="flex items-center">
-                    <img src="{{ asset('logo.png') }}" alt="Logo" class="block h-9 w-auto">
-                    <div class="titolo">
-                        {{ __('Farmacia Lodi') }}
-                    </div>
-                    </a>
+                @auth
+                        @if (auth()->guard('web')->check())
+                        <a href="{{ route('dashboard') }} " class="flex items-center">
+                        <img src="{{ asset('logo.png') }}" alt="Logo" class="block h-9 w-auto">
+                        <div class="titolo">
+                            {{ __('Farmacia Lodi') }}
+                        </div>
+                        </a>
+                        @elseif((auth()->guard('dipendenti')->check()))
+                        <a href="{{ route('dipendente_home') }} " class="flex items-center">
+                        <img src="{{ asset('logo.png') }}" alt="Logo" class="block h-9 w-auto">
+                        <div class="titolo">
+                            {{ __('Farmacia Lodi') }}
+                        </div>
+                        </a>
+                        @endif
+                    @endauth
                 </div>
 
                 <!-- Navigation Links -->
-                
-                
-                
+               
             </div>
 
             <!-- Settings Dropdown -->

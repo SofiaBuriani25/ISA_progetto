@@ -36,10 +36,7 @@
                         </thead>
                         <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200">
                             @foreach ($prodotti as $prodotto)
-                                @if ($prodotto->disponibilita > 0 $prodotti = Prodotto::where(function ($query) use ($dataOdierna) {
-    $query->where('scadenza', '<', $dataOdierna)
-        ->orWhere('disponibilita', '<=', 5);
-})->get();) 
+                                @if ($prodotto->disponibilita > 0 && $prodotto->scadenza > $dataOdiernaFormattata)
                                 <tr>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         {{ $prodotto->name }}
