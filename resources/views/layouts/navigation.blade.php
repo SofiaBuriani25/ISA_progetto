@@ -18,9 +18,7 @@
                 </div>
 
                 <!-- Navigation Links -->
-                
-                
-                
+               
             </div>
 
             <!-- Settings Dropdown -->

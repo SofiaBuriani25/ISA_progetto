@@ -24,16 +24,16 @@ use App\Http\Controllers\PrenotazioneController;
 */
 
 
-//  QUESTA E' LA ROUTE CHE PORTA AL SITO IN MANUTENZIONE
-Route::get('/', function () {
-    return view('welcome');
-});
+
+
+
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth:web'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -71,17 +71,13 @@ Route::middleware(['auth:dipendenti'])->group(function () {
     // Rotta per eliminare la prenotazione
     Route::post('/elimina-prenotazione/{id}', [PrenotazioneController::class, 'eliminaPrenotazione'])->name('elimina_prenotazione');
 
-    /* SE SI AGGIUNGE QUESTO NON TORNA PIU' NELLA PAGINA 'SITO IN MANUTENZIONE'
-    Route::get('/', function () {
-        return view('welcome');
-    })->name('home');
-    */
 
-   
+
     // ...
 });
 
-Route::get('/dashboard', [ProdottoController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/', function () {return view('welcome');})->name('home'); //  QUESTA E' LA ROUTE CHE PORTA AL SITO IN MANUTENZIONE
+
 Route::post('/aggiungi_al_carrello', [ProdottoController::class, 'aggiungiAlCarrello'])->name('aggiungi_al_carrello');
 Route::get('/mostra-prenotazioni', [ProdottoController::class, 'mostraPrenotazioni'])->name('mostra-prenotazioni');
 
