@@ -6,26 +6,25 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
 
-class ExampleTest extends DuskTestCase
+class ClientiTest extends DuskTestCase
 {
-    /**
-     * A basic browser test example.
-     */
+
+    //Test per vedere se il cliente riesce ad accedere alla sua Dashboard
     public function testDashboardCliente(): void
     {
         $this->browse(function (Browser $browser) {
             $browser->visit('/login')
-                    ->type('email', 'filippo@gmail.com') // Inserisci un'email valida
-                    ->type('password', 'qwerty123') // Inserisci una password valida
-                    ->click('button', ['text' => 'Log in'])  // Fai clic sul pulsante "Login"
-                    ->assertPathIs('/dashboard') // Verifica che l'utente sia reindirizzato alla pagina di dashboard
-                    ->assertSee('Elenco dei prodotti disponibili'); // Verifica che la dashboard contenga un messaggio di benvenuto
+                    ->type('email', 'filippo@gmail.com') 
+                    ->type('password', 'qwerty123') 
+                    ->click('button', ['text' => 'Log in'])  
+                    ->assertPathIs('/dashboard') // Verifico che l'utente sia reindirizzato alla pagina di dashboard
+                    ->assertSee('Elenco dei prodotti disponibili'); 
 
         });
         
     }
 
-
+    //Test per cercare paracetamolo nella barra di ricerca
     public function testSearchParacetamolo(): void
     {
     $this->browse(function (Browser $browser) {
@@ -42,6 +41,7 @@ class ExampleTest extends DuskTestCase
 
     }
 
+    // Test per aggiungere 2 unità di paracetamolo dopo la ricerca
     public function testAggiungiParacetamolo2unita(): void
     {
         $this->browse(function (Browser $browser) {
@@ -65,6 +65,8 @@ class ExampleTest extends DuskTestCase
 
     }
 
+    // Test per vedere se il numero precedentemente prenotato compare nella pagina
+    // Storico ordini
     public function testAggiuntoParacetamoloInStorico(): void
     {
         $this->browse(function (Browser $browser) {
@@ -83,6 +85,35 @@ class ExampleTest extends DuskTestCase
         
         });
 
+    }
 
-}
+
+    // test per prenotare una visita nel caso sia possibile, altrimenti
+    // viene annullata una visista precedentemente prenotata
+    public function testAggiungiEliminaVisita(): void
+        {
+        $this->browse(function (Browser $browser) {
+            $browser->visit('/')
+                ->clickLink('Dashboard')
+                ->clickLink('Prenota visita') 
+                ->pause(1000);
+            
+            $numeroVisiteDisponibili = intval($browser->text('#numero-visite-disponibili'));
+            
+            if ($numeroVisiteDisponibili === 0) {
+                $browser->within('table.min-w-full tbody tr:first-child', function ($browser) {
+                    $browser->click('button', ['text' => 'X']);
+
+            });
+            $browser->assertSee('Visita eliminata con successo!'); 
+            }else {
+                $browser->within('table.min-w-full tbody tr:first-child', function ($browser) {
+                    $browser->click('button', ['text' => 'Prenota'])
+                            ->assertSee('Visita prenotata!'); 
+            });
+            }
+
+        });
+
+        }
 }

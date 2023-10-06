@@ -61,7 +61,7 @@ class VisiteController extends Controller
     ]);
    
     // Successo, reindirizza con un messaggio di successo
-    return redirect()->back()->with('success', 'Visita prenotata');
+    return redirect()->back()->with('success', 'Visita prenotata!');
 }
 
 
@@ -76,7 +76,7 @@ public function cancellaPrenotazione($id)
         // Rimuovi l'associazione dell'utente dalla visita (imposta user_id a NULL)
     $visita->update(['user_id' => null]);
 
-    return redirect()->route('visite');
+    return redirect()->back()->with('error', 'Visita eliminata con successo!');
     
 }
 

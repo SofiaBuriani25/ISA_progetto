@@ -9,7 +9,7 @@
                     
                 
                     <h1 class="titoli_pagine">Elenco delle visite disponibili</h1>
-                    <h3 class="sottotitoli_pagine">Puoi prenotare al massimo <span style="font-size: larger; color: black;"><b> {{ $limitePrenotazioni - $numeroPrenotazioni }}</b></span> visite</h3>
+                    <h3 class="sottotitoli_pagine">Puoi prenotare al massimo <span id="numero-visite-disponibili" style="font-size: larger; color: black;"><b> {{ $limitePrenotazioni - $numeroPrenotazioni }}</b></span> visite</h3>
                     <br>
                     <div class="mt-4 mb-4">
                     <input type="text" id="search" class="form-input rounded-md shadow-sm" placeholder="Cerca visita...">
@@ -77,6 +77,7 @@
                                 <div class="alert alert-danger">
                                     {{ session('error') }}
                                 </div>
+                                <br>
                             @endif
                         </tbody>
                     </table>
@@ -135,6 +136,8 @@
 
                                 </tr>
                                 @endforeach
+
+                                
                         </tbody>
                     </table>
        
