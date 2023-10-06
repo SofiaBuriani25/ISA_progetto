@@ -5,7 +5,11 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="flex items-center">
-                    <a href="{{ route('home') }} " class="flex items-center">
+                    @if (auth()->guard('web')->check())
+                        <a href="{{ url('/dashboard') }} " class="flex items-center">
+                    @elseif (auth()->guard('dipendenti')->check())
+                        <a href="{{ url('/dipendente_home') }} " class="flex items-center">
+                    @endif
                     <img src="{{ asset('logo.png') }}" alt="Logo" class="block h-9 w-auto">
                     <div class="titolo">
                         {{ __('Farmacia Lodi') }}

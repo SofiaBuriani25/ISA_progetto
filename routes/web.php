@@ -24,31 +24,38 @@ use App\Http\Controllers\PrenotazioneController;
 */
 
 
-Route::get('/', function () {return view('welcome');})->name('home');
-
-
-
-
+//  QUESTA E' LA ROUTE CHE PORTA AL SITO IN MANUTENZIONE
+Route::get('/', function () {
+    return view('welcome');
+});
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    Route::get('/dashboard', [ProdottoController::class, 'index'])->name('dashboard');
    
 });
+
+
+/*
+Route::middleware(['auth:web'])->group(function () {
+    Route::get('/', function () {
+        return view('welcome');
+    })->name('home');
+});
+*/
+
 
 Route::middleware(['auth:dipendenti'])->group(function () {
     // Rotte protette per i dipendenti
     Route::get('/profile_dip', [DipendenteHomeController::class, 'edit'])->name('profile_dip.edit');
-    Route::patch('/profile_dip', [DipendenteHomeController::class, 'update'])->name('profile_dip.update');
-    Route::delete('/profile_dip', [DipendenteHomeController::class, 'destroy'])->name('profile_dip.destroy');
     
-    Route::get('/dipendente_dashboard', [DipendenteHomeController::class, 'index'])->name('dipendente_home');
+
+    Route::get('/dipendente_home', [DipendenteHomeController::class, 'index'])->name('dipendente_home');
     Route::get('/daOrdinare', [ProdottoController::class, 'mostraDaOrdinare'])->name('daOrdinare');
     Route::get('/dipendente_home', [ProdottoController::class, 'listaProdotti'])->name('dipendente_home');
     Route::post('/aggiungiProdotto', [ProdottoController::class, 'aggiungiProdotto'])->name('aggiungiProdotto');
@@ -64,10 +71,17 @@ Route::middleware(['auth:dipendenti'])->group(function () {
     // Rotta per eliminare la prenotazione
     Route::post('/elimina-prenotazione/{id}', [PrenotazioneController::class, 'eliminaPrenotazione'])->name('elimina_prenotazione');
 
-    
+    /* SE SI AGGIUNGE QUESTO NON TORNA PIU' NELLA PAGINA 'SITO IN MANUTENZIONE'
+    Route::get('/', function () {
+        return view('welcome');
+    })->name('home');
+    */
+
+   
     // ...
 });
 
+Route::get('/dashboard', [ProdottoController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 Route::post('/aggiungi_al_carrello', [ProdottoController::class, 'aggiungiAlCarrello'])->name('aggiungi_al_carrello');
 Route::get('/mostra-prenotazioni', [ProdottoController::class, 'mostraPrenotazioni'])->name('mostra-prenotazioni');
 
