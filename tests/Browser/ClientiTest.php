@@ -28,8 +28,7 @@ class ClientiTest extends DuskTestCase
     public function testSearchParacetamolo(): void
     {
     $this->browse(function (Browser $browser) {
-        $browser->visit('/')
-            ->clickLink('Dashboard')
+        $browser->visit('/dashboard')
             ->type('#search', 'paracetamolo') 
             ->pause(1000);
            
@@ -45,15 +44,15 @@ class ClientiTest extends DuskTestCase
     public function testAggiungiParacetamolo2unita(): void
     {
         $this->browse(function (Browser $browser) {
-            $browser->visit('/')
-                ->clickLink('Dashboard')
+            $browser->visit('/dashboard')
                 ->type('#search', 'paracetamolo') 
                 ->pause(1000);
                 //->screenshot('debug1');
 
             $browser->within('table.min-w-full tbody tr:not([style*="display: none"])', function ($browser) {
                 $browser->select('quantita', 2)
-                        ->click('button', ['text' => 'Prenota']);  // Fai clic sul pulsante "Prenota"
+                        ->click('button', ['text' => 'Prenota'])  // Fai clic sul pulsante "Prenota"
+                        ->pause(1000);
             });
     
             $browser->assertSee('Prodotto aggiunto al carrello con successo.'); 
@@ -70,8 +69,7 @@ class ClientiTest extends DuskTestCase
     public function testAggiuntoParacetamoloInStorico(): void
     {
         $this->browse(function (Browser $browser) {
-            $browser->visit('/')
-                ->clickLink('Dashboard')
+            $browser->visit('/dashboard')
                 ->clickLink('Storico ordini') 
                 ->pause(1000);
                
@@ -93,8 +91,7 @@ class ClientiTest extends DuskTestCase
     public function testAggiungiEliminaVisita(): void
         {
         $this->browse(function (Browser $browser) {
-            $browser->visit('/')
-                ->clickLink('Dashboard')
+            $browser->visit('/dashboard')
                 ->clickLink('Prenota visita') 
                 ->pause(1000);
             
@@ -102,13 +99,15 @@ class ClientiTest extends DuskTestCase
             
             if ($numeroVisiteDisponibili === 0) {
                 $browser->within('table.min-w-full tbody tr:first-child', function ($browser) {
-                    $browser->click('button', ['text' => 'X']);
+                    $browser->click('button', ['text' => 'X'])
+                            ->pause(1000);
 
             });
             $browser->assertSee('Visita eliminata con successo!'); 
             }else {
                 $browser->within('table.min-w-full tbody tr:first-child', function ($browser) {
                     $browser->click('button', ['text' => 'Prenota'])
+                            ->pause(1000)
                             ->assertSee('Visita prenotata!'); 
             });
             }

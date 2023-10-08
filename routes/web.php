@@ -49,7 +49,8 @@ Route::middleware(['auth:web'])->group(function () {
 
 Route::middleware(['auth:dipendenti'])->group(function () {
     // Rotte protette per i dipendenti
-    Route::get('/profile_dip', [DipendenteHomeController::class, 'edit'])->name('profile_dip.edit');
+    Route::get('/profile_dip', [DipendenteHomeController::class, 'edit'])->name('profile.edit_dip');
+    Route::patch('/profile_dip', [DipendenteHomeController::class, 'update'])->name('profile.update_dip');
     
 
     Route::get('/dipendente_home', [DipendenteHomeController::class, 'index'])->name('dipendente_home');

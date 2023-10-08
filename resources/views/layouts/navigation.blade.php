@@ -36,9 +36,15 @@
                     </x-slot>
 
                     <x-slot name="content">
+                    @if (auth()->guard('web')->check())
                         <x-dropdown-link :href="route('profile.edit')">
                             {{ __('Profilo') }}
                         </x-dropdown-link>
+                    @elseif (auth()->guard('dipendenti')->check())
+                        <x-dropdown-link :href="route('profile.edit_dip')">
+                            {{ __('Profilo') }}
+                        </x-dropdown-link>
+                    @endif
 
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
@@ -82,9 +88,10 @@
             </div>
 
             <div class="mt-3 space-y-1">
-                <x-responsive-nav-link :href="route('profile.edit')">
-                    {{ __('Profile') }}
-                </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('profile.edit_dip')">
+                {{ __('Profile') }}
+            </x-responsive-nav-link>
+            
 
                 <!-- Authentication -->
                 <form method="POST" action="{{ route('logout') }}">
