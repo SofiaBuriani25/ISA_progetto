@@ -3,8 +3,15 @@
 }
 
 @keyframes blur-fade {
-    0% { filter: blur(10px); opacity: 0; }
-    100% { filter: blur(0); opacity: 1; }
+    0% {
+        filter: blur(10px);
+        opacity: 0;
+    }
+
+    100% {
+        filter: blur(0);
+        opacity: 1;
+    }
 }
 
 /* Applica l'animazione all'avviso */
@@ -15,14 +22,18 @@
 
 /* Stile per l'avviso di successo (verde) */
 .alert-success {
-    background-color: #4CAF50; /* Colore di sfondo verde */
-    color: white; /* Testo bianco */
+    background-color: #4CAF50;
+    /* Colore di sfondo verde */
+    color: white;
+    /* Testo bianco */
 }
 
 /* Stile per l'avviso di errore (rosso) */
 .alert-danger {
-    background-color: #f44336; /* Colore di sfondo rosso */
-    color: white; /* Testo bianco */
+    background-color: #f44336;
+    /* Colore di sfondo rosso */
+    color: white;
+    /* Testo bianco */
 }
 
 
@@ -31,7 +42,7 @@
     /* Altri stili per l'evidenziazione */
 }
 
-.text_navbar{
+.text_navbar {
     font-weight: 100;
 }
 
@@ -43,26 +54,39 @@
     font-size: 16px;
     padding: 1px 12px;
     cursor: pointer;
-    border-radius: 5px; /* Bordo arrotondato */
-  }
+    border-radius: 5px;
+    /* Bordo arrotondato */
+}
 
-.titolo{
+.titolo {
     display: flex;
     align-items: center;
-    font-size: 24px; 
-    color: color(display-p3 0.2627 0.5922 0.1647); 
-    font-weight: bold; 
+    font-size: 24px;
+    color: color(display-p3 0.2627 0.5922 0.1647);
+    font-weight: bold;
     padding-left: 8px;
 }
 
-.titoli_pagine{
-    font-size: 25px; 
-    color: color(display-p3 0.2627 0.5922 0.1647); 
-    font-weight: bold; 
+.titolo_home {
+    display: flex;
+    align-items: center;
+    font-family: "Verdana", sans-serif;
+    font-size: 32px;
+    color: color(display-p3 0.2627 0.5922 0.1647);
+    padding-top: 90px;
+    font-weight: 900;
 }
 
-.sottotitoli_pagine{
-    font-size: 18px; 
+
+
+.titoli_pagine {
+    font-size: 25px;
+    color: color(display-p3 0.2627 0.5922 0.1647);
+    font-weight: bold;
+}
+
+.sottotitoli_pagine {
+    font-size: 18px;
     color: color(display-p3 0.46 0.46 0.46);
 }
 
@@ -75,5 +99,6 @@
     font-size: 16px;
     padding: 1px 12px;
     cursor: pointer;
-    border-radius: 5px; /* Bordo arrotondato */
-  }
+    border-radius: 5px;
+    /* Bordo arrotondato */
+}
