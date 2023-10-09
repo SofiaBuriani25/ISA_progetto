@@ -34,19 +34,32 @@ class DipendenteHomeController extends Controller
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
-        $request->user()->fill($request->validated());
+       // Ottieni l'utente autenticato dal request
+    $user = $request->user();
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
-        }
+    // Estrai i dati validati dalla richiesta
+    $validatedData = $request->validated();
 
-        $request->user()->save();
+    // Verifica se l'email è stata modificata
+    if ($user->email !== $validatedData['email']) {
+        // Se l'email è stata modificata, reimposta l'email verificata (se necessario)
+        // e aggiorna l'email dell'utente
+        // Non c'è bisogno di impostare 'email_verified_at' se non esiste nella tabella
+        // Rimuovi questa linea: $user->email_verified_at = null;
 
-        return Redirect::route('profile.edit_dip')->with('status', 'profile-updated');
+        $user->email = $validatedData['email'];
     }
 
-      
+    // Aggiorna gli altri campi del profilo
+    $user->fill($validatedData);
 
+    // Salva l'utente
+    $user->save();
+
+    // Reindirizza alla pagina di modifica del profilo con un messaggio di conferma
+    return redirect()->route('profile.edit_dip')->with('status', 'profile-updated');
+      
+    }
 }
 
 
