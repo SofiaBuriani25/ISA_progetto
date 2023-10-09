@@ -33,18 +33,116 @@
                     @endauth
                 </div>
             @endif
+<!------------------------------------------------------------------------------------------------------------>
 
-            <div class="max-w-7xl mx-auto p-6 lg:p-8">
-                <div class="flex justify-center">
-                <img src="{{ asset('logo.png') }}" alt="Logo" class="block" width="200" height="100">
-                </div>
+        <!--
 
-                    
-                       <b> Sito in manutenzione</b>
+              
+    <div class="row">
+      <div class="col-lg-8" >
+        
+        <p class="txt">Perdersi in un’atmosfera lontana nel tempo, immergersi in ambienti stupefacenti ed emozionanti, 
+          scoprire dettagli, decorazioni e strutture ormai altrove dimenticate: 
+          Casa Romei offre al visitatore la possibilità di vivere una esperienza unica e di comprendere gli stili ed i modi 
+          di vivere della ricca quotidianità delle potenti famiglie della corte estense tra il XV e il XVI secolo.</p>
+      </div>
+      <div class="col-lg-4 center">
+        
+      <img class="myImg" src="{{ asset('logo.png') }}" alt="image1" style="width:100%;max-width:300px">
+
+
+      <div id="myModal" class="modal">
+        <span class="close" >&times;
+        </span>
+        <img class="modal-content" id="img01">
+        <div id="caption">
+        </div>
+      </div>
+
+            </div>
+    </div>
+
+
+    <hr>
+
+
+    
+    <div class="row"> 
+    
+    
+    <div class="card h-auto eventi" style="width:38%; min-width:345px;">
+  
+    <h4 class="card-header txt">In evidenza</h4>
+    <p class="card-text ">
+    <img src="{{ asset('farmacia.jpg') }}" alt="Logo" class="block" width="200" height="100">
+    </p> 
+    </div>
+    
+
+
+    <div class="col-lg-2"></div>
+    <div class="col-lg-5 " >
+      
+       
+       <div class="card h-auto" >
+         <h4 class="card-header txt">Orari <i data-feather="clock"></i></h4>
+         <script>
+           feather.replace()
+         </script>
+         <div class="card-body">
+           <table class="tab-orari">
+         <tbody class="txt">
+           <tr><td class="sx">Lunedì</td><td class="dx">8:30 - 14:00</td></tr>
+           <tr><td class="sx">Martedì</td><td class="dx">8:30 - 14:00</td></tr>
+           <tr><td class="sx">Mercoledì</td><td class="dx">8:30 - 14:00</td></tr>
+           <tr><td class="sx">Giovedì</td><td class="dx">14:00 - 19:30</td></tr>
+           <tr><td class="sx">Venerdì</td><td class="dx">14:00 - 19:30</td></tr>
+           <tr><td class="sx">Sabato</td><td class="dx">14:00 - 19:30</td></tr>
+           <tr><td class="sx">Domenica</td><td class="dx">8:30 - 14:00</td></tr>
+           <tr><td><br></td></tr>
+           <tr><td><br></td></tr>
+           
+           <tr><td colspan="2" class="txt"> La biglietteria chiude mezz'ora prima del museo. </td> </tr>
+           
+           <tr><td colspan="2" class="txt"> Aperture straordinarie:
+           dopo il tramonto, vengono accese le proiezioni luminose del progetto 'Sogno o Son Deste' 
+           che ricostruiscono virtualmente le decorazioni affrescate del cortile d'onore 
+           (Per tutto il periodo di ora solare le accensioni sono programmate ogni giovedì, venerdì e sabato, dopo il tramonto, 
+           e fino a orario di chiusura).</td> </tr>
+           </tbody>
+         </table> 
+</div>
+</div>
+
+
+
+    </div>
+--->
+
+
+
             
 
+            <div class="max-w-7xl mx-auto p-6 lg:p-8">
+                <div class="grid grid-cols-7 gap-6">
+                    <div class="col-span-5">
+            <p>Perdersi in un’atmosfera lontana nel tempo, immergersi in ambienti stupefacenti ed emozionanti, 
+          scoprire dettagli, decorazioni e strutture ormai altrove dimenticate: 
+          Casa Romei offre al visitatore la possibilità di vivere una esperienza unica e di comprendere gli stili ed i modi 
+          di vivere della ricca quotidianità delle potenti famiglie della corte estense tra il XV e il XVI secolo.</p>
+          </div>
+          <div class="col-span-2">
+
+                
+                </div>
+                </div>
+            </div>
+                    
+                       <b> Sito in manutenzione</b>
+                       <img src="{{ asset('logo.png') }}" alt="Logo" class="block" width="200" height="100">
+
                     <div class="ml-4 text-center text-sm text-gray-500 dark:text-gray-400 sm:text-right sm:ml-0">
-                        Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})
+                        
                     </div>
                 </div>
             </div>
