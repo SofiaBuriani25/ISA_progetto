@@ -24,6 +24,18 @@ class ClientiTest extends DuskTestCase
         
     }
 
+    public function testModificaProfilo(): void
+    {
+        $this->browse(function (Browser $browser) {
+            $browser->visit('/dashboard')
+                    ->click('button:contains("Phil")');
+                    
+
+    });
+    }
+
+
+
     //Test per cercare paracetamolo nella barra di ricerca
     public function testSearchParacetamolo(): void
     {
@@ -107,12 +119,15 @@ class ClientiTest extends DuskTestCase
             }else {
                 $browser->within('table.min-w-full tbody tr:first-child', function ($browser) {
                     $browser->click('button', ['text' => 'Prenota'])
-                            ->pause(1000)
-                            ->assertSee('Visita prenotata!'); 
+                            ->pause(1000);
+                             
             });
+            $browser->assertSee('Visita prenotata!');; 
             }
 
         });
 
         }
+
+        
 }
