@@ -28,7 +28,34 @@ class ClientiTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->visit('/dashboard')
-                    ->click('button:contains("Phil")');
+                    ->click('button', 'Phil')
+                    ->clickLink('Profilo');
+            
+            $browser->type('#name', 'Filippo')  //cambio Nome
+                    ->type('#telefono', '3456528376')
+                    ->press('Salva')
+                    ->pause(1000)
+                    ->assertSee('Salvato.')
+                    ->screenshot('debug1');
+                    
+    });
+    }
+
+    public function testModificaPassword(): void
+    {
+        $this->browse(function (Browser $browser) {
+            $browser->visit('/dashboard')
+                    ->click('button', 'Filippo')
+                    ->clickLink('Profilo');
+            
+            $browser->type('#current_password', 'qwerty123')  //cambio Nome
+                    ->type('#password', 'qwerty1234')
+                    ->type('#password_confirmation', 'qwerty1234')
+                    ->press('Salva Password')
+                    ->screenshot('debug1')
+                    ->pause(1000)
+                    ->assertSee('Password Salvata.');
+                    
                     
 
     });

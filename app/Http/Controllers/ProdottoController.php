@@ -83,9 +83,13 @@ class ProdottoController extends Controller
     // Ad esempio, puoi salvare l'ID del prodotto e la quantità in una sessione o in un database dedicato al carrello
 
     // Successo, reindirizza con un messaggio di successo
+    if (auth()->user()) {
     return redirect()->back()
     ->with('success', 'Prodotto aggiunto al carrello con successo.');
-
+    }else{
+        return redirect()->back()
+    ->with('success', 'Prodotto Venduto!');
+    }
 }
 
 
