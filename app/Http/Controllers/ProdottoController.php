@@ -100,7 +100,7 @@ public function mostraDaOrdinare()
     $dataOdierna = Carbon::today()->format('Y-m-d'); // Formato 'Y-m-d'
     $prodotti = Prodotto::where(function ($query) use ($dataOdierna) {
         $query->where('scadenza', '<', $dataOdierna)
-            ->orWhere('disponibilita', '<=', 5);
+            ->orWhere('disponibilita', '<=', 10);
     })->get();
     return view('daOrdinare', ['prodotti' => $prodotti]);
 }

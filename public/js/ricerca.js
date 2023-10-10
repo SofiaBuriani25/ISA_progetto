@@ -1,5 +1,6 @@
 var searchInput = document.getElementById('search');
-    var rows = document.querySelectorAll('tbody tr'); // Seleziona tutte le righe della tabella
+var table = document.getElementById('table');
+    var rows = table.querySelectorAll('tbody tr'); // Seleziona tutte le righe della tabella
 
     searchInput.addEventListener('input', function () {
         var searchTerm = searchInput.value.toLowerCase(); // Ottieni il testo di ricerca in minuscolo
