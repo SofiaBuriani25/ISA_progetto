@@ -70,9 +70,9 @@
 
                                         <input type="hidden" name="prodotto_id" value="{{ $prodotto->id }}">
                                         <input type="hidden" name="azione" value="aggiungi">
-                                        <x-primary-button class="ml-3" type="submit">
-                                            Aggiungi disponibilità
-                                        </x-primary-button>
+                                        <button class="ml-3" type="submit">
+                                            Aggiungi Disponibilità
+                                        </button>
                                     </form>
 
                                     </td>

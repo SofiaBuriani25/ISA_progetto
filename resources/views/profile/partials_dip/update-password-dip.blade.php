@@ -32,7 +32,9 @@
         </div>
 
         <div class="flex items-center gap-4">
-            <x-primary-button>{{ __('Salva') }}</x-primary-button>
+        <button class="ml-3">
+                {{ __('Salva Password') }}
+            </button>
 
             @if (session('status_dip') === 'password-updated_dip')
                 <p
@@ -41,7 +43,7 @@
                     x-transition
                     x-init="setTimeout(() => show = false, 2000)"
                     class="text-sm text-gray-600 dark:text-gray-400"
-                >{{ __('Salvato.') }}</p>
+                >{{ __('Password Salvata.') }}</p>
             @endif
         </div>
     </form>

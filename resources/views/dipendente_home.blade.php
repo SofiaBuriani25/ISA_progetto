@@ -126,9 +126,9 @@
         <div style="text-align: right;">
         <input type="hidden" name="prodotto_id" value="{{ $prodotto->id }}">
                                         <input type="hidden" name="azione" value="aggiungi">
-                                        <x-primary-button class="ml-3" type="submit">
-                                            Aggiungi prodotto
-                                        </x-primary-button>
+                                        <button class="ml-3" type="submit">
+                                            Aggiungi
+                                        </button>
         </div>
     </form>
 
