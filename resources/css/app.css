@@ -1,3 +1,54 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+#bottone {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    background-color: #009900f0;
+    /* Colore di sfondo */
+    border: 1px solid transparent;
+    border-radius: 0.375rem;
+    /* Rounded-md */
+    font-weight: 600;
+    /* Font-semibold */
+    font-size: 0.75rem;
+    /* Text-xs */
+    color: #fff;
+    /* Text-white */
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    /* Tracking-widest */
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+    margin-left: 0.75rem;
+    /* Ml-3 */
+}
+
+/* Pseudoclassi per hover e focus */
+#bottone:hover {
+    background-color: #2d3748;
+    /* Hover bg-gray-700 */
+    color: #fff;
+    /* Hover text-white */
+}
+
+#bottone:focus {
+    background-color: #2d3748;
+    /* Focus bg-gray-700 */
+    color: #fff;
+    /* Focus text-white */
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
+    /* Focus ring-2 ring-indigo-500 */
+}
+
+/* Pseudoclasse per cliccare */
+#bottone:active {
+    background-color: #1a202c;
+    /* Active bg-gray-900 */
+    color: #111827;
+    /* Active text-gray-900 */
+}
+

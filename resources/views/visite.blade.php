@@ -55,7 +55,7 @@
                                         @csrf
                                         <input type="hidden" name="visita_id" value="{{ $visita->id}}">
                                         <input type="hidden" name="azione" value="aggiungi">
-                                        <x-primary-button class="ml-3" type="submit">
+                                        <x-primary-button class="ml-3" type="submit" id="bottone">
                                             Prenota
                                         </x-primary-button>
                                     </form>
