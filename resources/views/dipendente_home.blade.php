@@ -127,7 +127,7 @@
         <input type="hidden" name="prodotto_id" value="{{ $prodotto->id }}">
                                         <input type="hidden" name="azione" value="aggiungi">
                                         <button class="ml-3" type="submit">
-                                            Aggiungi
+                                            Aggiungi prodotto
                                         </button>
         </div>
     </form>
