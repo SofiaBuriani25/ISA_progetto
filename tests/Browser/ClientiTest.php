@@ -28,7 +28,8 @@ class ClientiTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->visit('/dashboard')
-                    ->click('button', 'Phil')
+                    ->click('.user-name')
+                    ->pause(1000)
                     ->clickLink('Profilo');
             
             $browser->type('#name', 'Filippo')  //cambio Nome
@@ -45,7 +46,8 @@ class ClientiTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->visit('/dashboard')
-                    ->click('button', 'Filippo')
+                    ->click('.user-name')
+                    ->pause(1000)
                     ->clickLink('Profilo');
             
             $browser->type('#current_password', 'qwerty123')  //cambio Nome

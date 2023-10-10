@@ -92,8 +92,8 @@ class DipendentiTest extends DuskTestCase
         
         $browser->within('table.min-w-full tbody tr:first-child', function ($browser) {
             $browser->click('.delete-button')
-                    ->pause(1000)
-                    ->screenshot('debug3');
+                    ->pause(1000);
+                    
                     
         });
         $browser->assertSee('Prodotto ritornato al magazzino.'); 
@@ -140,29 +140,28 @@ class DipendentiTest extends DuskTestCase
 
     }
 
-    /*
+    
     public function testAggiungiProdotto(): void
 {
     $this->browse(function (Browser $browser) {
         $browser->visit('/dipendente_home');
         
-        $browser->within('table.min-w-full tbody', function ($browser) {
-            if ($browser->assertSee('Augmentin')) {
-                $browser->type('name', 'Augmentin') 
-                        ->type('tipo', 'Antibiotico') 
-                        ->type('scadenza', '31/12/2023') 
-                        ->type('disponibilita', '25') 
-                        ->type('prezzo', '14,50') 
-                        ->type('descrizione', 'Antibiotico generico')
-                        ->press('Aggiungi prodotto')
-                        ->screenshot('debug5')
-                        ->pause(1000)
-                        ->assertSee('Prodotto aggiunto alla lista con successo.');
-            }
-        });
+        $browser->type('name', 'Augmentin') 
+                    ->type('tipo', 'Antibiotico') 
+                    ->type('scadenza', '31/12/2023') 
+                    ->type('disponibilita', '25') 
+                    ->type('prezzo', '14,50') 
+                    ->type('descrizione', 'Antibiotico generico')
+                    ->press('Aggiungi prodotto')
+                    ->screenshot('debug5')
+                    ->pause(1000)
+                    ->assertSee('Prodotto aggiunto alla lista con successo.');
+            
+        
     });
 }
-*/
+
+
 
     public function testModificaProfiloDip(): void
     {
