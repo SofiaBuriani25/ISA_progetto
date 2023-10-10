@@ -47,7 +47,7 @@
                         </thead>
                         <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200">
                             @foreach ($prodotti as $prodotto)
-                                @if ($prodotto->disponibilita <= 5)
+                                @if ($prodotto->disponibilita <= 10)
                                 <tr>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         {{ $prodotto->name }}
