@@ -94,23 +94,26 @@
 .add-button {
     /*questo bottone ha id="bottoneAdd" */
     font-weight: bold;
-    background-color: rgb(0, 204, 11) !important; 
+    background-color: rgb(0, 204, 11) !important;
     border: none;
     color: white;
     font-size: 18px;
-    padding: 1px 10px;
+    padding: 1px 12px;
     cursor: pointer;
     border-radius: 5px;
+
     /* Bordo arrotondato */
 }
 
 
 /* Stili CSS solo per l'elemento con l'ID "bottone" */
-#bottone, #bottone2 {
+#bottone,
+#bottone2 {
     display: inline-flex;
     align-items: center;
     padding: 0.5rem 1rem;
-    background-color: rgb(0, 204, 11); /*CAMBIO COLORE DEI BOTTONI 59,130,256 oppure 4a5568 */
+    background-color: rgb(0, 204, 11);
+    /*CAMBIO COLORE DEI BOTTONI 59,130,256 oppure 4a5568 */
     border: 1px solid transparent;
     border-radius: 0.375rem;
     /* Rounded-md */
@@ -139,7 +142,8 @@
     /* Hover text-white */
 }
 
-#bottone:focus, #bottone2:focus {
+#bottone:focus,
+#bottone2:focus {
     background-color: #2d3748;
     /* Focus bg-gray-700 */
     color: #fff;
@@ -150,7 +154,8 @@
 }
 
 /* Pseudoclasse per cliccare */
-#bottone:active, #bottone2:active {
+#bottone:active,
+#bottone2:active {
     background-color: #1a202c;
     /* Active bg-gray-900 */
     color: #111827;
@@ -159,7 +164,7 @@
 
 /* Stile in modalità scura */
 .dark #bottone,
-.dark #bottone2  {
+.dark #bottone2 {
     background-color: #f7fafc;
     color: #2d3748;
     border-color: transparent;
@@ -176,7 +181,7 @@
 
 /* Stile in modalità scura durante il focus */
 .dark #bottone:focus,
-.dark #bottone2:focus{
+.dark #bottone2:focus {
     background-color: #2d3748;
     /* Dark focus dark:focus:bg-white */
     color: #fff;
@@ -190,10 +195,13 @@
     position: fixed;
     top: 0;
     width: 100%;
-    background-color: #333; /* Sostituisci con il colore desiderato */
-    color: #fff; /* Colore del testo */
+    background-color: #333;
+    /* Sostituisci con il colore desiderato */
+    color: #fff;
+    /* Colore del testo */
     padding: 10px 0;
-    z-index: 100; /* Assicura che la navbar sia sopra gli altri contenuti */
+    z-index: 100;
+    /* Assicura che la navbar sia sopra gli altri contenuti */
 }
 
 .sticky {
