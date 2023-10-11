@@ -153,7 +153,6 @@ class DipendentiTest extends DuskTestCase
                     ->type('prezzo', '14,50') 
                     ->type('descrizione', 'Antibiotico generico')
                     ->press('Aggiungi prodotto')
-                    ->screenshot('debug5')
                     ->pause(1000)
                     ->assertSee('Prodotto aggiunto alla lista con successo.');
             
@@ -172,7 +171,7 @@ class DipendentiTest extends DuskTestCase
                     ->clickLink('Profilo');
             
             $browser->type('#name', 'Peps')  //cambio Nome
-                    ->press('Salva')
+                    ->press('#bottone')
                     ->pause(1000)
                     ->assertSee('Salvato.');
                     
@@ -191,7 +190,7 @@ class DipendentiTest extends DuskTestCase
             $browser->type('#current_password', 'qwerty1234')  //cambio Nome
                     ->type('#password', 'qwerty1234')
                     ->type('#password_confirmation', 'qwerty1234')
-                    ->press('Salva Password')
+                    ->press('#bottone2')
                     ->screenshot('debug1')
                     ->pause(1000)
                     ->assertSee('Password Salvata.');
