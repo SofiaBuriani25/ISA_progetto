@@ -49,7 +49,7 @@
                                     @if ($prenotazione->pagato == 0)
                                         <span class="text-red-500">✘</span>
                                     @else
-                                        <span class="text-green-500" id="verde">✔</span>
+                                        <span class="text-green-500" id="verde"><strong>&#10003</strong></span>
                                     @endif
                                     </td>
 

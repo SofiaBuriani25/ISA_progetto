@@ -8,7 +8,9 @@ namespace Tests\Unit;
 use Tests\TestCase;
 use App\Models\Visita;
 use App\Models\User;
+use App\Models\Dipendente;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class VisitaTest extends TestCase
 {
@@ -41,5 +43,38 @@ class VisitaTest extends TestCase
             'tipologia' => 'Visita di controllo',
         ]);
     }
+
+
+    public function testAggiungiVisita()
+    {
+      /*  // Crea un utente dipendente fittizio
+        $user = Dipendente::factory()->create();
+        $this->actingAs($user); */
+
+        // Recupera l'utente dipendente dai dati esistenti nel database
+        $user = Dipendente::first();
+        
+        // Autentica l'utente come dipendente
+        Auth::guard('dipendenti')->login($user);
+
+        // Dati del prodotto da aggiungere
+      $visitaData = [
+        'tipologia' => 'Visita Prova',
+        'dataVisita' => '2023-10-21 15:30:00',
+        'medico' => 'Dr. De Luca',
+        'prezzo' => 120.00,
+    ];
+
+    // Esegui una richiesta POST per aggiungere la visita
+    $response = $this->post('/gestione_visite', $visitaData);
+
+        // Verifica che il redirect sia avvenuto con successo
+        $response->assertRedirect();
+   
+
+    }
+
+
+
 }
 

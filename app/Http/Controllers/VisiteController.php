@@ -94,16 +94,6 @@ public function visualizzaVisite()
 
 public function aggiungi_visita(Request $request) //Il dipendente che può aggiungere un nuovo prodotto
 {
-    /*
-    $id = $request->input('id');
-
-    // Verifica se il prodotto esiste 
-    $visitaEsistente = Visita::where('id', $id)->first();
-    if ($visitaEsistente ) {
-        // Gestisci il caso in cui il prodotto non esiste
-        return redirect()->back()->with('error', 'Questo ID esiste già.');
-    }
-    */
 
     $visita = new Visita();
     //$prodotto_id = $request->input('prodotto_id');
