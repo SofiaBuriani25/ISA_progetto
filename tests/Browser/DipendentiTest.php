@@ -200,6 +200,22 @@ class DipendentiTest extends DuskTestCase
     });
     }
 
+    public function testLogoutDip(): void
+{
+    $this->browse(function (Browser $browser) {
+        $browser->visit('/dipendente_home')
+                ->click('.user-name')
+                ->pause(1000)
+                ->clickLink('Log Out')
+                ->assertPathIs('/')
+                ->assertSee('Log in');
+        
+     
+            
+        
+    });
+}
+
 // MODIFICARE IL NUMERO MINIMO DI MEDICINE PER ANDARE AFINIRE NELLA TABELLA PRODOTTI DA ORDINARE
 // RICORDARSI SE SI CAMBIA PASSWORD ALLA FINE NON FUNZIONA PIU NULLA
 
