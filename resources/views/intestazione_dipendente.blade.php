@@ -17,7 +17,10 @@
                 {{ __('Prodotti da Ordinare') }} |
             </a>
             <a href="{{ route('storico_dipendenti') }}" class="{{ request()->routeIs('storico_dipendenti') ? 'highlight-link' : '' }}">
-                {{ __('Storico Ordini') }} 
+                {{ __('Storico Ordini') }} |
+            </a>
+            <a href="{{ route('gestione_visite') }}" class="{{ request()->routeIs('gestione_visite') ? 'highlight-link' : '' }}">
+                {{ __('Visite') }} 
             </a>
         </h2>
     </x-slot>

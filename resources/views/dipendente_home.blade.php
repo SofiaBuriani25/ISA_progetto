@@ -13,7 +13,7 @@
                 
                     <h1 class="titoli_pagine">Elenco dei prodotti disponibili</h1>
                     <br>
-                    <div class="mt-4 mb-4">
+                    <div class="mt-2 mb-4">
                     <input type="text" id="search" class="form-input rounded-md shadow-sm" placeholder="Cerca prodotto...">
                     </div>
                     <br>
@@ -126,7 +126,7 @@
         <div style="text-align: right;">
         <input type="hidden" name="prodotto_id" value="{{ $prodotto->id }}">
                                         <input type="hidden" name="azione" value="aggiungi">
-                                        <button class="ml-3" type="submit">
+                                        <button class="ml-3" type="submit" id="bottone">
                                             Aggiungi prodotto
                                         </button>
         </div>

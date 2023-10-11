@@ -81,4 +81,43 @@ public function cancellaPrenotazione($id)
 }
 
 
+public function visualizzaVisite()
+{
+  // Recupera tutte le visite, indipendentemente dal fatto che siano prenotate o meno
+  $visite = Visita::all();
+
+  return view('gestione_visite', [
+      'visite' => $visite,
+  ]);
+    
+}
+
+public function aggiungi_visita(Request $request) //Il dipendente che può aggiungere un nuovo prodotto
+{
+    /*
+    $id = $request->input('id');
+
+    // Verifica se il prodotto esiste 
+    $visitaEsistente = Visita::where('id', $id)->first();
+    if ($visitaEsistente ) {
+        // Gestisci il caso in cui il prodotto non esiste
+        return redirect()->back()->with('error', 'Questo ID esiste già.');
+    }
+    */
+
+    $visita = new Visita();
+    //$prodotto_id = $request->input('prodotto_id');
+    $visita->tipologia = $request->input('tipologia');
+    $visita->dataVisita = $request->input('dataVisita');
+    $visita->medico = $request->input('medico');
+    $visita->prezzo = $request->input('prezzo');
+   
+    $visita->save();
+
+    // Successo, reindirizza con un messaggio di successo
+    return redirect()->back()->with('success', 'Visita aggiunta alla lista con successo.');
+}
+
+
+
 }
