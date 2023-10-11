@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+#verde, #verde:hover, #verde:active, ::before, ::after{
+    color: rgb(34,197,94) !important;
+    background-color: #fff;
+    text-emphasis-color: rgb(34,197,94);
+}
 
 #bottone {
     display: inline-flex;

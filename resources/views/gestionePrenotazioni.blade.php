@@ -57,7 +57,7 @@
                             
                                     <form method="POST" action="{{ route('conferma_pagamento', ['id' => $prenotazione->id]) }}">
                                         @csrf
-                                        <button class="add-button" id="bottoneAdd">✔</button>
+                                        <button class="add-button " id="bottoneAdd">✅</button>
                                     </form>
                                 </div>
                                     
