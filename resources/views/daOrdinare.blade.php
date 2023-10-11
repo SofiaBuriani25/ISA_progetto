@@ -18,7 +18,7 @@
                 
                     <h1 class="titoli_pagine">Elenco dei prodotti da ordinare</h1>
                     <br>
-                    <div class="mt-4 mb-4">
+                    <div class="mt-2 mb-4">
                     <input type="text" id="search" class="form-input rounded-md shadow-sm" placeholder="Cerca prodotto...">
                     </div>
                    

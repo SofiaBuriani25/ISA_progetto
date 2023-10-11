@@ -10,7 +10,7 @@
                <h1 class="titoli_pagine">Lista delle prenotazioni dei clienti</h1>
                <h3 class="sottotitoli_pagine"> Per ogni prodotto seleziona se il cliente a pagato oppure no.</h3>
                <br>
-               <div class="mt-4 mb-4">
+               <div class="mt-2 mb-4">
                     <input type="text" id="search" class="form-input rounded-md shadow-sm" placeholder="Cerca cliente o prodotto...">
                     </div>
                 <br>
@@ -57,7 +57,7 @@
                             
                                     <form method="POST" action="{{ route('conferma_pagamento', ['id' => $prenotazione->id]) }}">
                                         @csrf
-                                        <button class="add-button " id="bottoneAdd">✅</button>
+                                        <button class="add-button" id="bottoneAdd">✅</button>
                                     </form>
                                 </div>
                                     

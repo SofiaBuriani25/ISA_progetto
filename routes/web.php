@@ -68,7 +68,8 @@ Route::middleware(['auth:dipendenti'])->group(function () {
     // Rotta per eliminare la prenotazione
     Route::post('/elimina-prenotazione/{id}', [PrenotazioneController::class, 'eliminaPrenotazione'])->name('elimina_prenotazione');
 
-
+    Route::get('/gestione_visite', [VisiteController::class, 'visualizzaVisite'])->name('gestione_visite');
+    Route::post('/gestione_visite', [VisiteController::class, 'aggiungi_visita'])->name('aggiungi_visita');
 
     // ...
 });

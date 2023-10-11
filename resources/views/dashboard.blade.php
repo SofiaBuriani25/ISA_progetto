@@ -15,7 +15,7 @@
                     <h1 class="titoli_pagine">Elenco dei prodotti disponibili</h1>
                     <h3 class="sottotitoli_pagine">Max <b><span style="font-size: larger; color: black;">{{ $numeroRimenenti }}</span></b> quantità prenotabile </h3>
                     <br>
-                    <div class="mt-4 mb-4">
+                    <div class="mt-2 mb-4">
                     <input type="text" id="search" class="form-input rounded-md shadow-sm" placeholder="Cerca prodotto...">
                     </div>
                     <br>
