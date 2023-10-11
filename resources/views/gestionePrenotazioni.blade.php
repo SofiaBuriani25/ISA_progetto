@@ -8,7 +8,7 @@
             <div class="p-6 text-gray-900 dark:text-gray-100">
                 
                <h1 class="titoli_pagine">Lista delle prenotazioni dei clienti</h1>
-               <h3 class="sottotitoli_pagine"> Per ogni prodotto seleziona se il cliente a pagato oppure no.</h3>
+               <h3 class="sottotitoli_pagine"> Per ogni prodotto selezionare il ritiro (e il pagamento) da parte del cliente.</h3>
                <br>
                <div class="mt-2 mb-4">
                     <input type="text" id="search" class="form-input rounded-md shadow-sm" placeholder="Cerca cliente o prodotto...">

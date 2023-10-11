@@ -12,6 +12,7 @@
                     
                 
                     <h1 class="titoli_pagine">Elenco dei prodotti disponibili</h1>
+                    <h3 class="sottotitoli_pagine"> Segnalare i prodotti venduti al banco senza prenotazione. </h3>
                     <br>
                     <div class="mt-2 mb-4">
                     <input type="text" id="search" class="form-input rounded-md shadow-sm" placeholder="Cerca prodotto...">

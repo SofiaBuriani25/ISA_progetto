@@ -8,6 +8,7 @@
                     
                 
                     <h2 class="titoli_pagine">Storico prodotti ordinati</h2>
+                    <h3 class="sottotitoli_pagine"> Tutti i rifornimenti fatti dai dipendenti. </h3>
                     <br>
 
                     <table class="min-w-full divide-y divide-gray-200" id="table">

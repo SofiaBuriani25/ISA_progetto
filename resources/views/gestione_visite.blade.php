@@ -8,6 +8,7 @@
                     
                 
                     <h1 class="titoli_pagine">Elenco delle visite disponibili</h1>
+                    <h3 class="sottotitoli_pagine"> Visualizza tutte le visite comprese le prenotazioni. </h3>
                     <br>
                     <div class="mt-1 mb-2">
                     <input type="text" id="search" class="form-input rounded-md shadow-sm" placeholder="Cerca visita...">
