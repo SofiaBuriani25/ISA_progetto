@@ -106,7 +106,7 @@
 
 
 /* Stili CSS solo per l'elemento con l'ID "bottone" */
-#bottone {
+#bottone, #bottone2 {
     display: inline-flex;
     align-items: center;
     padding: 0.5rem 1rem;
@@ -129,15 +129,18 @@
     /* Ml-3 */
 }
 
+
+
 /* Pseudoclassi per hover e focus */
-#bottone:hover {
+#bottone:hover,
+#bottone2:hover {
     background-color: #2d3748;
     /* Hover bg-gray-700 */
     color: #fff;
     /* Hover text-white */
 }
 
-#bottone:focus {
+#bottone:focus, #bottone2:focus {
     background-color: #2d3748;
     /* Focus bg-gray-700 */
     color: #fff;
@@ -148,7 +151,7 @@
 }
 
 /* Pseudoclasse per cliccare */
-#bottone:active {
+#bottone:active, #bottone2:active {
     background-color: #1a202c;
     /* Active bg-gray-900 */
     color: #111827;
@@ -156,14 +159,16 @@
 }
 
 /* Stile in modalità scura */
-.dark #bottone {
+.dark #bottone,
+.dark #bottone2  {
     background-color: #f7fafc;
     color: #2d3748;
     border-color: transparent;
 }
 
 /* Stile in modalità scura durante l'hover */
-.dark #bottone:hover {
+.dark #bottone:hover,
+.dark #bottone2:hover {
     background-color: #2d3748;
     /* Dark hover dark:hover:bg-white */
     color: #fff;
@@ -171,7 +176,8 @@
 }
 
 /* Stile in modalità scura durante il focus */
-.dark #bottone:focus {
+.dark #bottone:focus,
+.dark #bottone2:focus{
     background-color: #2d3748;
     /* Dark focus dark:focus:bg-white */
     color: #fff;

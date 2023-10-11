@@ -32,7 +32,7 @@
         </div>
 
         <div class="flex items-center gap-4">
-        <button class="ml-3" id="bottone">
+        <button class="ml-3" id="bottone2">
                 {{ __('Salva Password') }}
             </button>
 

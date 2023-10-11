@@ -15,7 +15,7 @@ class ClientiTest extends DuskTestCase
         $this->browse(function (Browser $browser) {
             $browser->visit('/login')
                     ->type('email', 'filippo@gmail.com') 
-                    ->type('password', 'qwerty123') 
+                    ->type('password', 'qwerty1234') 
                     ->click('button', ['text' => 'Log in'])  
                     ->assertPathIs('/dashboard') // Verifico che l'utente sia reindirizzato alla pagina di dashboard
                     ->assertSee('Elenco dei prodotti disponibili'); 
@@ -34,7 +34,7 @@ class ClientiTest extends DuskTestCase
             
             $browser->type('#name', 'Filippo')  //cambio Nome
                     ->type('#telefono', '3456528376')
-                    ->press('Salva')
+                    ->press('#bottone')
                     ->pause(1000)
                     ->assertSee('Salvato.')
                     ->screenshot('debug1');
@@ -50,10 +50,10 @@ class ClientiTest extends DuskTestCase
                     ->pause(1000)
                     ->clickLink('Profilo');
             
-            $browser->type('#current_password', 'qwerty123')  //cambio Nome
+            $browser->type('#current_password', 'qwerty1234')  //cambio Nome
                     ->type('#password', 'qwerty1234')
                     ->type('#password_confirmation', 'qwerty1234')
-                    ->press('Salva Password')
+                    ->press('#bottone2')
                     ->screenshot('debug1')
                     ->pause(1000)
                     ->assertSee('Password Salvata.');
