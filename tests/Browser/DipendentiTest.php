@@ -112,7 +112,7 @@ class DipendentiTest extends DuskTestCase
                     
 
             $browser->within('table.min-w-full tbody tr:not([style*="display: none"])', function ($browser) {
-                $browser->type('input[name="quantita"]', '3')
+                $browser->type('input[name="quantita"]', '2')
                         ->click('button', ['text' => 'Aggiungi Disponibilità'])  // Fai clic sul pulsante "Prenota"
                         ->pause(1000);
             });
@@ -132,7 +132,7 @@ class DipendentiTest extends DuskTestCase
 
                 $browser->within('table.min-w-full tbody tr:first-child', function ($browser) {
                     $browser->assertSee('Voltaren')
-                            ->assertSee('3');
+                            ->assertSee('2');
                 
             });
         
