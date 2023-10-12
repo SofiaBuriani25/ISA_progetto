@@ -29,6 +29,9 @@
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                                     Quantità
                                 </th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                                    Data Ora
+                                </th>
                                 </tr>
                         </thead>
                         <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200">
@@ -49,17 +52,13 @@
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     {{ $ordine->quantita }}
                                 </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    {{ $ordine->created_at }}
+                                </td>
                             </tr>
                             @endforeach
         </tbody>
     </table>
-
-
-
-
-
-
-
 
                 </div>
             </div>

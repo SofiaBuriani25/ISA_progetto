@@ -1,10 +1,10 @@
 <section>
     <header>
-        <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
+        <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100 titoli_pagine">
             {{ __('Aggiorna password') }}
         </h2>
 
-        <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+        <p class="mt-1 text-sm text-gray-600 dark:text-gray-400 sottotitoli_pagine">
             {{ __('Assicurati di utilizzare una password lunga e randomica per avere maggiore sicurezza') }}
         </p>
     </header>

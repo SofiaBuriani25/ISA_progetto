@@ -1,12 +1,4 @@
 <x-app-layout>
-    <!--
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-        <a href="{{ route('dipendente_home') }}" class="text-gray-800 dark:text-gray-200">{{ __('Dashboard') }} Ciao</a>
-            | Prodotti da ordinare
-        </h2>
-    </x-slot>
--->
 
     @include('intestazione_dipendente')
 @php
@@ -93,16 +85,16 @@
                                 @endif
                             @endforeach
                             @if (session('success'))
-    <div class="alert alert-success">
-        {{ session('success') }}
-    </div>
-@endif
+                            <div class="alert alert-success">
+                                {{ session('success') }}
+                            </div>
+                        @endif
 
-@if (session('error'))
-    <div class="alert alert-danger">
-        {{ session('error') }}
-    </div>
-@endif
+                        @if (session('error'))
+                            <div class="alert alert-danger">
+                                {{ session('error') }}
+                            </div>
+                        @endif
                         </tbody>
                     </table>
 
