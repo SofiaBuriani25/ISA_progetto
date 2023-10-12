@@ -184,7 +184,7 @@ public function ordinaProdotto(Request $request) //DIPENDENTE
             'disponibilita' => 0,
             'scadenza' => $scadenza,
         ]);
-        return redirect()->back()->with('error', 'Prodotto scaduto. La disponibilità è stata azzerata e la scadenza è stata rimandata di un anno.');
+        return redirect()->back()->with('error', 'Prodotto scaduto. La disponibilità è stata azzerata.');
     }
 
     // Utente cliente

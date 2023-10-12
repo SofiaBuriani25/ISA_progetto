@@ -27,6 +27,9 @@
                                     Nome Prodotto
                                 </th>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                                    Data Ora
+                                </th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                                     Quantità
                                 </th>
                                 </tr>
@@ -45,6 +48,9 @@
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     {{ $ordine->prodotto->name }}
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    {{ $ordine->created_at }}
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     {{ $ordine->quantita }}
