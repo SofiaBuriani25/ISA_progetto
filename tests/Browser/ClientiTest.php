@@ -6,6 +6,8 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
 
+use Illuminate\Support\Str;
+
 class ClientiTest extends DuskTestCase
 {
 
@@ -157,6 +159,53 @@ class ClientiTest extends DuskTestCase
         });
 
         }
+
+        public function testLogout(): void
+{
+    $this->browse(function (Browser $browser) {
+        $browser->visit('/dipendente_home')
+                ->click('.user-name')
+                ->pause(1000)
+                ->clickLink('Log Out')
+                ->assertPathIs('/')
+                ->assertSee('Login');
+        
+     
+            
+        
+    });
+}
+
+    public function testRegistrazione(): void
+    {
+        $this->browse(function (Browser $browser) {
+            $name = Str::random(5);
+            $cognome = Str::random(10);
+            $email = Str::random(8) . '@example.com'; // Genera un indirizzo email casuale
+
+            $browser->visit('/')
+                    ->clickLink('Registrazione')
+                    ->pause(500)
+                    ->type('#name', $name)
+                    ->type('#cognome', $cognome)
+                    ->type('#sesso', 'F')
+                    ->type('#dataNascita', '15/05/1985')
+                    ->type('#citta', 'New York')
+                    ->type('#indirizzo', '123 Main Street')
+                    ->type('#cap', '10001')
+                    ->type('#telefono', '3436428354')
+                    ->type('#codicefiscale', 'DOEJHN85D15A123B')
+                    ->type('#email', $email)
+                    ->type('#password', 'Password123')
+                    ->type('#password_confirmation', 'Password123')
+                    ->press('#bottone')
+                    ->assertPathIs('/dashboard')
+                    ->assertSee('Max 5 quantità prenotabile');
+                    
+        });
+    }
+
+
 
         
 }

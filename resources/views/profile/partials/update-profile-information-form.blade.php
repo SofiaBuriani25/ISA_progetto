@@ -78,7 +78,7 @@
         </div>
 
         <div class="flex items-center gap-4">
-        <button class="ml-3" id="bottone2">
+        <button class="ml-3" id="bottone">
                 {{ __('Salva') }}
             </button>
 

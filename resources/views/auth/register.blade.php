@@ -99,9 +99,9 @@
                 {{ __('Già registrato?') }}
             </a>
 
-            <x-primary-button class="ml-4">
-                {{ __('Register') }}
-            </x-primary-button>
+            <button class="ml-3" id="bottone">
+                {{ __('Registrati') }}
+            </button>
         </div>
     </form>
 </x-guest-layout>

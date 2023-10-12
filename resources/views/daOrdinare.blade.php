@@ -9,6 +9,10 @@
 -->
 
     @include('intestazione_dipendente')
+@php
+    $dataOdierna = now();
+    $dataOdiernaFormattata = $dataOdierna->format('Y-m-d');
+@endphp
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -17,7 +21,7 @@
                     
                 
                     <h1 class="titoli_pagine">Elenco dei prodotti da ordinare</h1>
-                    <h3 class="sottotitoli_pagine">Qui sono visualizzati tutti i prodotti che sono in terminazione (disponibilità<=10).</h3>
+                    <h3 class="sottotitoli_pagine">Qui sono visualizzati tutti i prodotti che sono in terminazione (disponibilità<=10) o scaduti.</h3>
                     <br>
                     <div class="mt-2 mb-4">
                     <input type="text" id="search" class="form-input rounded-md shadow-sm" placeholder="Cerca prodotto...">
@@ -39,6 +43,9 @@
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                                     Quantità disponibile
                                 </th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                                    Scadenza
+                                </th>
                                 <th class="px-1 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                                     Quantità da ordinare
                                 </th>
@@ -48,7 +55,7 @@
                         </thead>
                         <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200">
                             @foreach ($prodotti as $prodotto)
-                                @if ($prodotto->disponibilita <= 10)
+                                @if ($prodotto->disponibilita <= 10 || $prodotto->scadenza < $dataOdiernaFormattata)
                                 <tr>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         {{ $prodotto->name }}
@@ -62,7 +69,11 @@
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         {{ $prodotto->disponibilita }}
                                     </td>
-
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                        @if ($prodotto->scadenza < $dataOdiernaFormattata )
+                                            {{ $prodotto->scadenza }}
+                                            @endif
+                                    </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         
                                     <form method="POST" action="{{ route('ordina_prodotto') }}">
