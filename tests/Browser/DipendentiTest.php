@@ -6,6 +6,8 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
 
+use Illuminate\Support\Str;
+
 class DipendentiTest extends DuskTestCase
 {
     /**
@@ -144,15 +146,24 @@ class DipendentiTest extends DuskTestCase
     public function testAggiungiProdotto(): void
 {
     $this->browse(function (Browser $browser) {
+        $name = Str::random(10);
+        $tipo = Str::random(10);
+        $disponibilita = rand(1, 100);
+
+        $browser->visit('/login')
+                ->type('email', 'giuseppe@live.it') 
+                ->type('password', 'qwerty1234') 
+                ->click('button', ['text' => 'Log in']); 
+
         $browser->visit('/dipendente_home');
         
-        $browser->type('name', 'Augmentin') 
-                    ->type('tipo', 'Antibiotico') 
+        $browser->type('name', $name) 
+                    ->type('tipo', $tipo) 
                     ->type('scadenza', '31/12/2023') 
-                    ->type('disponibilita', '25') 
+                    ->type('disponibilita', $disponibilita) 
                     ->type('prezzo', '14,50') 
                     ->type('descrizione', 'Antibiotico generico')
-                    ->press('Aggiungi prodotto')
+                    ->press('#bottone2')
                     ->pause(1000)
                     ->assertSee('Prodotto aggiunto alla lista con successo.');
             
@@ -207,13 +218,43 @@ class DipendentiTest extends DuskTestCase
                 ->pause(1000)
                 ->clickLink('Log Out')
                 ->assertPathIs('/')
-                ->assertSee('Log in');
+                ->assertSee('Login');
         
      
             
         
     });
 }
+
+
+public function testAggiungiVisita(): void
+{
+    $this->browse(function (Browser $browser) {
+        $tipo = Str::random(10);
+        $prezzo = rand(1, 100);
+
+        $browser->visit('/login')
+                ->type('email', 'giuseppe@live.it') 
+                ->type('password', 'qwerty1234') 
+                ->click('button', ['text' => 'Log in']); 
+
+        $browser->visit('/dipendente_home')
+                ->clickLink('Visite') 
+                ->pause(500);
+        
+        $browser->type('tipologia', $tipo); 
+        $browser->script("document.querySelector('input[name=\"dataVisita\"]').value = '2023-02-12T09:10'");
+        $browser->type('medico', 'Dr. Verdi') 
+                ->type('prezzo', $prezzo) 
+                ->press('#bottone')
+                ->pause(1000)
+                ->assertSee('Visita aggiunta alla lista con successo.');
+                $browser->screenshot('debug2');
+            
+        
+    });
+}
+
 
 // MODIFICARE IL NUMERO MINIMO DI MEDICINE PER ANDARE AFINIRE NELLA TABELLA PRODOTTI DA ORDINARE
 // RICORDARSI SE SI CAMBIA PASSWORD ALLA FINE NON FUNZIONA PIU NULLA

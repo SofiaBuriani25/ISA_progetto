@@ -27,10 +27,10 @@
                                     Nome Prodotto
                                 </th>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
-                                    Data Ora
+                                    Quantità
                                 </th>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
-                                    Quantità
+                                    Data Ora
                                 </th>
                                 </tr>
                         </thead>
@@ -50,10 +50,10 @@
                                     {{ $ordine->prodotto->name }}
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    {{ $ordine->created_at }}
+                                    {{ $ordine->quantita }}
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    {{ $ordine->quantita }}
+                                    {{ $ordine->created_at }}
                                 </td>
                             </tr>
                             @endforeach
