@@ -172,6 +172,20 @@ public function ordinaProdotto(Request $request) //DIPENDENTE
         return redirect()->back()->with('error', 'Errore nella selezione del prodotto.');
     }
 
+        // Verifica se il prodotto è scaduto
+    $dataOdierna = now(); // Assumi che questa sia la data odierna
+    if (strtotime($prodotto->scadenza) < strtotime($dataOdierna)) {
+        // Converti la scadenza in un oggetto data
+        $scadenza = \Carbon\Carbon::createFromFormat('Y-m-d', $prodotto->scadenza);
+
+        // Aggiorna la disponibilità a zero e rimanda la data di scadenza di un anno
+        $scadenza->addYear();
+        $prodotto->update([
+            'disponibilita' => 0,
+            'scadenza' => $scadenza,
+        ]);
+        return redirect()->back()->with('error', 'Prodotto scaduto. La disponibilità è stata azzerata e la scadenza è stata rimandata di un anno.');
+    }
 
     // Utente cliente
     $ordine = new Ordine();
