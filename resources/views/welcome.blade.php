@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
-<title>Museo di Casa Romei</title>
+<title>Farmacia Lodi</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Bootstrap core CSS -->
@@ -82,9 +82,6 @@
 
   <link href = "https://casaromei.cultura.gov.it/css/card.css" rel="stylesheet"/>
 
-  
-
-
 
   <img class= "Imm" src="{{ asset('farmacia-interno.jpg') }}">
 
@@ -135,14 +132,36 @@
     <div class="row"> <!-- ORARI E EVENTI -->
     
     
-    <div class="card h-auto eventi" style="width:38%; min-width:345px;">
+    <div class="card h-auto eventi" style="width:38%; min-width:345px; text-align:justify;">
   
-    <h4 class="card-header txt">In evidenza</h4>
-    <p class="card-text ">
-    <div class="fb-page" data-href="https://www.facebook.com/museodicasaromei/events" data-tabs="timeline,events" data-width="375" data-height="500" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="false"><blockquote cite="https://www.facebook.com/museodicasaromei/events" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/museodicasaromei/events">Museo di Casa Romei</a></blockquote></div>
-    </p> 
-    </div>
-    
+    <h4 class="card-header txt">Servizi</h4>
+    <div class="card-body">
+          <table class="card-header txt">
+        <tr>
+          <td>Tampone Rapido CoVID-19</td>
+        </tr>
+        <tr>
+          <td>Elettrocardiogramma</td>
+        </tr>
+        <tr>
+          <td>Test Beta-HCG</td>
+        </tr>
+        <tr>
+          <td>Glicemia (emoglobina glicata)</td>
+        </tr>
+        <tr>
+          <td>Analisi Vitamina D</td>
+        </tr>
+        <tr>
+          <td>Profilo Lipidico (Colesterolo & Trigliceridi)</td>
+        </tr>
+        <tr>
+          <td>Controllo della vista</td>
+        </tr>
+      </table>
+
+      </div>
+          
 
 
     <div class="col-lg-2"></div>
