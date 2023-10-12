@@ -3,9 +3,10 @@
     @include('intestazione_cliente')
 
     @php
-    $dataOdierna = now();
-    $dataOdiernaFormattata = $dataOdierna->format('Y-m-d');
+        $dataOdierna = now();
+        $dataOdiernaFormattata = $dataOdierna->format('Y-m-d');
     @endphp
+
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
@@ -70,19 +71,19 @@
 
                                 </tr>
                                 @endif
-                            @endforeach
-                            @if (session('success'))
-                                <div class="alert alert-success">
-                                    {{ session('success') }}
-                                </div>
-                                <br>
-                            @endif
+                                @endforeach
+                                @if (session('success'))
+                                    <div class="alert alert-success">
+                                        {{ session('success') }}
+                                    </div>
+                                    <br>
+                                @endif
 
-                            @if (session('error'))
-                                <div class="alert alert-danger">
-                                    {{ session('error') }}
-                                </div>
-                            @endif
+                                @if (session('error'))
+                                    <div class="alert alert-danger">
+                                        {{ session('error') }}
+                                    </div>
+                                @endif
                         </tbody>
                     </table>
 
