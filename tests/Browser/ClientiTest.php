@@ -5,13 +5,12 @@ namespace Tests\Browser;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
-
 use Illuminate\Support\Str;
 
 class ClientiTest extends DuskTestCase
 {
 
-    //Test per vedere se il cliente riesce ad accedere alla sua Dashboard
+    // Test Login
     public function testDashboardCliente(): void
     {
         $this->browse(function (Browser $browser) {
@@ -23,15 +22,15 @@ class ClientiTest extends DuskTestCase
                     ->assertSee('Elenco dei prodotti disponibili'); 
 
         });
-        
     }
 
+    // Test per modificare alcuni dati del profilo cliente
     public function testModificaProfilo(): void
     {
         $this->browse(function (Browser $browser) {
             $browser->visit('/dashboard')
                     ->click('.user-name')
-                    ->pause(1000)
+                    ->pause(500)
                     ->clickLink('Profilo');
             
             $browser->type('#name', 'Filippo')  //cambio Nome
@@ -44,6 +43,7 @@ class ClientiTest extends DuskTestCase
     });
     }
 
+    // Test che modifica la password del cliente
     public function testModificaPassword(): void
     {
         $this->browse(function (Browser $browser) {
@@ -59,15 +59,13 @@ class ClientiTest extends DuskTestCase
                     ->screenshot('debug1')
                     ->pause(1000)
                     ->assertSee('Password Salvata.');
-                    
-                    
 
     });
     }
 
 
-
-    //Test per cercare paracetamolo nella barra di ricerca
+    // Test per cercare paracetamolo nella barra di ricerca all'interno 
+    // della pagina principale dle cliente
     public function testSearchParacetamolo(): void
     {
     $this->browse(function (Browser $browser) {
@@ -83,6 +81,7 @@ class ClientiTest extends DuskTestCase
 
     }
 
+
     // Test per aggiungere 2 unità di paracetamolo dopo la ricerca
     public function testAggiungiParacetamolo2unita(): void
     {
@@ -90,7 +89,6 @@ class ClientiTest extends DuskTestCase
             $browser->visit('/dashboard')
                 ->type('#search', 'paracetamolo') 
                 ->pause(1000);
-                //->screenshot('debug1');
 
             $browser->within('table.min-w-full tbody tr:not([style*="display: none"])', function ($browser) {
                 $browser->select('quantita', 2)
@@ -108,7 +106,7 @@ class ClientiTest extends DuskTestCase
     }
 
     // Test per vedere se il numero precedentemente prenotato compare nella pagina
-    // Storico ordini
+    // "Storico ordini"
     public function testAggiuntoParacetamoloInStorico(): void
     {
         $this->browse(function (Browser $browser) {
@@ -129,7 +127,7 @@ class ClientiTest extends DuskTestCase
     }
 
 
-    // test per prenotare una visita nel caso sia possibile, altrimenti
+    // Test per prenotare una visita nel caso sia possibile, altrimenti
     // viene annullata una visista precedentemente prenotata
     public function testAggiungiEliminaVisita(): void
         {
@@ -160,8 +158,9 @@ class ClientiTest extends DuskTestCase
 
         }
 
-        public function testLogout(): void
-{
+    // Test Logout
+    public function testLogout(): void
+    {
     $this->browse(function (Browser $browser) {
         $browser->visit('/dipendente_home')
                 ->click('.user-name')
@@ -169,13 +168,10 @@ class ClientiTest extends DuskTestCase
                 ->clickLink('Log Out')
                 ->assertPathIs('/')
                 ->assertSee('Login');
-        
-     
-            
-        
     });
-}
+    }
 
+    // Test registrazione del cliente con alcuni campi casuali
     public function testRegistrazione(): void
     {
         $this->browse(function (Browser $browser) {
