@@ -55,9 +55,10 @@ class ProdottoControllerTest extends TestCase
         // Autentica l'utente come dipendente
         Auth::guard('dipendenti')->login($user);
 
-        // Crea un prodotto con disponibilità inferiore o uguale a 5
+        // Crea un prodotto con disponibilità uguale a 5
         $prodotto = Prodotto::factory()->create([
             'disponibilita' => 5,
+            'scadenza' => '2023-12-31',
         ]);
 
         // Dati per la richiesta POST
@@ -71,6 +72,7 @@ class ProdottoControllerTest extends TestCase
 
         // Verifica che il redirect sia avvenuto con successo
         $response->assertRedirect();
+
 
         // Verifica che la quantità disponibile sia stata aumentata correttamente
         $this->assertDatabaseHas('prodotti', [

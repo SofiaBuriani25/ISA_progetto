@@ -9,6 +9,7 @@ use Illuminate\Support\Str;
 
 class DipendentiTest extends DuskTestCase
 {
+    
     // Test Login
     public function testExample(): void
     {
@@ -23,10 +24,31 @@ class DipendentiTest extends DuskTestCase
         });
     }
 
+     // Test Login Errato
+     public function testLogFail(): void
+     {
+         $this->browse(function (Browser $browser) {
+             $browser->visit('/login')
+                     ->type('email', 'giuseppe@live.it') 
+                     ->pause(2000)
+                     ->type('password', 'qwerty22222') 
+                     ->pause(2000)
+                     ->click('button', ['text' => 'Log in'])
+                     ->assertSee('Le credenziali non sono corrette.')
+                     ->pause(2000); 
+ 
+         });
+     }
+
     // Test di ricerca di un prodotto
     public function testSearchLorastan(): void
     {
     $this->browse(function (Browser $browser) {
+        $browser->visit('/login')
+                ->type('email', 'giuseppe@live.it') 
+                ->type('password', 'qwerty1234') 
+                ->click('button', ['text' => 'Log in']);  
+
         $browser->visit('/dipendente_home')
             ->type('#search', 'losartan') 
             ->pause(1000);
@@ -42,6 +64,11 @@ class DipendentiTest extends DuskTestCase
     public function testVenditaLosartan3unita(): void
     {
         $this->browse(function (Browser $browser) {
+            $browser->visit('/login')
+                    ->type('email', 'giuseppe@live.it') 
+                    ->type('password', 'qwerty1234') 
+                    ->click('button', ['text' => 'Log in']);  
+
             $browser->visit('/dipendente_home')
                 ->type('#search', 'losartan') 
                 ->pause(1000);
@@ -66,6 +93,11 @@ class DipendentiTest extends DuskTestCase
     public function testConfermaPagamentoCliente(): void
     {   
     $this->browse(function (Browser $browser) {
+        $browser->visit('/login')
+                ->type('email', 'giuseppe@live.it') 
+                ->type('password', 'qwerty1234') 
+                ->click('button', ['text' => 'Log in']);  
+
         $browser->visit('/dipendente_home')
             ->clickLink('Prenotazioni dei Clienti') 
             ->pause(500);
@@ -86,6 +118,11 @@ class DipendentiTest extends DuskTestCase
     public function testConfermaNoPagamentoCliente(): void
     {
     $this->browse(function (Browser $browser) {
+        $browser->visit('/login')
+                ->type('email', 'giuseppe@live.it') 
+                ->type('password', 'qwerty1234') 
+                ->click('button', ['text' => 'Log in']);  
+
         $browser->visit('/dipendente_home')
             ->clickLink('Prenotazioni dei Clienti') 
             ->pause(500);
@@ -105,15 +142,20 @@ class DipendentiTest extends DuskTestCase
     public function testProdottoDaOrdinare(): void
     {
         $this->browse(function (Browser $browser) {
+            $browser->visit('/login')
+                ->type('email', 'giuseppe@live.it') 
+                ->type('password', 'qwerty1234') 
+                ->click('button', ['text' => 'Log in']);  
+
             $browser->visit('/dipendente_home')
                     ->clickLink('Prodotti da Ordinare')  
                     ->type('#search', 'voltaren') 
-                    ->pause(1000);
+                    ->pause(500);
                     
             $browser->within('table.min-w-full tbody tr:not([style*="display: none"])', function ($browser) {
                 $browser->type('input[name="quantita"]', '2')
                         ->click('button', ['text' => 'Aggiungi Disponibilità'])  
-                        ->pause(1000);
+                        ->pause(500);
             });
     
             $browser->assertSee('Prodotto aggiunto con successo.'); 
@@ -125,6 +167,11 @@ class DipendentiTest extends DuskTestCase
     public function testProdottoDaOrdinareInStorico(): void
     {
         $this->browse(function (Browser $browser) {
+            $browser->visit('/login')
+                ->type('email', 'giuseppe@live.it') 
+                ->type('password', 'qwerty1234') 
+                ->click('button', ['text' => 'Log in']);  
+
             $browser->visit('/dipendente_home')
                 ->clickLink('Storico Ordini') 
                 ->pause(1000);
@@ -151,6 +198,11 @@ class DipendentiTest extends DuskTestCase
         $browser->visit('/login')
                 ->type('email', 'giuseppe@live.it') 
                 ->type('password', 'qwerty1234') 
+                ->click('button', ['text' => 'Log in']);  
+
+        $browser->visit('/login')
+                ->type('email', 'giuseppe@live.it') 
+                ->type('password', 'qwerty1234') 
                 ->click('button', ['text' => 'Log in']); 
 
         $browser->visit('/dipendente_home');
@@ -168,18 +220,49 @@ class DipendentiTest extends DuskTestCase
     });
     }
 
+
+    // Test aggiunta prodotto già presente
+    public function testAggiungiProdottoesistente(): void
+    {
+    $this->browse(function (Browser $browser) {
+
+        $browser->visit('/login')
+                ->type('email', 'giuseppe@live.it') 
+                ->type('password', 'qwerty1234') 
+                ->click('button', ['text' => 'Log in']); 
+
+        $browser->visit('/dipendente_home');
+        
+        $browser->type('name', 'Brufen') 
+                    ->type('tipo', 'Anti infiammatorio') 
+                    ->type('scadenza', '31/12/2023') 
+                    ->type('disponibilita', '10') 
+                    ->type('prezzo', '14,50') 
+                    ->type('descrizione', 'Antibiotico generico')
+                    ->press('#bottone2')
+                    ->pause(500)
+                    ->assertSee('Il Prodotto esiste già.');
+      
+    });
+    }
+
     // Test per modificare il nome del profilo del dipendente
     public function testModificaProfiloDip(): void
     {
         $this->browse(function (Browser $browser) {
+            $browser->visit('/login')
+                ->type('email', 'giuseppe@live.it') 
+                ->type('password', 'qwerty1234') 
+                ->click('button', ['text' => 'Log in']);  
+
             $browser->visit('/dipendente_home')
                     ->click('.user-name')
-                    ->pause(1000)
+                    ->pause(500)
                     ->clickLink('Profilo');
             
             $browser->type('#name', 'Peps')  //cambio Nome
                     ->press('#bottone')
-                    ->pause(1000)
+                    ->pause(500)
                     ->assertSee('Salvato.');
                     
     });
@@ -189,6 +272,11 @@ class DipendentiTest extends DuskTestCase
     public function testModificaPassword_dip(): void
     {
         $this->browse(function (Browser $browser) {
+            $browser->visit('/login')
+                ->type('email', 'giuseppe@live.it') 
+                ->type('password', 'qwerty1234') 
+                ->click('button', ['text' => 'Log in']);  
+
             $browser->visit('/dipendente_home')
                     ->click('.user-name')
                     ->pause(500)
@@ -209,6 +297,11 @@ class DipendentiTest extends DuskTestCase
     public function testLogoutDip(): void
     {
     $this->browse(function (Browser $browser) {
+        $browser->visit('/login')
+                ->type('email', 'giuseppe@live.it') 
+                ->type('password', 'qwerty1234') 
+                ->click('button', ['text' => 'Log in']);  
+
         $browser->visit('/dipendente_home')
                 ->click('.user-name')
                 ->pause(1000)
@@ -225,6 +318,11 @@ class DipendentiTest extends DuskTestCase
         $this->browse(function (Browser $browser) {
             $tipo = Str::random(10);
             $prezzo = rand(1, 100);
+
+            $browser->visit('/login')
+                ->type('email', 'giuseppe@live.it') 
+                ->type('password', 'qwerty1234') 
+                ->click('button', ['text' => 'Log in']);  
 
             $browser->visit('/login')
                     ->type('email', 'giuseppe@live.it') 

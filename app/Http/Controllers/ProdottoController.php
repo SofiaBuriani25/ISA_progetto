@@ -174,7 +174,7 @@ public function ordinaProdotto(Request $request) //DIPENDENTE
 
         // Verifica se il prodotto è scaduto
     $dataOdierna = now(); // Assumi che questa sia la data odierna
-    if (strtotime($prodotto->scadenza) < strtotime($dataOdierna)) {
+    if (strtotime($prodotto->scadenza) <= strtotime($dataOdierna)) {
         // Converti la scadenza in un oggetto data
         $scadenza = \Carbon\Carbon::createFromFormat('Y-m-d', $prodotto->scadenza);
 
