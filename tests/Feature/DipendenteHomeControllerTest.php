@@ -52,7 +52,7 @@ class DipendenteHomeControllerTest extends TestCase
 
     public function testUpdate(): void
     {
-        $user = Dipendente::where('id', 33)
+        $user = Dipendente::where('id', 3)
         ->first();
 
         // Assicurati che l'utente sia stato trovato

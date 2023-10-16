@@ -16,7 +16,7 @@ class ProfileControllerTest extends TestCase
 
     public function testUpdate(): void
     {
-        $user = User::where('id', 33)
+        $user = User::where('id', 3)
         ->first();
 
         // Assicurati che l'utente sia stato trovato
