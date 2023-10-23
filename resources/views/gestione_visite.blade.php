@@ -1,5 +1,9 @@
 <x-app-layout>
         @include('intestazione_dipendente')
+        @php
+            $dataOdierna = now();
+            $dataOdiernaFormattata = $dataOdierna->format('Y-m-d');
+        @endphp
 
         <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -37,6 +41,7 @@
                         </thead>
                         <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200">
                             @foreach ($visite as $visita)
+                            @if ($visite->dataVisita >= now())
                                 <tr>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         {{ $visita->tipologia }}

@@ -17,14 +17,8 @@ class VisiteController extends Controller
 
     // Recupera le visite prenotate dal cliente corrente
     $prenotazioni = Visita::where('user_id', $user->id)->get();
-    
-    // Rimuovi visite scadute
-    $now = Carbon::now(); // Ottieni la data e l'ora correnti
-    foreach ($prenotazioni as $prenotazione) {
-        if ($prenotazione->dataVisita < $now) {
-            $prenotazione->delete(); // Rimuovi la visita scaduta
-        }
-    }
+
+   
 
     // Conta il numero di visite prenotate dal cliente
     $numeroPrenotazioni = $prenotazioni->count();
@@ -35,6 +29,14 @@ class VisiteController extends Controller
 
     // Recupera le visite disponibili per prenotazione (senza utente)
     $visite = Visita::whereNull('user_id')->get();
+    
+     // Rimuovi visite scadute
+     $now = Carbon::now(); // Ottieni la data e l'ora correnti
+     foreach ($visite as $visita) {
+         if ($visita->dataVisita < $now) {
+             $visita->delete(); // Rimuovi la visita scaduta
+         }
+     }
 
 
 
