@@ -45,10 +45,10 @@ class VisitaTest extends TestCase
         // Verifica che il redirect sia avvenuto con successo
         $response->assertRedirect();
    
-        // Verifica che sia stata aggiunta una riga nella tabella 'visite'
-    $this->assertDatabaseHas('visite', [
-        'tipologia' => 'Visita Prova',
-    ]);
+        // Estrae l'ID dell'ultima visita aggiunta
+        $ultimaVisitaId = Visita::latest()->first()->id;
+        // Verifica che sia stata aggiunta una riga nella tabella 'visite' utilizzando l'ID
+        $this->assertDatabaseHas('visite', ['id' => $ultimaVisitaId, 'tipologia' => 'Visita Prova']);
 
     }
 
@@ -60,7 +60,6 @@ class VisitaTest extends TestCase
         /* QUI CREA UNA VISITA NUOVA
         // Crea una data futura utilizzando Carbon
         $dataVisitaFutura = Carbon::now()->addDays(7); // Aggiunge 7 giorni alla data corrente
-
         // Crea una nuova visita
         $visita = Visita::create([
             'tipologia' => 'Visita di controllo2',
@@ -72,7 +71,6 @@ class VisitaTest extends TestCase
          // Output di debug per visualizzare i dati della visita
         // dd($visita);
         */
-
 
 
         // QUI UTILIZZA UNA VISITA ESISTENTE CREATA PRIMA
