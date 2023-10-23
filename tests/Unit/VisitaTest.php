@@ -16,33 +16,7 @@ class VisitaTest extends TestCase
 {
     //use RefreshDatabase;
 
-    public function test_creazione_visita()
-    {
-        // Crea un utente per associarlo alla visita
-        $user = User::factory()->create();
-
-        // Crea una data futura utilizzando Carbon
-        $dataVisitaFutura = Carbon::now()->addDays(7); // Aggiunge 7 giorni alla data corrente
-
-
-        // Crea una nuova visita
-        $visita = Visita::create([
-            'tipologia' => 'Visita di controllo',
-            'dataVisita' => $dataVisitaFutura,
-            'medico' => 'Dr. Smith',
-            'prezzo' => 100.00,
-            'user_id' => $user->id,
-        ]);
-
-         // Output di debug per visualizzare i dati della visita
-        // dd($visita);
-
-        // Verifica che la visita sia stata creata correttamente
-        $this->assertDatabaseHas('visite', [
-            'id' => $visita->id,
-            'tipologia' => 'Visita di controllo',
-        ]);
-    }
+   
 
 
     public function testAggiungiVisita()
@@ -74,7 +48,47 @@ class VisitaTest extends TestCase
 
     }
 
+    public function test_prenotazione_visita()
+    {
+        // Crea un utente per associarlo alla visita
+        $user = User::factory()->create();
 
+        /* QUI CREA UNA VISITA NUOVA
+
+        // Crea una data futura utilizzando Carbon
+        $dataVisitaFutura = Carbon::now()->addDays(7); // Aggiunge 7 giorni alla data corrente
+
+        // Crea una nuova visita
+        $visita = Visita::create([
+            'tipologia' => 'Visita di controllo2',
+            'dataVisita' => $dataVisitaFutura,
+            'medico' => 'Dr. Smith',
+            'prezzo' => 100.00,
+            'user_id' => $user->id,
+        ]);
+         // Output di debug per visualizzare i dati della visita
+        // dd($visita);
+        */
+
+        // QUI UTILIZZA UNA VISITA ESISTENTE CREATA PRIMA
+
+            // Trova una visita esistente con tipologia 'Visita Prova' e 'user_id' a null
+        $visita = Visita::where('tipologia', 'Visita Prova')
+        ->whereNull('user_id')
+        ->first();
+
+        // Verifica che sia stata trovata una visita
+        $this->assertNotNull($visita, "Nessuna visita con tipologia 'Visita Prova' e 'user_id' nullo trovata.");
+
+        // Aggiorna il campo 'user_id' della visita trovata con l'ID dell'utente
+        $visita->update(['user_id' => $user->id]);
+
+        // Verifica che la visita sia stata creata correttamente
+        $this->assertDatabaseHas('visite', [
+            'id' => $visita->id,
+            'user_id' => $user->id,
+        ]);
+    }
 
 }
 
