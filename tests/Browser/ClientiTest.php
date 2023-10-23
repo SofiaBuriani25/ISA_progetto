@@ -11,7 +11,7 @@ class ClientiTest extends DuskTestCase
 {
 
     // Test Login
-    public function testDashboardCliente(): void
+    public function testLog(): void
     {
         $this->browse(function (Browser $browser) {
             $browser->visit('/login')

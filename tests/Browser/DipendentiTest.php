@@ -11,7 +11,7 @@ class DipendentiTest extends DuskTestCase
 {
     
     // Test Login
-    public function testExample(): void
+    public function testLog(): void
     {
         $this->browse(function (Browser $browser) {
             $browser->visit('/login')
@@ -318,6 +318,8 @@ class DipendentiTest extends DuskTestCase
         $this->browse(function (Browser $browser) {
             $tipo = Str::random(10);
             $prezzo = rand(1, 100);
+            $ore = rand(8, 19); // Genera un'ora casuale tra 0 e 23
+            $minuti = rand(0, 59); // Genera i minuti casuali tra 0 e 59
 
             $browser->visit('/login')
                 ->type('email', 'giuseppe@live.it') 
@@ -334,7 +336,7 @@ class DipendentiTest extends DuskTestCase
                     ->pause(500);
             
             $browser->type('tipologia', $tipo); 
-            $browser->script("document.querySelector('input[name=\"dataVisita\"]').value = '2023-02-12T09:10'");
+            $browser->script("document.querySelector('input[name=\"dataVisita\"]').value = '2023-02-12T$ore:$minuti'");
             $browser->type('medico', 'Dr. Verdi') 
                     ->type('prezzo', $prezzo) 
                     ->press('#bottone')

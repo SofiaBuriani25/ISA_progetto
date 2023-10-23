@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Visita;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
+
 
 class VisiteController extends Controller
 {
@@ -15,6 +17,14 @@ class VisiteController extends Controller
 
     // Recupera le visite prenotate dal cliente corrente
     $prenotazioni = Visita::where('user_id', $user->id)->get();
+    
+    // Rimuovi visite scadute
+    $now = Carbon::now(); // Ottieni la data e l'ora correnti
+    foreach ($prenotazioni as $prenotazione) {
+        if ($prenotazione->dataVisita < $now) {
+            $prenotazione->delete(); // Rimuovi la visita scaduta
+        }
+    }
 
     // Conta il numero di visite prenotate dal cliente
     $numeroPrenotazioni = $prenotazioni->count();
@@ -25,6 +35,8 @@ class VisiteController extends Controller
 
     // Recupera le visite disponibili per prenotazione (senza utente)
     $visite = Visita::whereNull('user_id')->get();
+
+
 
     return view('visite', [
         'puoPrenotare' => $puoPrenotare,
@@ -37,15 +49,14 @@ class VisiteController extends Controller
         
     }
 
+
+
     public function aggiungiPrenotazione(Request $request)
 {
-
     
     $user = Auth::user();
     $user_id = $user->id;   
     $visita_id = $request->input('visita_id');
-
-
 
     // Verifica se la visita esiste
     $visita = Visita::find($visita_id);
@@ -66,7 +77,7 @@ class VisiteController extends Controller
 
 
 
-public function cancellaPrenotazione($id)
+    public function cancellaPrenotazione($id)
 {
     // Trova la visita da cancellare
     $visita = Visita::findOrFail($id);
