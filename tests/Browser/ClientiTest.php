@@ -54,8 +54,8 @@ class ClientiTest extends DuskTestCase
                     ->pause(500)
                     ->clickLink('Profilo');
             
-            $browser->type('#name', 'Filippo')  //cambio Nome
-                    ->type('#telefono', '3456528376')
+            $browser->type('#name', 'Phil')  //cambio Nome
+                    ->type('#telefono', '345656463')
                     ->press('#bottone')
                     ->pause(1000)
                     ->assertSee('Salvato.')
