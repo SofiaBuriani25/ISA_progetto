@@ -58,7 +58,7 @@
                 {{ __('Salva') }}
             </button>
 
-            @if (session('status') === 'profile-updated')
+            @if (session('status') === 'profile-updated_dip')
                 <p
                     x-data="{ show: true }"
                     x-show="show"

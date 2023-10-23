@@ -57,7 +57,7 @@ class DipendenteHomeController extends Controller
     $user->save();
 
     // Reindirizza alla pagina di modifica del profilo con un messaggio di conferma
-    return redirect()->route('profile.edit_dip')->with('status', 'profile-updated');
+    return redirect()->route('profile.edit_dip')->with('status', 'profile-updated_dip');
       
     }
 }
