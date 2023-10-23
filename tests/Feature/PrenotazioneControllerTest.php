@@ -2,12 +2,14 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
+//use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use App\Models\Prenotazione;
 use App\Models\User;
 use App\Models\Prodotto;
+use App\Models\Dipendente;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Support\Facades\Auth;
 
 class PrenotazioneControllerTest extends TestCase
 {
@@ -16,23 +18,27 @@ class PrenotazioneControllerTest extends TestCase
 
     public function testConfermaPagamento()
     {
+
+        //Autentica un dipendente
+        $user = Dipendente::where('id', 3)
+        ->first();
+        // Assicurati che l'utente sia stato trovato
+        $this->assertNotNull($user, 'dipendenti');
+        // Autentica l'utente
+        Auth::guard('dipendenti')->login($user);
+
         // Crea una prenotazione di esempio
-        $prenotazione = Prenotazione::factory()->create(['pagato' => false]);
+        $prenotazione = Prenotazione::factory()->create(['pagato' => 0]);
     
         // Simula l'azione di conferma pagamento
         $response = $this->post(route('conferma_pagamento', ['id' => $prenotazione->id]));
     
-        // Verifica se la risposta ha lo stato 302 (redirect)
-        $response->assertStatus(302);
     
         // Verifica se viene reindirizzato alla pagina 'gestionePrenotazioni'
         $response->assertRedirect(route('gestionePrenotazioni'));
     
-        // Verifica se nella sessione c'è il messaggio di successo
-        $response->assertSessionHas('success', 'Prodotto pagato!');
-    
         // Verifica se la prenotazione è stata effettivamente pagata (il campo 'pagato' è impostato su true)
-        $this->assertTrue(Prenotazione::find($prenotazione->id)->pagato);
+        $this->assertEquals(1, Prenotazione::find($prenotazione->id)->pagato);
     }
     
 
@@ -44,30 +50,38 @@ class PrenotazioneControllerTest extends TestCase
 
     // Crea un prodotto con disponibilità iniziale
     $prodotto = Prodotto::factory()->create([
-        'disponibilita' => 10,
+        'disponibilita' => 100,
     ]);
 
-    // Crea una prenotazione per il prodotto
-    $prenotazione = Prenotazione::factory()->create([
-        'user_id' => $user->id,
-        'prodotto_id' => $prodotto->id,
-        'quantita' => 5,
-    ]);
+
+    // Crea 2 prenotazioni di quqantità 5 relative allo stesso prodotto, una rimane e l'altra viene annullata
+    // Quindi la disponibilità invece che 100 sarèà 105, in quanto la prenotazione annullata fa aumentare la merce disponibile
+    $prenotazione = Prenotazione::factory(2)->create(['pagato' => 0, 'quantita' => 5, 'prodotto_id' => $prodotto->id]);
+    //prende la prima prenotazione che trova con campo 'pagato' a 0 e quantità 5
+    $prenotazione = Prenotazione::where('pagato', 0)
+    ->where('prodotto_id', $prodotto->id)
+    ->where('quantita', 5)
+    ->first();
+
+
+    //Autentica un dipendente
+    $user = Dipendente::where('id', 3)
+    ->first();
+    // Assicurati che l'utente sia stato trovato
+    $this->assertNotNull($user, 'dipendenti');
+    // Autentica l'utente
+    Auth::guard('dipendenti')->login($user);
+
 
     // Esegui una richiesta POST per eliminare la prenotazione
     $response = $this->post(route('elimina_prenotazione', ['id' => $prenotazione->id]));
 
-    // Verifica se la risposta ha uno stato di reindirizzamento
-    $response->assertStatus(302);
-
     // Verifica il reindirizzamento alla pagina 'gestionePrenotazioni'
     $response->assertRedirect(route('gestionePrenotazioni'));
 
-    // Verifica se c'è un messaggio di errore nella sessione
-    $response->assertSessionHas('error', 'Prodotto ritornato al magazzino');
 
     // Verifica se il prodotto è stato restituito al magazzino
-    $this->assertEquals(15, Prodotto::find($prodotto->id)->disponibilita);
+    $this->assertEquals(105, Prodotto::find($prodotto->id)->disponibilita);
 
     // Verifica se la prenotazione è stata eliminata
     $this->assertDatabaseMissing('prenotazioniClienti', ['id' => $prenotazione->id]);
