@@ -80,12 +80,20 @@ class ProdottoControllerTest extends TestCase
             'disponibilita' => 15, // Cambia il valore in base all'ordine effettuato
         ]);
 
+        // Verifica che sia stata creata una riga nella tabella 'ordiniDipendenti' con la quantità di 10
+        $this->assertDatabaseHas('ordiniDipendenti', [
+            'dipendenti_id' => $user->id,
+            'prodotto_id' => $prodotto->id,
+            'quantita' => $data['quantita'],
+            // Aggiungi altri campi se necessario
+            ]);
+            
        
     }
 
 
 
-    public function testAggiungiAlCarrello()
+    public function testPrenotazioniProdottoClienti() // utente che prenota un prodotto
     {
          // Crea un utente fittizio
          $user = User::factory()->create();
@@ -112,6 +120,16 @@ class ProdottoControllerTest extends TestCase
 
         // Verifica che il redirect sia avvenuto con successo
         $response->assertRedirect();
+
+
+         // Verifica che sia stata creata una riga nella tabella 'prenotazioniClienti'
+        $this->assertDatabaseHas('prenotazioniClienti', [
+        'user_id' => $user->id,
+        'prodotto_id' => $prodotto->id,
+        'quantita' => $data['quantita'],
+        // Aggiungi altri campi se necessario
+        ]);
+
 
         // Verifica che la quantità disponibile sia stata ridotta correttamente nel database
         $prodottoAggiornato = Prodotto::find($prodotto->id);

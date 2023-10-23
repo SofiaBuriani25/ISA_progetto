@@ -105,7 +105,7 @@ public function visualizzaVisite()
     
 }
 
-public function aggiungi_visita(Request $request) //Il dipendente che può aggiungere un nuovo prodotto
+public function aggiungi_visita(Request $request) //Il dipendente che può aggiungere una nuova visita
 {
 
     $visita = new Visita();

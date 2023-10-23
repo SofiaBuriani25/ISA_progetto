@@ -19,7 +19,7 @@ class VisitaTest extends TestCase
    
 
 
-    public function testAggiungiVisita()
+    public function testAggiungiVisita() //dipendente che crea una visita
     {
       /*  // Crea un utente dipendente fittizio
         $user = Dipendente::factory()->create();
@@ -45,16 +45,19 @@ class VisitaTest extends TestCase
         // Verifica che il redirect sia avvenuto con successo
         $response->assertRedirect();
    
+        // Verifica che sia stata aggiunta una riga nella tabella 'visite'
+    $this->assertDatabaseHas('visite', [
+        'tipologia' => 'Visita Prova',
+    ]);
 
     }
 
-    public function test_prenotazione_visita()
+    public function test_prenotazione_visita() //utente che prenota una visita
     {
         // Crea un utente per associarlo alla visita
         $user = User::factory()->create();
 
         /* QUI CREA UNA VISITA NUOVA
-
         // Crea una data futura utilizzando Carbon
         $dataVisitaFutura = Carbon::now()->addDays(7); // Aggiunge 7 giorni alla data corrente
 
@@ -69,6 +72,8 @@ class VisitaTest extends TestCase
          // Output di debug per visualizzare i dati della visita
         // dd($visita);
         */
+
+
 
         // QUI UTILIZZA UNA VISITA ESISTENTE CREATA PRIMA
 
