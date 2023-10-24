@@ -62,7 +62,7 @@
                                     @endif
                                     </td>
                                 </tr>
-                                
+                                @endif
                             @endforeach
                             @if (session('success'))
                             <div class="alert alert-success">

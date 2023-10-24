@@ -66,8 +66,8 @@ class ProdottoController extends Controller
     $prenotazione->prodotto_id = $prodotto_id;
     $prenotazione->quantita = $quantita;
     $prenotazione->save();
-
-    }
+ 
+    } //fine if, quindi se l'utente è un dipendente
 
     $disponibilitaAttuale = $prodotto->disponibilita;
 

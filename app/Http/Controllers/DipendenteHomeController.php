@@ -19,9 +19,7 @@ class DipendenteHomeController extends Controller
         return view('dipendente_home', ['user' => $user]); // Assicurati di avere una vista chiamata 'dipendente_home'
     }
 
-     /**
-     * Display the user's profile form.
-     */
+ 
     public function edit(Request $request): View
     {
         return view('profile.edit_dip', [
@@ -29,9 +27,8 @@ class DipendenteHomeController extends Controller
         ]);
     }
 
-    /**
-     * Update the user's profile information.
-     */
+
+    
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
        // Ottieni l'utente autenticato dal request

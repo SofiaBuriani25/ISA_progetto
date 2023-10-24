@@ -46,6 +46,39 @@ class ProdottoControllerTest extends TestCase
 
 
 
+
+    public function testVenditaProdotto() //dipendente che dalla home page vende
+    {
+        $prodotto = Prodotto::where('name', 'Prodotto Prova')
+        ->first();
+
+        
+        // Salva la disponibilità iniziale del prodotto
+        $disponibilitaIniziale = $prodotto->disponibilita;
+
+        // Simula una richiesta HTTP POST per aggiungere il prodotto al carrello
+        $quantitaVenduta = 3;
+        $response = $this->post(route('aggiungi_al_carrello'), [
+            'prodotto_id' => $prodotto->id,
+            'quantita' => $quantitaVenduta,
+        ]);
+
+        // Assicurati che la risposta reindirizzi correttamente
+        $response->assertRedirect();
+
+        // Assicurati che il prodotto sia stato aggiornato correttamente nel database
+        $this->assertDatabaseHas('prodotti', [
+            'id' => $prodotto->id,
+            'disponibilita' => $disponibilitaIniziale - $quantitaVenduta, // La disponibilità dovrebbe essere ridotta di 3
+        ]);
+
+
+    }
+
+
+
+
+
     public function testOrdinaProdotto()
     {
         // Crea un utente dipendente fittizio
@@ -136,6 +169,7 @@ class ProdottoControllerTest extends TestCase
         $this->assertEquals($prodotto->disponibilita - $data['quantita'], $prodottoAggiornato->disponibilita);
     }
 
+    
 
 
 }

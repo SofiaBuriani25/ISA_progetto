@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit;
+namespace Tests\Feature;
 
 //use PHPUnit\Framework\TestCase;
 
@@ -11,12 +11,11 @@ use App\Models\User;
 use App\Models\Dipendente;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Foundation\Testing\WithFaker;
 
 class VisitaTest extends TestCase
 {
     //use RefreshDatabase;
-
-   
 
 
     public function testAggiungiVisita() //dipendente che crea una visita
@@ -72,8 +71,7 @@ class VisitaTest extends TestCase
         // dd($visita);
         */
 
-
-        // QUI UTILIZZA UNA VISITA ESISTENTE CREATA PRIMA
+ //////////////// QUI UTILIZZA UNA VISITA ESISTENTE CREATA PRIMA
 
             // Trova una visita esistente con tipologia 'Visita Prova' e 'user_id' a null
         $visita = Visita::where('tipologia', 'Visita Prova')
@@ -90,6 +88,34 @@ class VisitaTest extends TestCase
         $this->assertDatabaseHas('visite', [
             'id' => $visita->id,
             'user_id' => $user->id,
+        ]);
+    }
+
+    public function testCancellaPrenotazione() //cliente che cancella la  sua prenotazione
+    {
+        $user = User::first();
+        $this->actingAs($user);
+
+        // Crea una visita
+        $visita = Visita::factory()->create([
+            'user_id' => $user->id,
+        ]);
+
+        // Effettua una richiesta DELETE per cancellare la visita
+        $response = $this->delete(route('visite.cancel', ['id' => $visita->id]));
+
+        // Ricarica l'istanza della visita dal database
+        $visita->refresh();
+
+        // Verifica che il campo 'user_id' sia impostato su NULL
+        $this->assertNull($visita->user_id);
+
+        // Verifica che la risposta reindirizzi correttamente
+        $response->assertRedirect();
+
+        $this->assertDatabaseHas('visite', [
+            'id' => $visita->id,
+            'user_id' => null,
         ]);
     }
 

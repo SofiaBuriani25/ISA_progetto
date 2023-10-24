@@ -2,7 +2,6 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use Illuminate\Support\Facades\Auth;
@@ -14,7 +13,7 @@ use Database\Factories\ProdottoFactory;
 
 class DipendenteHomeControllerTest extends TestCase
 {
-    //use RefreshDatabase; // Aggiunge la possibilità di utilizzare il database durante i test
+    
     use InteractsWithViews; // Per interagire con le viste nei test
     use WithFaker;
     /**
@@ -25,7 +24,7 @@ class DipendenteHomeControllerTest extends TestCase
     {
         // Crea un utente dipendente fittizio
         
-        $user = Dipendente::factory()->create();
+        $user = Dipendente::factory()->create(['id' => 3]); ///////////// QUI LA PRIMA VOLTA CHE SI FA CI VA ['id' => 3]
         $this->actingAs($user);
 
         // Crea un prodotto di esempio
@@ -76,7 +75,7 @@ class DipendenteHomeControllerTest extends TestCase
          $response->assertRedirect(route('profile.edit_dip'));
  
          // Verificare che il messaggio di session 'status' sia impostato su 'profile-updated'
-         $this->assertEquals('profile-updated', session('status'));
+         $this->assertEquals('profile-updated_dip', session('status'));
  
          // Verificare che i dati dell'utente siano stati aggiornati correttamente
          $user->refresh();
