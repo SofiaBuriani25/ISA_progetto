@@ -41,7 +41,7 @@
                         </thead>
                         <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200">
                             @foreach ($visite as $visita)
-                            @if ($visite->dataVisita >= now())
+                            
                                 <tr>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         {{ $visita->tipologia }}
@@ -62,7 +62,7 @@
                                     @endif
                                     </td>
                                 </tr>
-                                @endif
+                                
                             @endforeach
                             @if (session('success'))
                             <div class="alert alert-success">
