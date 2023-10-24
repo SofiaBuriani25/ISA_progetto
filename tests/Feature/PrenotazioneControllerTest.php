@@ -45,7 +45,7 @@ class PrenotazioneControllerTest extends TestCase
     public function testEliminaPrenotazione()
 {
     // Crea un utente
-    $user = User::factory()->create(['id' => 3]); ///////////////// QUI LA PRIMA VOLTA CHE SI FA CI VA ['id' => 3]
+    $user = User::factory()->create(); ///////////////// QUI LA PRIMA VOLTA CHE SI FA CI VA ['id' => 3]
     $this->actingAs($user);
 
     // Crea un prodotto con disponibilità iniziale

@@ -24,7 +24,7 @@ class DipendenteHomeControllerTest extends TestCase
     {
         // Crea un utente dipendente fittizio
         
-        $user = Dipendente::factory()->create(['id' => 3]); ///////////// QUI LA PRIMA VOLTA CHE SI FA CI VA ['id' => 3]
+        $user = Dipendente::factory()->create(); ///////////// QUI LA PRIMA VOLTA CHE SI FA CI VA ['id' => 3]
         $this->actingAs($user);
 
         // Crea un prodotto di esempio
