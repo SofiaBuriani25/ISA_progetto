@@ -323,7 +323,6 @@ class DipendentiTest extends DuskTestCase
                 ->click('button', ['text' => 'Log in']);  
 
 
-                
             $browser->visit('/dipendente_home')
                     ->clickLink('Visite') 
                     ->pause(500);
@@ -340,10 +339,6 @@ class DipendentiTest extends DuskTestCase
             
         });
     }
-
-
-
-
 
 
 
