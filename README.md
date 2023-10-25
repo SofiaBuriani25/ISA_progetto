@@ -2,7 +2,9 @@
 
 </a>
 </p>
+<p align="center">
 <img src="https://github.com/SofiaBuriani25/ISA_progetto/blob/master/public/farmacia_logo_nome.png" style="height: 100px;">
+</p>
 
 
 <p align="center">
