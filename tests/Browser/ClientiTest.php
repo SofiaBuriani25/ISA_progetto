@@ -235,7 +235,7 @@ class ClientiTest extends DuskTestCase
                     ->type('password', 'qwerty1234') 
                     ->click('button', ['text' => 'Log in']);  
 
-        $browser->visit('/dipendente_home')
+        $browser->visit('/dashboard')
                 ->click('.user-name')
                 ->pause(1000)
                 ->clickLink('Log Out')
@@ -279,7 +279,7 @@ class ClientiTest extends DuskTestCase
     }
 
 
-    // Test registrazione del cliente con alcuni campi casuali
+    // Test registrazione fallita 
     public function testRegistrazioneFail(): void
     {
         $this->browse(function (Browser $browser) {

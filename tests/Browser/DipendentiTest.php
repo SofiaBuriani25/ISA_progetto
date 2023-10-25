@@ -18,7 +18,7 @@ class DipendentiTest extends DuskTestCase
                     ->type('email', 'giuseppe@live.it') 
                     ->type('password', 'qwerty1234') 
                     ->click('button', ['text' => 'Log in'])  
-                    ->assertPathIs('/dipendente_home') // Verifica che l'utente sia reindirizzato alla pagina di dashboard
+                    ->assertPathIs('/dipendente_home') // Verifica che l'utente sia reindirizzato alla pagina di dashboard dipendente
                     ->assertSee('Elenco dei prodotti disponibili'); 
 
         });
@@ -200,11 +200,6 @@ class DipendentiTest extends DuskTestCase
                 ->type('password', 'qwerty1234') 
                 ->click('button', ['text' => 'Log in']);  
 
-        $browser->visit('/login')
-                ->type('email', 'giuseppe@live.it') 
-                ->type('password', 'qwerty1234') 
-                ->click('button', ['text' => 'Log in']); 
-
         $browser->visit('/dipendente_home');
         
         $browser->type('name', $name) 
@@ -268,6 +263,7 @@ class DipendentiTest extends DuskTestCase
     });
     }
 
+
     // Test che modifica la password del dipendente
     public function testModificaPassword_dip(): void
     {
@@ -326,10 +322,6 @@ class DipendentiTest extends DuskTestCase
                 ->type('password', 'qwerty1234') 
                 ->click('button', ['text' => 'Log in']);  
 
-            $browser->visit('/login')
-                    ->type('email', 'giuseppe@live.it') 
-                    ->type('password', 'qwerty1234') 
-                    ->click('button', ['text' => 'Log in']); 
 
             $browser->visit('/dipendente_home')
                     ->clickLink('Visite') 
