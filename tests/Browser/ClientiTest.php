@@ -22,7 +22,8 @@ class ClientiTest extends DuskTestCase
                     ->assertSee('Elenco dei prodotti disponibili')
                     ->click('.user-name')
                     ->pause(500)
-                    ->clickLink('Log Out'); 
+                    ->clickLink('Log Out')
+                    ->assertPathIs('/');
 
         });
     }
@@ -61,7 +62,8 @@ class ClientiTest extends DuskTestCase
                     ->assertSee('Salvato.')
                     ->click('.user-name')
                     ->pause(1000)
-                    ->clickLink('Log Out');
+                    ->clickLink('Log Out')
+                    ->assertPathIs('/');
                     
     });
     }
@@ -88,7 +90,8 @@ class ClientiTest extends DuskTestCase
                     ->assertSee('Password Salvata.')
                     ->click('.user-name')
                     ->pause(1000)
-                    ->clickLink('Log Out');
+                    ->clickLink('Log Out')
+                    ->assertPathIs('/');
 
     });
     }
@@ -115,7 +118,8 @@ class ClientiTest extends DuskTestCase
 
         $browser->click('.user-name')
                 ->pause(1000)
-                ->clickLink('Log Out');
+                ->clickLink('Log Out')
+                ->assertPathIs('/');
         
 
     });
@@ -141,11 +145,27 @@ class ClientiTest extends DuskTestCase
                         ->click('button', ['text' => 'Prenota'])  // Fai clic sul pulsante "Prenota"
                         ->pause(1000);
             });
+            
+            $browser->assertSee('Prodotto aggiunto al carrello con successo.');
+
+            $browser->clickLink('Storico ordini') 
+                    ->pause(1000);
+               
+            // Controllo se il prodotto è stato aggiunto nella pagina Storico Ordini come primo elemento della tabella
+            $browser->within('table.min-w-full tbody tr:first-child', function ($browser) {
+                    $browser->assertSee('Paracetamolo')
+                            ->assertSee('Analgesico')
+                            ->assertSee('1');
+                
+            });
+
     
-            $browser->assertSee('Prodotto aggiunto al carrello con successo.')
-                    ->click('.user-name')
+            
+
+            $browser->click('.user-name')
                     ->pause(1000)
-                    ->clickLink('Log Out');; 
+                    ->clickLink('Log Out')
+                    ->assertPathIs('/');
 
             //$browser->screenshot('debug2');
             //$browser->dump();
@@ -154,36 +174,6 @@ class ClientiTest extends DuskTestCase
 
     }
 
-    // Test per vedere se il numero precedentemente prenotato compare nella pagina
-    // "Storico ordini"
-    public function testAggiuntoParacetamoloInStorico(): void
-    {
-        $this->browse(function (Browser $browser) {
-            $browser->visit('/login')
-                    ->type('email', 'filippo@gmail.com') 
-                    ->type('password', 'qwerty1234') 
-                    ->click('button', ['text' => 'Log in']);  
-
-            $browser->visit('/dashboard')
-                ->clickLink('Storico ordini') 
-                ->pause(1000);
-               
-
-                $browser->within('table.min-w-full tbody tr:first-child', function ($browser) {
-                    $browser->assertSee('Paracetamolo')
-                            ->assertSee('Analgesico')
-                            ->assertSee('1');
-                
-            });
-
-            $browser->click('.user-name')
-                ->pause(1000)
-                ->clickLink('Log Out');
-        
-        
-        });
-
-    }
 
 
     // Test per prenotare una visita nel caso sia possibile, altrimenti
@@ -220,7 +210,8 @@ class ClientiTest extends DuskTestCase
 
             $browser->click('.user-name')
                     ->pause(1000)
-                    ->clickLink('Log Out');
+                    ->clickLink('Log Out')
+                    ->assertPathIs('/');
 
         });
 
@@ -272,7 +263,8 @@ class ClientiTest extends DuskTestCase
                     ->assertSee('Max 5 quantità prenotabile')
                     ->click('.user-name')
                     ->pause(1000)
-                    ->clickLink('Log Out');
+                    ->clickLink('Log Out')
+                    ->assertPathIs('/');
         
                     
         });

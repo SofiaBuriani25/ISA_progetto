@@ -21,7 +21,14 @@ class DipendentiTest extends DuskTestCase
                     ->assertPathIs('/dipendente_home') // Verifica che l'utente sia reindirizzato alla pagina di dashboard dipendente
                     ->assertSee('Elenco dei prodotti disponibili'); 
 
+            $browser->click('.user-name')
+                    ->pause(1000)
+                    ->clickLink('Log Out')
+                    ->assertPathIs('/');
+
         });
+
+        
     }
 
      // Test Login Errato
@@ -36,6 +43,7 @@ class DipendentiTest extends DuskTestCase
                      ->click('button', ['text' => 'Log in'])
                      ->assertSee('Le credenziali non sono corrette.')
                      ->pause(2000); 
+
  
          });
      }
@@ -56,6 +64,11 @@ class DipendentiTest extends DuskTestCase
             $browser->within('table.min-w-full tbody tr:not([style*="display: none"]', function ($browser) {
                 $browser->assertSee('Losartan');
             });
+
+        $browser->click('.user-name')
+            ->pause(1000)
+            ->clickLink('Log Out')
+            ->assertPathIs('/');
     });
 
     }
@@ -84,6 +97,11 @@ class DipendentiTest extends DuskTestCase
             //$browser->screenshot('debug2');
             //$browser->dump();
 
+            $browser->click('.user-name')
+                    ->pause(1000)
+                    ->clickLink('Log Out')
+                    ->assertPathIs('/');
+
     });
 
     }
@@ -109,6 +127,11 @@ class DipendentiTest extends DuskTestCase
                     
         });
         $browser->assertSee('Prodotto pagato!');  
+
+        $browser->click('.user-name')
+                    ->pause(1000)
+                    ->clickLink('Log Out')
+                    ->assertPathIs('/');
     });
 
     }
@@ -133,6 +156,11 @@ class DipendentiTest extends DuskTestCase
                     
         });
         $browser->assertSee('Prodotto ritornato al magazzino.'); 
+
+        $browser->click('.user-name')
+                    ->pause(1000)
+                    ->clickLink('Log Out')
+                    ->assertPathIs('/');
         
     });
 
@@ -159,33 +187,26 @@ class DipendentiTest extends DuskTestCase
             });
     
             $browser->assertSee('Prodotto aggiunto con successo.'); 
+
+            $browser->clickLink('Storico Ordini') 
+                    ->pause(1000);
+
+            // Verifico che il prodotto ordino compaia nella pagina Storico Ordini come primo elemento della tabella
+            $browser->within('table.min-w-full tbody tr:first-child', function ($browser) {
+                $browser->assertSee('Voltaren')
+                        ->assertSee('2');
+                
+            });
+
+            $browser->click('.user-name')
+                    ->pause(1000)
+                    ->clickLink('Log Out')
+                    ->assertPathIs('/');
     });
 
     }
 
-    // Test che verifica l'avvenuto ordine andando a controllare la prima voce nella tabella storico ordine dei dipendenti
-    public function testProdottoDaOrdinareInStorico(): void
-    {
-        $this->browse(function (Browser $browser) {
-            $browser->visit('/login')
-                ->type('email', 'giuseppe@live.it') 
-                ->type('password', 'qwerty1234') 
-                ->click('button', ['text' => 'Log in']);  
-
-            $browser->visit('/dipendente_home')
-                ->clickLink('Storico Ordini') 
-                ->pause(1000);
-               
-
-                $browser->within('table.min-w-full tbody tr:first-child', function ($browser) {
-                    $browser->assertSee('Voltaren')
-                            ->assertSee('2');
-                
-            });
-        
-        });
-
-    }
+   
 
     // Test di aggiunta di un prodotto con alcuni campi casuali
     public function testAggiungiProdotto(): void
@@ -211,6 +232,11 @@ class DipendentiTest extends DuskTestCase
                     ->press('#bottone2')
                     ->pause(1000)
                     ->assertSee('Prodotto aggiunto alla lista con successo.');
+
+        $browser->click('.user-name')
+                    ->pause(1000)
+                    ->clickLink('Log Out')
+                    ->assertPathIs('/');
       
     });
     }
@@ -237,6 +263,11 @@ class DipendentiTest extends DuskTestCase
                     ->press('#bottone2')
                     ->pause(500)
                     ->assertSee('Il Prodotto esiste già.');
+
+        $browser->click('.user-name')
+                    ->pause(1000)
+                    ->clickLink('Log Out')
+                    ->assertPathIs('/');
       
     });
     }
@@ -259,6 +290,11 @@ class DipendentiTest extends DuskTestCase
                     ->press('#bottone')
                     ->pause(500)
                     ->assertSee('Salvato.');
+
+            $browser->click('.user-name')
+                    ->pause(1000)
+                    ->clickLink('Log Out')
+                    ->assertPathIs('/');
                     
     });
     }
@@ -278,13 +314,18 @@ class DipendentiTest extends DuskTestCase
                     ->pause(500)
                     ->clickLink('Profilo');
             
-            $browser->type('#current_password', 'qwerty1234')  //cambio Nome
+            $browser->type('#current_password', 'qwerty1234')  //cambio password
                     ->type('#password', 'qwerty1234')
                     ->type('#password_confirmation', 'qwerty1234')
                     ->press('#bottone2')
                     ->screenshot('debug1')
                     ->pause(1000)
                     ->assertSee('Password Salvata.');
+
+            $browser->click('.user-name')
+                    ->pause(1000)
+                    ->clickLink('Log Out')
+                    ->assertPathIs('/');
 
     });
     }
@@ -304,6 +345,7 @@ class DipendentiTest extends DuskTestCase
                 ->clickLink('Log Out')
                 ->assertPathIs('/')
                 ->assertSee('Login');
+
         
     });
     }
@@ -334,9 +376,8 @@ class DipendentiTest extends DuskTestCase
                     ->press('#bottone')
                     ->pause(1000)
                     ->assertSee('Visita aggiunta alla lista con successo.');
-                    $browser->screenshot('debug2');
-                
             
+          
         });
     }
 
