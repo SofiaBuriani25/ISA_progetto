@@ -16,5 +16,4 @@
 
 ## Progetto ISA - Farmacia Lodi
 
-In questo progetto abbiamo pensato di creare un sito per la gestione di una farmacia. In particolare, la nostra idea è stata quella di permettere ai clienti/al cliente di prenotare sia prodotti che visite all’interno di un portale a lui dedicato. Questo consente di velocizzare l’effettivo acquisto dei prodotti all’interno della farmacia (che spesso provoca code molto lunghe).
-
+In questo progetto abbiamo pensato di creare un sito per la gestione di una farmacia. In particolare, la nostra idea è stata quella di permettere al cliente di prenotare sia prodotti che visite all’interno di un portale a lui dedicato. Questo consente di velocizzare l’effettivo acquisto dei prodotti quando ci si reca farmacia (cosa che spesso provoca code molto lunghe).
