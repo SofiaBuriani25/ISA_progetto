@@ -54,6 +54,6 @@ class User extends Authenticatable
     public function isUser()
     {
         // Verifica se l'utente è un utente normale
-        return $this->ruolo === 'user'; // Sostituisci 'ruolo' con il nome del campo corretto
+        return $this->ruolo === 'user'; 
     }
 }

@@ -56,17 +56,17 @@ class ProdottoControllerTest extends TestCase
         // Salva la disponibilità iniziale del prodotto
         $disponibilitaIniziale = $prodotto->disponibilita;
 
-        // Simula una richiesta HTTP POST per aggiungere il prodotto al carrello
+        // Simula una richiesta HTTP POST per vendere il prodottoo
         $quantitaVenduta = 3;
         $response = $this->post(route('aggiungi_al_carrello'), [
             'prodotto_id' => $prodotto->id,
             'quantita' => $quantitaVenduta,
         ]);
 
-        // Assicurati che la risposta reindirizzi correttamente
+        // Assicura che la risposta reindirizzi correttamente
         $response->assertRedirect();
 
-        // Assicurati che il prodotto sia stato aggiornato correttamente nel database
+        // Assicura che il prodotto sia stato aggiornato correttamente nel database
         $this->assertDatabaseHas('prodotti', [
             'id' => $prodotto->id,
             'disponibilita' => $disponibilitaIniziale - $quantitaVenduta, // La disponibilità dovrebbe essere ridotta di 3
@@ -97,12 +97,11 @@ class ProdottoControllerTest extends TestCase
         // Dati per la richiesta POST
         $data = [
             'prodotto_id' => $prodotto->id,
-            'quantita' => 10, // Modifica la quantità a seconda del test
+            'quantita' => 10, 
         ];
 
         // Effettua una richiesta POST per ordinare il prodotto
         $response = $this->post('/ordina_prodotto', $data);
-
         // Verifica che il redirect sia avvenuto con successo
         $response->assertRedirect();
 
@@ -110,7 +109,7 @@ class ProdottoControllerTest extends TestCase
         // Verifica che la quantità disponibile sia stata aumentata correttamente
         $this->assertDatabaseHas('prodotti', [
             'id' => $prodotto->id,
-            'disponibilita' => 15, // Cambia il valore in base all'ordine effettuato
+            'disponibilita' => 15, 
         ]);
 
         // Verifica che sia stata creata una riga nella tabella 'ordiniDipendenti' con la quantità di 10
@@ -118,7 +117,7 @@ class ProdottoControllerTest extends TestCase
             'dipendenti_id' => $user->id,
             'prodotto_id' => $prodotto->id,
             'quantita' => $data['quantita'],
-            // Aggiungi altri campi se necessario
+           
             ]);
             
        
@@ -145,7 +144,7 @@ class ProdottoControllerTest extends TestCase
         // Dati di prova per il form
         $data = [
             'prodotto_id' => $prodotto->id,
-            'quantita' => 3, // Sostituisci con la quantità desiderata
+            'quantita' => 3, 
         ];
 
         // Effettua una richiesta POST per aggiungere il prodotto al carrello
@@ -160,7 +159,7 @@ class ProdottoControllerTest extends TestCase
         'user_id' => $user->id,
         'prodotto_id' => $prodotto->id,
         'quantita' => $data['quantita'],
-        // Aggiungi altri campi se necessario
+        
         ]);
 
 

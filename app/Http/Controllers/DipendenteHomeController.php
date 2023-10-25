@@ -16,7 +16,7 @@ class DipendenteHomeController extends Controller
     public function index()
     {
         $user = Auth::guard('dipendenti')->user();
-        return view('dipendente_home', ['user' => $user]); // Assicurati di avere una vista chiamata 'dipendente_home'
+        return view('dipendente_home', ['user' => $user]); 
     }
 
  
@@ -42,7 +42,7 @@ class DipendenteHomeController extends Controller
         // Se l'email è stata modificata, reimposta l'email verificata (se necessario)
         // e aggiorna l'email dell'utente
         // Non c'è bisogno di impostare 'email_verified_at' se non esiste nella tabella
-        // Rimuovi questa linea: $user->email_verified_at = null;
+        
 
         $user->email = $validatedData['email'];
     }

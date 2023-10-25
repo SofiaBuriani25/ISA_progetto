@@ -26,7 +26,6 @@ class VisitaTest extends TestCase
 
         // Recupera l'utente dipendente dai dati esistenti nel database
         $user = Dipendente::first();
-        
         // Autentica l'utente come dipendente
         Auth::guard('dipendenti')->login($user);
 
@@ -38,9 +37,8 @@ class VisitaTest extends TestCase
         'prezzo' => 120.00,
     ];
 
-    // Esegui una richiesta POST per aggiungere la visita
-    $response = $this->post('/gestione_visite', $visitaData);
-
+        // Esegue una richiesta POST per aggiungere la visita
+        $response = $this->post('/gestione_visite', $visitaData);
         // Verifica che il redirect sia avvenuto con successo
         $response->assertRedirect();
    
@@ -56,14 +54,14 @@ class VisitaTest extends TestCase
         // Crea un utente per associarlo alla visita
         $user = User::factory()->create();
 
-        /* QUI CREA UNA VISITA NUOVA
-        // Crea una data futura utilizzando Carbon
+  /* ////////////// QUI CREA UNA VISITA NUOVA
+
         $dataVisitaFutura = Carbon::now()->addDays(7); // Aggiunge 7 giorni alla data corrente
         // Crea una nuova visita
         $visita = Visita::create([
             'tipologia' => 'Visita di controllo2',
             'dataVisita' => $dataVisitaFutura,
-            'medico' => 'Dr. Smith',
+            'medico' => 'Dr. Bianchi',
             'prezzo' => 100.00,
             'user_id' => $user->id,
         ]);
@@ -73,7 +71,7 @@ class VisitaTest extends TestCase
 
  //////////////// QUI UTILIZZA UNA VISITA ESISTENTE CREATA PRIMA
 
-            // Trova una visita esistente con tipologia 'Visita Prova' e 'user_id' a null
+        // Trova una visita esistente con tipologia 'Visita Prova' e 'user_id' a null
         $visita = Visita::where('tipologia', 'Visita Prova')
         ->whereNull('user_id')
         ->first();
@@ -84,14 +82,14 @@ class VisitaTest extends TestCase
         // Aggiorna il campo 'user_id' della visita trovata con l'ID dell'utente
         $visita->update(['user_id' => $user->id]);
 
-        // Verifica che la visita sia stata creata correttamente
+        // Verifica che la visita sia stata creata 
         $this->assertDatabaseHas('visite', [
             'id' => $visita->id,
             'user_id' => $user->id,
         ]);
     }
 
-    public function testCancellaPrenotazione() //cliente che cancella la  sua prenotazione
+    public function testCancellaPrenotazione() // Cliente che cancella la  sua prenotazione
     {
         $user = User::first();
         $this->actingAs($user);
@@ -103,13 +101,10 @@ class VisitaTest extends TestCase
 
         // Effettua una richiesta DELETE per cancellare la visita
         $response = $this->delete(route('visite.cancel', ['id' => $visita->id]));
-
-        // Ricarica l'istanza della visita dal database
+        // Ricarica la visita dal database
         $visita->refresh();
-
         // Verifica che il campo 'user_id' sia impostato su NULL
         $this->assertNull($visita->user_id);
-
         // Verifica che la risposta reindirizzi correttamente
         $response->assertRedirect();
 

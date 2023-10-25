@@ -22,7 +22,7 @@ class PrenotazioneControllerTest extends TestCase
         //Autentica un dipendente
         $user = Dipendente::where('id', 3)
         ->first();
-        // Assicurati che l'utente sia stato trovato
+        // Assicura che l'utente sia stato trovato
         $this->assertNotNull($user, 'dipendenti');
         // Autentica l'utente
         Auth::guard('dipendenti')->login($user);
@@ -57,7 +57,7 @@ class PrenotazioneControllerTest extends TestCase
     // Crea 2 prenotazioni di quqantità 5 relative allo stesso prodotto, una rimane e l'altra viene annullata
     // Quindi la disponibilità invece che 100 sarèà 105, in quanto la prenotazione annullata fa aumentare la merce disponibile
     $prenotazione = Prenotazione::factory(2)->create(['pagato' => 0, 'quantita' => 5, 'prodotto_id' => $prodotto->id]);
-    //prende la prima prenotazione che trova con campo 'pagato' a 0 e quantità 5
+    // Prende la prima prenotazione che trova con campo 'pagato' a 0 e quantità 5
     $prenotazione = Prenotazione::where('pagato', 0)
     ->where('prodotto_id', $prodotto->id)
     ->where('quantita', 5)
@@ -67,15 +67,14 @@ class PrenotazioneControllerTest extends TestCase
     //Autentica un dipendente
     $user = Dipendente::where('id', 3)
     ->first();
-    // Assicurati che l'utente sia stato trovato
+    // Assicura che l'utente sia stato trovato
     $this->assertNotNull($user, 'dipendenti');
     // Autentica l'utente
     Auth::guard('dipendenti')->login($user);
 
 
-    // Esegui una richiesta POST per eliminare la prenotazione
+    // Esegue una richiesta POST per eliminare la prenotazione
     $response = $this->post(route('elimina_prenotazione', ['id' => $prenotazione->id]));
-
     // Verifica il reindirizzamento alla pagina 'gestionePrenotazioni'
     $response->assertRedirect(route('gestionePrenotazioni'));
 

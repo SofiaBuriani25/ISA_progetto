@@ -21,9 +21,8 @@ class ProfileControllerTest extends TestCase
         $user = User::where('id', 3)
         ->first();
 
-        // Assicurati che l'utente sia stato trovato
+        // Assicura che l'utente sia stato trovato
         $this->assertNotNull($user);
-
         // Autentica l'utente
         $this->actingAs($user);
 
@@ -31,24 +30,22 @@ class ProfileControllerTest extends TestCase
         $newData = [
             'name' => $this->faker->name,
             'email' => $this->faker->safeEmail,
-            // Aggiungere altri campi del profilo se necessario
+            
         ];
 
-         // Effettuare una richiesta POST per l'aggiornamento del profilo
+         // Effettua una richiesta POST per l'aggiornamento del profilo
          $response = $this->patch(route('profile.update'), $newData);
-
-         // Verificare che la risposta sia una redirect alla pagina di modifica del profilo
+         // Verifica che la risposta sia una redirect alla pagina di modifica del profilo
          $response->assertRedirect(route('profile.edit'));
- 
-         // Verificare che il messaggio di session 'status' sia impostato su 'profile-updated'
+         // Verifica che il messaggio di session 'status' sia impostato su 'profile-updated'
          $this->assertEquals('profile-updated', session('status'));
  
-         // Verificare che i dati dell'utente siano stati aggiornati correttamente
+         // Verifica che i dati dell'utente siano stati aggiornati correttamente
          $user->refresh();
          $this->assertEquals($newData['name'], $user->name);
          $this->assertEquals($newData['email'], $user->email);
          
-         // Verificare che 'email_verified_at' sia null se l'email è stata modificata
+         // Verifica che 'email_verified_at' sia null se l'email è stata modificata
          if ($user->isDirty('email')) {
              $this->assertNull($user->email_verified_at);
          }
@@ -60,9 +57,8 @@ class ProfileControllerTest extends TestCase
          $user = Dipendente::where('id', 3)
          ->first();
  
-         // Assicurati che l'utente sia stato trovato
+         // Assicura che l'utente sia stato trovato
          $this->assertNotNull($user);
- 
           // Autentica l'utente come dipendente
           Auth::guard('dipendenti')->login($user);
  
@@ -71,19 +67,17 @@ class ProfileControllerTest extends TestCase
              'name' => $this->faker->name,
              'cognome' => $this->faker->lastName,
              'email' => $this->faker->safeEmail,
-             // Aggiungere altri campi del profilo se necessario
+             
          ];
  
-          // Effettuare una richiesta POST per l'aggiornamento del profilo
+          // Effettua una richiesta POST per l'aggiornamento del profilo
           $response = $this->patch(route('profile.update_dip'), $newData2);
- 
-          // Verificare che la risposta sia una redirect alla pagina di modifica del profilo
+          // Verifica che la risposta sia una redirect alla pagina di modifica del profilo
           $response->assertRedirect(route('profile.edit_dip'));
-  
-          // Verificare che il messaggio di session 'status' sia impostato su 'profile-updated'
+          // Verifica che il messaggio di session 'status' sia impostato su 'profile-updated'
           $this->assertEquals('profile-updated_dip', session('status'));
   
-          // Verificare che i dati dell'utente siano stati aggiornati correttamente
+          // Verifica che i dati dell'utente siano stati aggiornati correttamente
           $user->refresh();
           $this->assertEquals($newData2['name'], $user->name);
           $this->assertEquals($newData2['cognome'], $user->cognome);

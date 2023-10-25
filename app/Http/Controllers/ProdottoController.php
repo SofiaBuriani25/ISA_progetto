@@ -40,7 +40,7 @@ class ProdottoController extends Controller
     // Verifica se il prodotto esiste e se la quantità è valida
     $prodotto = Prodotto::find($prodotto_id);
     if (!$prodotto || $quantita < 0) {
-        // Gestisci il caso in cui il prodotto non esiste o la quantità non è valida
+        // Caso in cui il prodotto non esiste o la quantità non è valida
         return redirect()->back()->with('error', 'Errore nella selezione del prodotto o della quantità.');
     }
 
@@ -67,22 +67,21 @@ class ProdottoController extends Controller
     $prenotazione->quantita = $quantita;
     $prenotazione->save();
  
-    } //fine if, quindi se l'utente è un dipendente
+    } //Fine if, quindi qui funziona se l'utente è un dipendente
 
     $disponibilitaAttuale = $prodotto->disponibilita;
 
 
-    // Calcola la nuova quantità disponibile dopo l'aggiunta al carrello
+    // Calcola la nuova quantità disponibile 
     $nuova_quantita_disponibile = $disponibilitaAttuale - $quantita;
 
     // Aggiorna la quantità disponibile nel database
     $prodotto->update([
         'disponibilita' => $nuova_quantita_disponibile,
     ]);
-    // Qui puoi implementare la logica per aggiungere il prodotto al carrello
-    // Ad esempio, puoi salvare l'ID del prodotto e la quantità in una sessione o in un database dedicato al carrello
 
-    // Successo, reindirizza con un messaggio di successo
+
+    // Reindirizza con un messaggio di successo
     if (auth()->user()) {
     return redirect()->back()
     ->with('success', 'Prodotto aggiunto al carrello con successo.');
@@ -133,7 +132,7 @@ public function mostraPrenotazioni()
     // Verifica se il prodotto esiste 
     $prodottoEsistente = Prodotto::where('name', $name)->first();
     if ($prodottoEsistente ) {
-        // Gestisci il caso in cui il prodotto non esiste
+        // Caso in cui il prodotto non esiste
         return redirect()->back()->with('error', 'Il Prodotto esiste già.');
     }
     $prodotto = new Prodotto();
@@ -147,12 +146,9 @@ public function mostraPrenotazioni()
    
     $prodotto->save();
 
-    // Successo, reindirizza con un messaggio di successo
+    // Reindirizza con un messaggio di successo
     return redirect()->back()->with('success', 'Prodotto aggiunto alla lista con successo.');
 }
-
-
-
 
 
 
@@ -168,14 +164,14 @@ public function ordinaProdotto(Request $request) //DIPENDENTE
     // Verifica se il prodotto esiste e se la quantità è valida
     $prodotto = Prodotto::find($prodotto_id);
     if (!$prodotto) {
-        // Gestisci il caso in cui il prodotto non esiste o la quantità non è valida
+        // Caso in cui il prodotto non esiste o la quantità non è valida
         return redirect()->back()->with('error', 'Errore nella selezione del prodotto.');
     }
 
         // Verifica se il prodotto è scaduto
-    $dataOdierna = now(); // Assumi che questa sia la data odierna
+    $dataOdierna = now(); // Prende la data odierna
     if (strtotime($prodotto->scadenza) <= strtotime($dataOdierna)) {
-        // Converti la scadenza in un oggetto data
+        // Converte la scadenza in un oggetto data
         $scadenza = \Carbon\Carbon::createFromFormat('Y-m-d', $prodotto->scadenza);
 
         // Aggiorna la disponibilità a zero e rimanda la data di scadenza di un anno
@@ -199,17 +195,16 @@ public function ordinaProdotto(Request $request) //DIPENDENTE
     $disponibilitaAttuale = $prodotto->disponibilita;
 
 
-    // Calcola la nuova quantità disponibile dopo l'aggiunta al carrello
+    // Calcola la nuova quantità disponibile 
     $nuova_quantita_disponibile = $disponibilitaAttuale + $quantita;
 
     // Aggiorna la quantità disponibile nel database
     $prodotto->update([
         'disponibilita' => $nuova_quantita_disponibile,
     ]);
-    // Qui puoi implementare la logica per aggiungere il prodotto al carrello
-    // Ad esempio, puoi salvare l'ID del prodotto e la quantità in una sessione o in un database dedicato al carrello
 
-    // Successo, reindirizza con un messaggio di successo
+
+    // Reindirizza con un messaggio di successo
     return redirect()->back()
     ->with('success', 'Prodotto aggiunto con successo.');
    // ->with('prenotazioniNonPagate', $prenotazioniNonPagate);

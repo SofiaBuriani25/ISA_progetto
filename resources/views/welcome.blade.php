@@ -14,7 +14,7 @@
   <link href = "https://casaromei.cultura.gov.it/css/style.css" rel="stylesheet" />
   <link rel="stylesheet" type="text/css" href="app.css">
 
-  <!-- <link rel="stylesheet" href="https://casaromei.cultura.gov.it/css/immagini.css"/> -->
+
  </head>
  <body>
 
@@ -59,7 +59,7 @@
                 
             @endif
 </div>
-    <!--<img src="img/ingl.png"> -->
+  
 </nav>
 
 
@@ -204,7 +204,7 @@
     <div class="row white">
       </div>
  
-     <!-- <a href="#" ><img class="social align-items-center" src="img/fb.png"></a>-->
+    
       </div>
     <div class="row end">
   		<div class="col-lg-6 col-sm-6 col-xs-7">

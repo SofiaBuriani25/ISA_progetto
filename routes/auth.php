@@ -59,9 +59,8 @@ Route::middleware('auth')->group(function () {
    
 });
 Route::middleware(['auth:dipendenti'])->group(function () {
-    // ... altre route per i dipendenti ...
 
-    // Aggiungi questa route per l'aggiornamento della password dei dipendenti
+    // Route per l'aggiornamento della password dei dipendenti
     Route::put('password_dip', [PasswordController::class, 'update_dip'])->name('password.update_dip');
 });
 

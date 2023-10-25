@@ -74,7 +74,7 @@ Route::middleware(['auth:dipendenti'])->group(function () {
     // ...
 });
 
-Route::get('/', function () {return view('welcome');})->name('home'); //  QUESTA E' LA ROUTE CHE PORTA AL SITO IN MANUTENZIONE
+Route::get('/', function () {return view('welcome');})->name('home'); 
 
 Route::post('/aggiungi_al_carrello', [ProdottoController::class, 'aggiungiAlCarrello'])->name('aggiungi_al_carrello');
 Route::get('/mostra-prenotazioni', [ProdottoController::class, 'mostraPrenotazioni'])->name('mostra-prenotazioni');

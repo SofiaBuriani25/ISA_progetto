@@ -63,7 +63,7 @@ class VisiteController extends Controller
     // Verifica se la visita esiste
     $visita = Visita::find($visita_id);
     if (!$visita) {
-        // Gestisci il caso in cui la visita non esiste 
+        // Caso in cui la visita non esiste 
         return redirect()->back()->with('error', 'Errore nella selezione ');
     }
 
@@ -73,7 +73,7 @@ class VisiteController extends Controller
         'user_id' => $user_id,
     ]);
    
-    // Successo, reindirizza con un messaggio di successo
+    // Reindirizza con un messaggio di successo
     return redirect()->back()->with('success', 'Visita prenotata!');
 }
 
@@ -86,7 +86,7 @@ class VisiteController extends Controller
 
     // Verifica se l'utente autenticato è il proprietario della prenotazione
     Auth::user()->id == $visita->user_id;
-        // Rimuovi l'associazione dell'utente dalla visita (imposta user_id a NULL)
+        // Rimuove l'associazione dell'utente dalla visita (imposta user_id a NULL)
     $visita->update(['user_id' => null]);
 
     return redirect()->back()->with('error', 'Visita eliminata con successo!');
@@ -117,7 +117,7 @@ public function aggiungi_visita(Request $request) //Il dipendente che può aggiu
    
     $visita->save();
 
-    // Successo, reindirizza con un messaggio di successo
+    // Reindirizza con un messaggio di successo
     return redirect()->back()->with('success', 'Visita aggiunta alla lista con successo.');
 }
 

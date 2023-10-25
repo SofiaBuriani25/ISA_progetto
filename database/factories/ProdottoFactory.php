@@ -19,7 +19,7 @@ class ProdottoFactory extends Factory
             'scadenza' => $this->faker->date,
             'prezzo' => $this->faker->randomFloat(2, 1, 100),
             'descrizione' => $this->faker->sentence,
-            // Altri campi del prodotto...
+            
         ];
     }
 }

@@ -18,7 +18,7 @@ class DipendentiTest extends DuskTestCase
                     ->type('email', 'giuseppe@live.it') 
                     ->type('password', 'qwerty1234') 
                     ->click('button', ['text' => 'Log in'])  
-                    ->assertPathIs('/dipendente_home') // Verifico che l'utente sia reindirizzato alla pagina di dashboard
+                    ->assertPathIs('/dipendente_home') // Verifica che l'utente sia reindirizzato alla pagina di dashboard
                     ->assertSee('Elenco dei prodotti disponibili'); 
 
         });
@@ -88,7 +88,7 @@ class DipendentiTest extends DuskTestCase
 
     }
 
-    // Test che conferma l'avvenuto pagamento del cliente nella pagina "Prenotazione die Clienti"
+    // Test che conferma l'avvenuto pagamento del cliente nella pagina "Prenotazione dei Clienti"
     // andando a cliccare nella corrispettiva riga della prenotazione il pulsante verde.
     public function testConfermaPagamentoCliente(): void
     {   
@@ -349,8 +349,7 @@ class DipendentiTest extends DuskTestCase
     }
 
 
-// MODIFICARE IL NUMERO MINIMO DI MEDICINE PER ANDARE AFINIRE NELLA TABELLA PRODOTTI DA ORDINARE
-// RICORDARSI SE SI CAMBIA PASSWORD ALLA FINE NON FUNZIONA PIU NULLA
+
 
 
 
