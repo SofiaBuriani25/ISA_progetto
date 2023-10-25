@@ -370,7 +370,7 @@ class DipendentiTest extends DuskTestCase
                     ->pause(500);
             
             $browser->type('tipologia', $tipo); 
-            $browser->script("document.querySelector('input[name=\"dataVisita\"]').value = '2023-02-12T$ore:$minuti'");
+            $browser->script("document.querySelector('input[name=\"dataVisita\"]').value = '2023-02-12T09:30'");
             $browser->type('medico', 'Dr. Verdi') 
                     ->type('prezzo', $prezzo) 
                     ->press('#bottone')
